@@ -1,0 +1,30 @@
+# Crudos del lago (bronce): nunca al repositorio
+lago/raw/*
+!lago/raw/.gitkeep
+
+# Secretos
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ruff_cache/
+
+# Bases locales de exploración
+*.duckdb
+*.duckdb.wal
+.dlt/
+
+# Node / Vercel
+node_modules/
+.vercel/
+
+# Sistema
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
