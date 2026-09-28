@@ -26,12 +26,30 @@ Si Interfaz construye `api/`, Seguridad se suma a Curaduría o a Datos.
 
 | Persona | Usuario GitHub | Papel principal | Papel compartido |
 |---|---|---|---|
-| | | | |
+| Juan Carlos Muñoz | _(pendiente)_ | Curaduría | — |
 | | | | |
 | | | | |
 
 La exploración de herramientas no es de un papel: cada papel prueba **al menos dos
 herramientas** en sus tramos y las anota en la bitácora del README.
+
+### Qué entrega cada papel
+
+**Curaduría** — sale del tramo cuando:
+- [ ] Cada fuente tiene su ficha en `catalogo/`, con `probado`, `estado`, `licencia` y `personas`.
+- [ ] Hay fuentes de al menos **tres familias** distintas (estadística, territorio, ambiente,
+      economía, movilidad, lo que se dice…).
+- [ ] Las fuentes caídas o descartadas también tienen ficha, con el error exacto.
+- [ ] `catalogo/listas.json` define las listas cerradas de `entidad` y `licencia`.
+- [ ] El README dice qué **no existe** abierto para München (sección «Huecos»).
+- [ ] Al menos dos herramientas de rastreo probadas (p. ej. DuckDB, QGIS, Overture Maps) y
+      anotadas en la bitácora de exploración.
+- [ ] Más adelante: revisar que cada cifra de las vistas llegue a su ficha.
+
+Por dónde empezar en München (verificar cada enlace antes de catalogarlo):
+estadística de la ciudad y de Baviera, portal de datos abiertos de la ciudad, geodatos de
+Baviera, meteorología (DWD), transporte (GTFS), OpenStreetMap / Overture Maps, Sentinel-2,
+Wikipedia Pageviews y GDELT.
 
 ## 2. Flujo con Git
 
