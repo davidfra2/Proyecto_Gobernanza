@@ -25,7 +25,7 @@ sube directo a `main`. Si dos eligen lo mismo, lo hablan antes de cambiar la tab
 | Persona | Usuario GitHub | Papel principal | Papel compartido |
 |---|---|---|---|
 | Juan Carlos Muñoz | _(pendiente)_ | Curaduría | — |
-| | | | |
+| David Felipe Rios | davidfra2 | Interfaz | — |
 | | | | |
 
 La exploración de herramientas no es de un papel: cada papel prueba **al menos dos
