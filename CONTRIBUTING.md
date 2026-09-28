@@ -19,10 +19,8 @@ Si Interfaz construye `api/`, Seguridad se suma a Curaduría o a Datos.
 
 ### Cómo elegir
 
-1. Cada uno crea su rama: `git switch -c papel/<tu-usuario>`.
-2. Escribe su nombre en la tabla de abajo, en el papel o los papeles que quiere.
-3. Abre un pull request. Si dos eligen lo mismo, lo hablan en el PR.
-4. Lo aprueba **otra persona**, nunca quien lo abrió.
+Cada uno escribe su nombre en la tabla de abajo, en el papel o los papeles que quiere, y lo
+sube directo a `main`. Si dos eligen lo mismo, lo hablan antes de cambiar la tabla.
 
 | Persona | Usuario GitHub | Papel principal | Papel compartido |
 |---|---|---|---|
@@ -53,12 +51,19 @@ Wikipedia Pageviews y GDELT.
 
 ## 2. Flujo con Git
 
-- `main` siempre funciona. **Nadie hace push directo a `main`**: todo entra por pull request.
-- Una rama por tarea, con nombre corto:
-  `fuente/opendata-muenchen`, `ingesta/poblacion`, `vista/mapa`, `explorar/dlt`, `fix/verificacion-fechas`.
-- Antes de empezar: `git switch main && git pull`. Ramas cortas (1–3 días) para evitar conflictos.
+`main` siempre funciona. Antes de empezar: `git pull`.
+
+**Directo a `main`** — cambios pequeños dentro de tu propio tramo:
+- Fichas del catálogo, textos del README y de las bitácoras, tu fila en la tabla de papeles.
+- Pruebas de herramientas en `explorar/`, que no afectan al sistema.
+
+**Rama y pull request** — lo que afecta a otros o el taller pide que revise otra persona:
+- Código de `ingesta/`, `verificacion/`, `web/` y `api/`, y cambios al formato del lago o del catálogo.
+- Ramas con nombre corto y vida corta (1–3 días): `ingesta/poblacion`, `vista/mapa`, `fix/verificacion-fechas`.
 - Cada PR lo revisa y aprueba **alguien distinto** a quien lo abrió (ver la columna «Revisa a»).
-- Si la verificación falla, se arregla la ingesta, **nunca** se afloja el verificador.
+
+En la duda, pull request. Y siempre: si la verificación falla, se arregla la ingesta,
+**nunca** se afloja el verificador.
 
 ### Mensajes de commit
 
