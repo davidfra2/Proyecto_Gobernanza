@@ -26,6 +26,8 @@ sube directo a `main`. Si dos eligen lo mismo, lo hablan antes de cambiar la tab
 |---|---|---|---|
 | Juan Carlos Muñoz | _(pendiente)_ | Curaduría | — |
 | David Felipe Rios | davidfra2 | Interfaz | — |
+| Samuel Molina  | Smuel24 | Datos | — |
+
 | | | | |
 
 La exploración de herramientas no es de un papel: cada papel prueba **al menos dos
