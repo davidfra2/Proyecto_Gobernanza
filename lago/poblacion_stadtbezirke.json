@@ -1,0 +1,2009 @@
+{
+ "fuente": "F01",
+ "vigencia": "2025-12-31",
+ "probado": "2026-10-06",
+ "registros": [
+  {
+   "sb_codigo": "00",
+   "anio": 2015,
+   "poblacion": 1521678,
+   "area_km2": 310.7,
+   "densidad_hab_km2": 4897
+  },
+  {
+   "sb_codigo": "01",
+   "anio": 2015,
+   "poblacion": 21122,
+   "area_km2": 3.1,
+   "densidad_hab_km2": 6715
+  },
+  {
+   "sb_codigo": "02",
+   "anio": 2015,
+   "poblacion": 54049,
+   "area_km2": 4.4,
+   "densidad_hab_km2": 12280
+  },
+  {
+   "sb_codigo": "03",
+   "anio": 2015,
+   "poblacion": 53743,
+   "area_km2": 4.3,
+   "densidad_hab_km2": 12504
+  },
+  {
+   "sb_codigo": "04",
+   "anio": 2015,
+   "poblacion": 68527,
+   "area_km2": 4.4,
+   "densidad_hab_km2": 15706
+  },
+  {
+   "sb_codigo": "05",
+   "anio": 2015,
+   "poblacion": 61495,
+   "area_km2": 4.2,
+   "densidad_hab_km2": 14574
+  },
+  {
+   "sb_codigo": "06",
+   "anio": 2015,
+   "poblacion": 40879,
+   "area_km2": 3.9,
+   "densidad_hab_km2": 10379
+  },
+  {
+   "sb_codigo": "07",
+   "anio": 2015,
+   "poblacion": 58398,
+   "area_km2": 7.8,
+   "densidad_hab_km2": 7473
+  },
+  {
+   "sb_codigo": "08",
+   "anio": 2015,
+   "poblacion": null,
+   "area_km2": null,
+   "densidad_hab_km2": 14675
+  },
+  {
+   "sb_codigo": "09",
+   "anio": 2015,
+   "poblacion": 98702,
+   "area_km2": 12.9,
+   "densidad_hab_km2": 7643
+  },
+  {
+   "sb_codigo": "10",
+   "anio": 2015,
+   "poblacion": 53261,
+   "area_km2": 11.1,
+   "densidad_hab_km2": 4801
+  },
+  {
+   "sb_codigo": "11",
+   "anio": 2015,
+   "poblacion": 75488,
+   "area_km2": 13.4,
+   "densidad_hab_km2": 5627
+  },
+  {
+   "sb_codigo": "12",
+   "anio": 2015,
+   "poblacion": 75020,
+   "area_km2": 25.7,
+   "densidad_hab_km2": 2922
+  },
+  {
+   "sb_codigo": "13",
+   "anio": 2015,
+   "poblacion": 85947,
+   "area_km2": 23.7,
+   "densidad_hab_km2": 3625
+  },
+  {
+   "sb_codigo": "14",
+   "anio": 2015,
+   "poblacion": 45035,
+   "area_km2": 6.3,
+   "densidad_hab_km2": 7132
+  },
+  {
+   "sb_codigo": "15",
+   "anio": 2015,
+   "poblacion": 69830,
+   "area_km2": 22.5,
+   "densidad_hab_km2": 3110
+  },
+  {
+   "sb_codigo": "16",
+   "anio": 2015,
+   "poblacion": 112371,
+   "area_km2": 19.9,
+   "densidad_hab_km2": 5648
+  },
+  {
+   "sb_codigo": "17",
+   "anio": 2015,
+   "poblacion": 54402,
+   "area_km2": 5.7,
+   "densidad_hab_km2": 9510
+  },
+  {
+   "sb_codigo": "18",
+   "anio": 2015,
+   "poblacion": 53377,
+   "area_km2": 8.1,
+   "densidad_hab_km2": 6625
+  },
+  {
+   "sb_codigo": "19",
+   "anio": 2015,
+   "poblacion": 93602,
+   "area_km2": 17.8,
+   "densidad_hab_km2": 5269
+  },
+  {
+   "sb_codigo": "20",
+   "anio": 2015,
+   "poblacion": 50257,
+   "area_km2": 9.2,
+   "densidad_hab_km2": 5449
+  },
+  {
+   "sb_codigo": "21",
+   "anio": 2015,
+   "poblacion": 73320,
+   "area_km2": 16.5,
+   "densidad_hab_km2": 4444
+  },
+  {
+   "sb_codigo": "22",
+   "anio": 2015,
+   "poblacion": 43682,
+   "area_km2": 34.1,
+   "densidad_hab_km2": 1282
+  },
+  {
+   "sb_codigo": "23",
+   "anio": 2015,
+   "poblacion": 31882,
+   "area_km2": 15.5,
+   "densidad_hab_km2": 2063
+  },
+  {
+   "sb_codigo": "24",
+   "anio": 2015,
+   "poblacion": 61534,
+   "area_km2": 28.9,
+   "densidad_hab_km2": 2126
+  },
+  {
+   "sb_codigo": "25",
+   "anio": 2015,
+   "poblacion": 55374,
+   "area_km2": 5.3,
+   "densidad_hab_km2": 10476
+  },
+  {
+   "sb_codigo": "00",
+   "anio": 2016,
+   "poblacion": 1542860,
+   "area_km2": 310.7,
+   "densidad_hab_km2": 4966
+  },
+  {
+   "sb_codigo": "01",
+   "anio": 2016,
+   "poblacion": 21454,
+   "area_km2": 3.1,
+   "densidad_hab_km2": 6820
+  },
+  {
+   "sb_codigo": "02",
+   "anio": 2016,
+   "poblacion": 54915,
+   "area_km2": 4.4,
+   "densidad_hab_km2": 12477
+  },
+  {
+   "sb_codigo": "03",
+   "anio": 2016,
+   "poblacion": 53443,
+   "area_km2": 4.3,
+   "densidad_hab_km2": 12435
+  },
+  {
+   "sb_codigo": "04",
+   "anio": 2016,
+   "poblacion": 69407,
+   "area_km2": 4.4,
+   "densidad_hab_km2": 15908
+  },
+  {
+   "sb_codigo": "05",
+   "anio": 2016,
+   "poblacion": 61999,
+   "area_km2": 4.2,
+   "densidad_hab_km2": 14693
+  },
+  {
+   "sb_codigo": "06",
+   "anio": 2016,
+   "poblacion": 41230,
+   "area_km2": 3.9,
+   "densidad_hab_km2": 10468
+  },
+  {
+   "sb_codigo": "07",
+   "anio": 2016,
+   "poblacion": 59174,
+   "area_km2": 7.8,
+   "densidad_hab_km2": 7572
+  },
+  {
+   "sb_codigo": "08",
+   "anio": 2016,
+   "poblacion": null,
+   "area_km2": null,
+   "densidad_hab_km2": 14627
+  },
+  {
+   "sb_codigo": "09",
+   "anio": 2016,
+   "poblacion": 99538,
+   "area_km2": 12.9,
+   "densidad_hab_km2": 7707
+  },
+  {
+   "sb_codigo": "10",
+   "anio": 2016,
+   "poblacion": 53859,
+   "area_km2": 11.1,
+   "densidad_hab_km2": 4855
+  },
+  {
+   "sb_codigo": "11",
+   "anio": 2016,
+   "poblacion": 76255,
+   "area_km2": 13.4,
+   "densidad_hab_km2": 5684
+  },
+  {
+   "sb_codigo": "12",
+   "anio": 2016,
+   "poblacion": 77188,
+   "area_km2": 25.7,
+   "densidad_hab_km2": 3007
+  },
+  {
+   "sb_codigo": "13",
+   "anio": 2016,
+   "poblacion": 87164,
+   "area_km2": 23.7,
+   "densidad_hab_km2": 3676
+  },
+  {
+   "sb_codigo": "14",
+   "anio": 2016,
+   "poblacion": 45655,
+   "area_km2": 6.3,
+   "densidad_hab_km2": 7230
+  },
+  {
+   "sb_codigo": "15",
+   "anio": 2016,
+   "poblacion": 71448,
+   "area_km2": 22.5,
+   "densidad_hab_km2": 3182
+  },
+  {
+   "sb_codigo": "16",
+   "anio": 2016,
+   "poblacion": 113898,
+   "area_km2": 19.9,
+   "densidad_hab_km2": 5725
+  },
+  {
+   "sb_codigo": "17",
+   "anio": 2016,
+   "poblacion": 54784,
+   "area_km2": 5.7,
+   "densidad_hab_km2": 9577
+  },
+  {
+   "sb_codigo": "18",
+   "anio": 2016,
+   "poblacion": 54050,
+   "area_km2": 8.1,
+   "densidad_hab_km2": 6709
+  },
+  {
+   "sb_codigo": "19",
+   "anio": 2016,
+   "poblacion": 96200,
+   "area_km2": 17.8,
+   "densidad_hab_km2": 5416
+  },
+  {
+   "sb_codigo": "20",
+   "anio": 2016,
+   "poblacion": 50567,
+   "area_km2": 9.2,
+   "densidad_hab_km2": 5482
+  },
+  {
+   "sb_codigo": "21",
+   "anio": 2016,
+   "poblacion": 74432,
+   "area_km2": 16.5,
+   "densidad_hab_km2": 4512
+  },
+  {
+   "sb_codigo": "22",
+   "anio": 2016,
+   "poblacion": 45571,
+   "area_km2": 34.1,
+   "densidad_hab_km2": 1338
+  },
+  {
+   "sb_codigo": "23",
+   "anio": 2016,
+   "poblacion": 32248,
+   "area_km2": 15.5,
+   "densidad_hab_km2": 2087
+  },
+  {
+   "sb_codigo": "24",
+   "anio": 2016,
+   "poblacion": 61764,
+   "area_km2": 28.9,
+   "densidad_hab_km2": 2134
+  },
+  {
+   "sb_codigo": "25",
+   "anio": 2016,
+   "poblacion": 56335,
+   "area_km2": 5.3,
+   "densidad_hab_km2": 10658
+  },
+  {
+   "sb_codigo": "00",
+   "anio": 2017,
+   "poblacion": 1526056,
+   "area_km2": 310.7,
+   "densidad_hab_km2": 4911
+  },
+  {
+   "sb_codigo": "01",
+   "anio": 2017,
+   "poblacion": 20926,
+   "area_km2": 3.1,
+   "densidad_hab_km2": 6652
+  },
+  {
+   "sb_codigo": "02",
+   "anio": 2017,
+   "poblacion": 51632,
+   "area_km2": 4.4,
+   "densidad_hab_km2": 11731
+  },
+  {
+   "sb_codigo": "03",
+   "anio": 2017,
+   "poblacion": 51311,
+   "area_km2": 4.3,
+   "densidad_hab_km2": 11939
+  },
+  {
+   "sb_codigo": "04",
+   "anio": 2017,
+   "poblacion": 68265,
+   "area_km2": 4.4,
+   "densidad_hab_km2": 15646
+  },
+  {
+   "sb_codigo": "05",
+   "anio": 2017,
+   "poblacion": 60937,
+   "area_km2": 4.2,
+   "densidad_hab_km2": 14441
+  },
+  {
+   "sb_codigo": "06",
+   "anio": 2017,
+   "poblacion": 40682,
+   "area_km2": 3.9,
+   "densidad_hab_km2": 10329
+  },
+  {
+   "sb_codigo": "07",
+   "anio": 2017,
+   "poblacion": 59386,
+   "area_km2": 7.8,
+   "densidad_hab_km2": 7599
+  },
+  {
+   "sb_codigo": "08",
+   "anio": 2017,
+   "poblacion": null,
+   "area_km2": null,
+   "densidad_hab_km2": 14267
+  },
+  {
+   "sb_codigo": "09",
+   "anio": 2017,
+   "poblacion": 98520,
+   "area_km2": 12.9,
+   "densidad_hab_km2": 7629
+  },
+  {
+   "sb_codigo": "10",
+   "anio": 2017,
+   "poblacion": 53662,
+   "area_km2": 11.1,
+   "densidad_hab_km2": 4837
+  },
+  {
+   "sb_codigo": "11",
+   "anio": 2017,
+   "poblacion": 74731,
+   "area_km2": 13.4,
+   "densidad_hab_km2": 5570
+  },
+  {
+   "sb_codigo": "12",
+   "anio": 2017,
+   "poblacion": 76341,
+   "area_km2": 25.7,
+   "densidad_hab_km2": 2974
+  },
+  {
+   "sb_codigo": "13",
+   "anio": 2017,
+   "poblacion": 85971,
+   "area_km2": 23.7,
+   "densidad_hab_km2": 3626
+  },
+  {
+   "sb_codigo": "14",
+   "anio": 2017,
+   "poblacion": 45582,
+   "area_km2": 6.3,
+   "densidad_hab_km2": 7219
+  },
+  {
+   "sb_codigo": "15",
+   "anio": 2017,
+   "poblacion": 72006,
+   "area_km2": 22.5,
+   "densidad_hab_km2": 3207
+  },
+  {
+   "sb_codigo": "16",
+   "anio": 2017,
+   "poblacion": 114478,
+   "area_km2": 19.9,
+   "densidad_hab_km2": 5754
+  },
+  {
+   "sb_codigo": "17",
+   "anio": 2017,
+   "poblacion": 53937,
+   "area_km2": 5.7,
+   "densidad_hab_km2": 9429
+  },
+  {
+   "sb_codigo": "18",
+   "anio": 2017,
+   "poblacion": 52600,
+   "area_km2": 8.1,
+   "densidad_hab_km2": 6529
+  },
+  {
+   "sb_codigo": "19",
+   "anio": 2017,
+   "poblacion": 95554,
+   "area_km2": 17.8,
+   "densidad_hab_km2": 5379
+  },
+  {
+   "sb_codigo": "20",
+   "anio": 2017,
+   "poblacion": 49626,
+   "area_km2": 9.2,
+   "densidad_hab_km2": 5380
+  },
+  {
+   "sb_codigo": "21",
+   "anio": 2017,
+   "poblacion": 74098,
+   "area_km2": 16.5,
+   "densidad_hab_km2": 4491
+  },
+  {
+   "sb_codigo": "22",
+   "anio": 2017,
+   "poblacion": 46385,
+   "area_km2": 34.1,
+   "densidad_hab_km2": 1362
+  },
+  {
+   "sb_codigo": "23",
+   "anio": 2017,
+   "poblacion": 32677,
+   "area_km2": 15.5,
+   "densidad_hab_km2": 2115
+  },
+  {
+   "sb_codigo": "24",
+   "anio": 2017,
+   "poblacion": 60933,
+   "area_km2": 28.9,
+   "densidad_hab_km2": 2106
+  },
+  {
+   "sb_codigo": "25",
+   "anio": 2017,
+   "poblacion": 56281,
+   "area_km2": 5.3,
+   "densidad_hab_km2": 10647
+  },
+  {
+   "sb_codigo": "00",
+   "anio": 2018,
+   "poblacion": 1542211,
+   "area_km2": 310.7,
+   "densidad_hab_km2": 4963
+  },
+  {
+   "sb_codigo": "01",
+   "anio": 2018,
+   "poblacion": 21100,
+   "area_km2": 3.1,
+   "densidad_hab_km2": 6708
+  },
+  {
+   "sb_codigo": "02",
+   "anio": 2018,
+   "poblacion": 51644,
+   "area_km2": 4.4,
+   "densidad_hab_km2": 11734
+  },
+  {
+   "sb_codigo": "03",
+   "anio": 2018,
+   "poblacion": 51402,
+   "area_km2": 4.3,
+   "densidad_hab_km2": 11960
+  },
+  {
+   "sb_codigo": "04",
+   "anio": 2018,
+   "poblacion": 68527,
+   "area_km2": 4.4,
+   "densidad_hab_km2": 15706
+  },
+  {
+   "sb_codigo": "05",
+   "anio": 2018,
+   "poblacion": 61356,
+   "area_km2": 4.2,
+   "densidad_hab_km2": 14541
+  },
+  {
+   "sb_codigo": "06",
+   "anio": 2018,
+   "poblacion": 40983,
+   "area_km2": 3.9,
+   "densidad_hab_km2": 10405
+  },
+  {
+   "sb_codigo": "07",
+   "anio": 2018,
+   "poblacion": 59643,
+   "area_km2": 7.8,
+   "densidad_hab_km2": 7632
+  },
+  {
+   "sb_codigo": "08",
+   "anio": 2018,
+   "poblacion": null,
+   "area_km2": null,
+   "densidad_hab_km2": 14367
+  },
+  {
+   "sb_codigo": "09",
+   "anio": 2018,
+   "poblacion": 98814,
+   "area_km2": 12.9,
+   "densidad_hab_km2": 7651
+  },
+  {
+   "sb_codigo": "10",
+   "anio": 2018,
+   "poblacion": 54223,
+   "area_km2": 11.1,
+   "densidad_hab_km2": 4888
+  },
+  {
+   "sb_codigo": "11",
+   "anio": 2018,
+   "poblacion": 75094,
+   "area_km2": 13.4,
+   "densidad_hab_km2": 5597
+  },
+  {
+   "sb_codigo": "12",
+   "anio": 2018,
+   "poblacion": 77936,
+   "area_km2": 25.7,
+   "densidad_hab_km2": 3036
+  },
+  {
+   "sb_codigo": "13",
+   "anio": 2018,
+   "poblacion": 87950,
+   "area_km2": 23.7,
+   "densidad_hab_km2": 3709
+  },
+  {
+   "sb_codigo": "14",
+   "anio": 2018,
+   "poblacion": 46098,
+   "area_km2": 6.3,
+   "densidad_hab_km2": 7300
+  },
+  {
+   "sb_codigo": "15",
+   "anio": 2018,
+   "poblacion": 73206,
+   "area_km2": 22.5,
+   "densidad_hab_km2": 3261
+  },
+  {
+   "sb_codigo": "16",
+   "anio": 2018,
+   "poblacion": 116327,
+   "area_km2": 19.9,
+   "densidad_hab_km2": 5847
+  },
+  {
+   "sb_codigo": "17",
+   "anio": 2018,
+   "poblacion": 54256,
+   "area_km2": 5.7,
+   "densidad_hab_km2": 9485
+  },
+  {
+   "sb_codigo": "18",
+   "anio": 2018,
+   "poblacion": 53184,
+   "area_km2": 8.1,
+   "densidad_hab_km2": 6601
+  },
+  {
+   "sb_codigo": "19",
+   "anio": 2018,
+   "poblacion": 96714,
+   "area_km2": 17.8,
+   "densidad_hab_km2": 5445
+  },
+  {
+   "sb_codigo": "20",
+   "anio": 2018,
+   "poblacion": 49898,
+   "area_km2": 9.2,
+   "densidad_hab_km2": 5410
+  },
+  {
+   "sb_codigo": "21",
+   "anio": 2018,
+   "poblacion": 74625,
+   "area_km2": 16.5,
+   "densidad_hab_km2": 4523
+  },
+  {
+   "sb_codigo": "22",
+   "anio": 2018,
+   "poblacion": 47813,
+   "area_km2": 34.1,
+   "densidad_hab_km2": 1404
+  },
+  {
+   "sb_codigo": "23",
+   "anio": 2018,
+   "poblacion": 33355,
+   "area_km2": 15.5,
+   "densidad_hab_km2": 2159
+  },
+  {
+   "sb_codigo": "24",
+   "anio": 2018,
+   "poblacion": 61774,
+   "area_km2": 28.9,
+   "densidad_hab_km2": 2135
+  },
+  {
+   "sb_codigo": "25",
+   "anio": 2018,
+   "poblacion": 56546,
+   "area_km2": 5.3,
+   "densidad_hab_km2": 10698
+  },
+  {
+   "sb_codigo": "00",
+   "anio": 2019,
+   "poblacion": 1560042,
+   "area_km2": 310.7,
+   "densidad_hab_km2": 5021
+  },
+  {
+   "sb_codigo": "01",
+   "anio": 2019,
+   "poblacion": 21126,
+   "area_km2": 3.1,
+   "densidad_hab_km2": 6716
+  },
+  {
+   "sb_codigo": "02",
+   "anio": 2019,
+   "poblacion": 51933,
+   "area_km2": 4.4,
+   "densidad_hab_km2": 11799
+  },
+  {
+   "sb_codigo": "03",
+   "anio": 2019,
+   "poblacion": 51834,
+   "area_km2": 4.3,
+   "densidad_hab_km2": 12060
+  },
+  {
+   "sb_codigo": "04",
+   "anio": 2019,
+   "poblacion": 68935,
+   "area_km2": 4.4,
+   "densidad_hab_km2": 15800
+  },
+  {
+   "sb_codigo": "05",
+   "anio": 2019,
+   "poblacion": 61654,
+   "area_km2": 4.2,
+   "densidad_hab_km2": 14611
+  },
+  {
+   "sb_codigo": "06",
+   "anio": 2019,
+   "poblacion": 41256,
+   "area_km2": 3.9,
+   "densidad_hab_km2": 10475
+  },
+  {
+   "sb_codigo": "07",
+   "anio": 2019,
+   "poblacion": 60498,
+   "area_km2": 7.8,
+   "densidad_hab_km2": 7742
+  },
+  {
+   "sb_codigo": "08",
+   "anio": 2019,
+   "poblacion": null,
+   "area_km2": null,
+   "densidad_hab_km2": 14303
+  },
+  {
+   "sb_codigo": "09",
+   "anio": 2019,
+   "poblacion": 100213,
+   "area_km2": 12.9,
+   "densidad_hab_km2": 7760
+  },
+  {
+   "sb_codigo": "10",
+   "anio": 2019,
+   "poblacion": 54872,
+   "area_km2": 11.1,
+   "densidad_hab_km2": 4946
+  },
+  {
+   "sb_codigo": "11",
+   "anio": 2019,
+   "poblacion": 76559,
+   "area_km2": 13.4,
+   "densidad_hab_km2": 5706
+  },
+  {
+   "sb_codigo": "12",
+   "anio": 2019,
+   "poblacion": 78657,
+   "area_km2": 25.7,
+   "densidad_hab_km2": 3064
+  },
+  {
+   "sb_codigo": "13",
+   "anio": 2019,
+   "poblacion": 90025,
+   "area_km2": 23.7,
+   "densidad_hab_km2": 3797
+  },
+  {
+   "sb_codigo": "14",
+   "anio": 2019,
+   "poblacion": 47000,
+   "area_km2": 6.3,
+   "densidad_hab_km2": 7443
+  },
+  {
+   "sb_codigo": "15",
+   "anio": 2019,
+   "poblacion": 73479,
+   "area_km2": 22.5,
+   "densidad_hab_km2": 3273
+  },
+  {
+   "sb_codigo": "16",
+   "anio": 2019,
+   "poblacion": 117918,
+   "area_km2": 19.9,
+   "densidad_hab_km2": 5927
+  },
+  {
+   "sb_codigo": "17",
+   "anio": 2019,
+   "poblacion": 54498,
+   "area_km2": 5.7,
+   "densidad_hab_km2": 9527
+  },
+  {
+   "sb_codigo": "18",
+   "anio": 2019,
+   "poblacion": 53243,
+   "area_km2": 8.1,
+   "densidad_hab_km2": 6609
+  },
+  {
+   "sb_codigo": "19",
+   "anio": 2019,
+   "poblacion": 97689,
+   "area_km2": 17.8,
+   "densidad_hab_km2": 5500
+  },
+  {
+   "sb_codigo": "20",
+   "anio": 2019,
+   "poblacion": 50165,
+   "area_km2": 9.2,
+   "densidad_hab_km2": 5439
+  },
+  {
+   "sb_codigo": "21",
+   "anio": 2019,
+   "poblacion": 76348,
+   "area_km2": 16.5,
+   "densidad_hab_km2": 4628
+  },
+  {
+   "sb_codigo": "22",
+   "anio": 2019,
+   "poblacion": 49072,
+   "area_km2": 34.1,
+   "densidad_hab_km2": 1441
+  },
+  {
+   "sb_codigo": "23",
+   "anio": 2019,
+   "poblacion": 34277,
+   "area_km2": 15.5,
+   "densidad_hab_km2": 2218
+  },
+  {
+   "sb_codigo": "24",
+   "anio": 2019,
+   "poblacion": 62069,
+   "area_km2": 28.9,
+   "densidad_hab_km2": 2145
+  },
+  {
+   "sb_codigo": "25",
+   "anio": 2019,
+   "poblacion": 57111,
+   "area_km2": 5.3,
+   "densidad_hab_km2": 10804
+  },
+  {
+   "sb_codigo": "00",
+   "anio": 2020,
+   "poblacion": 1562096,
+   "area_km2": 310.7,
+   "densidad_hab_km2": 5027
+  },
+  {
+   "sb_codigo": "01",
+   "anio": 2020,
+   "poblacion": 20960,
+   "area_km2": 3.1,
+   "densidad_hab_km2": 6663
+  },
+  {
+   "sb_codigo": "02",
+   "anio": 2020,
+   "poblacion": 51547,
+   "area_km2": 4.4,
+   "densidad_hab_km2": 11711
+  },
+  {
+   "sb_codigo": "03",
+   "anio": 2020,
+   "poblacion": 51530,
+   "area_km2": 4.3,
+   "densidad_hab_km2": 11989
+  },
+  {
+   "sb_codigo": "04",
+   "anio": 2020,
+   "poblacion": 68750,
+   "area_km2": 4.4,
+   "densidad_hab_km2": 15756
+  },
+  {
+   "sb_codigo": "05",
+   "anio": 2020,
+   "poblacion": 62353,
+   "area_km2": 4.2,
+   "densidad_hab_km2": 14776
+  },
+  {
+   "sb_codigo": "06",
+   "anio": 2020,
+   "poblacion": 40916,
+   "area_km2": 3.9,
+   "densidad_hab_km2": 10388
+  },
+  {
+   "sb_codigo": "07",
+   "anio": 2020,
+   "poblacion": 60468,
+   "area_km2": 7.8,
+   "densidad_hab_km2": 7738
+  },
+  {
+   "sb_codigo": "08",
+   "anio": 2020,
+   "poblacion": null,
+   "area_km2": null,
+   "densidad_hab_km2": 14166
+  },
+  {
+   "sb_codigo": "09",
+   "anio": 2020,
+   "poblacion": 99704,
+   "area_km2": 12.9,
+   "densidad_hab_km2": 7720
+  },
+  {
+   "sb_codigo": "10",
+   "anio": 2020,
+   "poblacion": 54934,
+   "area_km2": 11.1,
+   "densidad_hab_km2": 4952
+  },
+  {
+   "sb_codigo": "11",
+   "anio": 2020,
+   "poblacion": 75999,
+   "area_km2": 13.4,
+   "densidad_hab_km2": 5664
+  },
+  {
+   "sb_codigo": "12",
+   "anio": 2020,
+   "poblacion": 78881,
+   "area_km2": 25.7,
+   "densidad_hab_km2": 3072
+  },
+  {
+   "sb_codigo": "13",
+   "anio": 2020,
+   "poblacion": 91855,
+   "area_km2": 23.7,
+   "densidad_hab_km2": 3874
+  },
+  {
+   "sb_codigo": "14",
+   "anio": 2020,
+   "poblacion": 46915,
+   "area_km2": 6.3,
+   "densidad_hab_km2": 7429
+  },
+  {
+   "sb_codigo": "15",
+   "anio": 2020,
+   "poblacion": 74456,
+   "area_km2": 22.5,
+   "densidad_hab_km2": 3316
+  },
+  {
+   "sb_codigo": "16",
+   "anio": 2020,
+   "poblacion": 118147,
+   "area_km2": 19.9,
+   "densidad_hab_km2": 5938
+  },
+  {
+   "sb_codigo": "17",
+   "anio": 2020,
+   "poblacion": 53897,
+   "area_km2": 5.7,
+   "densidad_hab_km2": 9421
+  },
+  {
+   "sb_codigo": "18",
+   "anio": 2020,
+   "poblacion": 52940,
+   "area_km2": 8.1,
+   "densidad_hab_km2": 6571
+  },
+  {
+   "sb_codigo": "19",
+   "anio": 2020,
+   "poblacion": 98596,
+   "area_km2": 17.8,
+   "densidad_hab_km2": 5550
+  },
+  {
+   "sb_codigo": "20",
+   "anio": 2020,
+   "poblacion": 49770,
+   "area_km2": 9.2,
+   "densidad_hab_km2": 5396
+  },
+  {
+   "sb_codigo": "21",
+   "anio": 2020,
+   "poblacion": 77301,
+   "area_km2": 16.5,
+   "densidad_hab_km2": 4686
+  },
+  {
+   "sb_codigo": "22",
+   "anio": 2020,
+   "poblacion": 50140,
+   "area_km2": 34.1,
+   "densidad_hab_km2": 1472
+  },
+  {
+   "sb_codigo": "23",
+   "anio": 2020,
+   "poblacion": 33710,
+   "area_km2": 15.5,
+   "densidad_hab_km2": 2182
+  },
+  {
+   "sb_codigo": "24",
+   "anio": 2020,
+   "poblacion": 62270,
+   "area_km2": 28.9,
+   "densidad_hab_km2": 2152
+  },
+  {
+   "sb_codigo": "25",
+   "anio": 2020,
+   "poblacion": 56729,
+   "area_km2": 5.3,
+   "densidad_hab_km2": 10732
+  },
+  {
+   "sb_codigo": "00",
+   "anio": 2021,
+   "poblacion": 1562128,
+   "area_km2": 310.7,
+   "densidad_hab_km2": 5027
+  },
+  {
+   "sb_codigo": "01",
+   "anio": 2021,
+   "poblacion": 20626,
+   "area_km2": 3.1,
+   "densidad_hab_km2": 6556
+  },
+  {
+   "sb_codigo": "02",
+   "anio": 2021,
+   "poblacion": 50943,
+   "area_km2": 4.4,
+   "densidad_hab_km2": 11574
+  },
+  {
+   "sb_codigo": "03",
+   "anio": 2021,
+   "poblacion": 51228,
+   "area_km2": 4.3,
+   "densidad_hab_km2": 11918
+  },
+  {
+   "sb_codigo": "04",
+   "anio": 2021,
+   "poblacion": 68255,
+   "area_km2": 4.4,
+   "densidad_hab_km2": 15643
+  },
+  {
+   "sb_codigo": "05",
+   "anio": 2021,
+   "poblacion": 62315,
+   "area_km2": 4.2,
+   "densidad_hab_km2": 14767
+  },
+  {
+   "sb_codigo": "06",
+   "anio": 2021,
+   "poblacion": 40704,
+   "area_km2": 3.9,
+   "densidad_hab_km2": 10334
+  },
+  {
+   "sb_codigo": "07",
+   "anio": 2021,
+   "poblacion": 60540,
+   "area_km2": 7.8,
+   "densidad_hab_km2": 7747
+  },
+  {
+   "sb_codigo": "08",
+   "anio": 2021,
+   "poblacion": null,
+   "area_km2": null,
+   "densidad_hab_km2": 13945
+  },
+  {
+   "sb_codigo": "09",
+   "anio": 2021,
+   "poblacion": 99415,
+   "area_km2": 12.9,
+   "densidad_hab_km2": 7698
+  },
+  {
+   "sb_codigo": "10",
+   "anio": 2021,
+   "poblacion": 54928,
+   "area_km2": 11.1,
+   "densidad_hab_km2": 4951
+  },
+  {
+   "sb_codigo": "11",
+   "anio": 2021,
+   "poblacion": 75658,
+   "area_km2": 13.4,
+   "densidad_hab_km2": 5639
+  },
+  {
+   "sb_codigo": "12",
+   "anio": 2021,
+   "poblacion": 77701,
+   "area_km2": 25.7,
+   "densidad_hab_km2": 3026
+  },
+  {
+   "sb_codigo": "13",
+   "anio": 2021,
+   "poblacion": 92593,
+   "area_km2": 23.7,
+   "densidad_hab_km2": 3905
+  },
+  {
+   "sb_codigo": "14",
+   "anio": 2021,
+   "poblacion": 46769,
+   "area_km2": 6.3,
+   "densidad_hab_km2": 7406
+  },
+  {
+   "sb_codigo": "15",
+   "anio": 2021,
+   "poblacion": 74884,
+   "area_km2": 22.5,
+   "densidad_hab_km2": 3335
+  },
+  {
+   "sb_codigo": "16",
+   "anio": 2021,
+   "poblacion": 118010,
+   "area_km2": 19.9,
+   "densidad_hab_km2": 5931
+  },
+  {
+   "sb_codigo": "17",
+   "anio": 2021,
+   "poblacion": 53483,
+   "area_km2": 5.7,
+   "densidad_hab_km2": 9349
+  },
+  {
+   "sb_codigo": "18",
+   "anio": 2021,
+   "poblacion": 52999,
+   "area_km2": 8.1,
+   "densidad_hab_km2": 6578
+  },
+  {
+   "sb_codigo": "19",
+   "anio": 2021,
+   "poblacion": 99260,
+   "area_km2": 17.8,
+   "densidad_hab_km2": 5588
+  },
+  {
+   "sb_codigo": "20",
+   "anio": 2021,
+   "poblacion": 50290,
+   "area_km2": 9.2,
+   "densidad_hab_km2": 5452
+  },
+  {
+   "sb_codigo": "21",
+   "anio": 2021,
+   "poblacion": 78232,
+   "area_km2": 16.5,
+   "densidad_hab_km2": 4742
+  },
+  {
+   "sb_codigo": "22",
+   "anio": 2021,
+   "poblacion": 51786,
+   "area_km2": 34.1,
+   "densidad_hab_km2": 1521
+  },
+  {
+   "sb_codigo": "23",
+   "anio": 2021,
+   "poblacion": 34566,
+   "area_km2": 15.5,
+   "densidad_hab_km2": 2237
+  },
+  {
+   "sb_codigo": "24",
+   "anio": 2021,
+   "poblacion": 62192,
+   "area_km2": 28.9,
+   "densidad_hab_km2": 2149
+  },
+  {
+   "sb_codigo": "25",
+   "anio": 2021,
+   "poblacion": 55881,
+   "area_km2": 5.3,
+   "densidad_hab_km2": 10571
+  },
+  {
+   "sb_codigo": "00",
+   "anio": 2022,
+   "poblacion": 1588330,
+   "area_km2": 310.7,
+   "densidad_hab_km2": 5112
+  },
+  {
+   "sb_codigo": "01",
+   "anio": 2022,
+   "poblacion": 20808,
+   "area_km2": 3.1,
+   "densidad_hab_km2": 6614
+  },
+  {
+   "sb_codigo": "02",
+   "anio": 2022,
+   "poblacion": 50915,
+   "area_km2": 4.4,
+   "densidad_hab_km2": 11567
+  },
+  {
+   "sb_codigo": "03",
+   "anio": 2022,
+   "poblacion": 52269,
+   "area_km2": 4.3,
+   "densidad_hab_km2": 12161
+  },
+  {
+   "sb_codigo": "04",
+   "anio": 2022,
+   "poblacion": 68603,
+   "area_km2": 4.4,
+   "densidad_hab_km2": 15723
+  },
+  {
+   "sb_codigo": "05",
+   "anio": 2022,
+   "poblacion": 63383,
+   "area_km2": 4.2,
+   "densidad_hab_km2": 15020
+  },
+  {
+   "sb_codigo": "06",
+   "anio": 2022,
+   "poblacion": 41011,
+   "area_km2": 3.9,
+   "densidad_hab_km2": 10412
+  },
+  {
+   "sb_codigo": "07",
+   "anio": 2022,
+   "poblacion": 61702,
+   "area_km2": 7.8,
+   "densidad_hab_km2": 7895
+  },
+  {
+   "sb_codigo": "08",
+   "anio": 2022,
+   "poblacion": null,
+   "area_km2": null,
+   "densidad_hab_km2": 14001
+  },
+  {
+   "sb_codigo": "09",
+   "anio": 2022,
+   "poblacion": 100495,
+   "area_km2": 12.9,
+   "densidad_hab_km2": 7781
+  },
+  {
+   "sb_codigo": "10",
+   "anio": 2022,
+   "poblacion": 55761,
+   "area_km2": 11.1,
+   "densidad_hab_km2": 5026
+  },
+  {
+   "sb_codigo": "11",
+   "anio": 2022,
+   "poblacion": 77002,
+   "area_km2": 13.4,
+   "densidad_hab_km2": 5739
+  },
+  {
+   "sb_codigo": "12",
+   "anio": 2022,
+   "poblacion": 79092,
+   "area_km2": 25.7,
+   "densidad_hab_km2": 3081
+  },
+  {
+   "sb_codigo": "13",
+   "anio": 2022,
+   "poblacion": 94317,
+   "area_km2": 23.7,
+   "densidad_hab_km2": 3977
+  },
+  {
+   "sb_codigo": "14",
+   "anio": 2022,
+   "poblacion": 47148,
+   "area_km2": 6.3,
+   "densidad_hab_km2": 7466
+  },
+  {
+   "sb_codigo": "15",
+   "anio": 2022,
+   "poblacion": 75998,
+   "area_km2": 22.5,
+   "densidad_hab_km2": 3385
+  },
+  {
+   "sb_codigo": "16",
+   "anio": 2022,
+   "poblacion": 119572,
+   "area_km2": 19.9,
+   "densidad_hab_km2": 6010
+  },
+  {
+   "sb_codigo": "17",
+   "anio": 2022,
+   "poblacion": 53964,
+   "area_km2": 5.7,
+   "densidad_hab_km2": 9433
+  },
+  {
+   "sb_codigo": "18",
+   "anio": 2022,
+   "poblacion": 54068,
+   "area_km2": 8.1,
+   "densidad_hab_km2": 6711
+  },
+  {
+   "sb_codigo": "19",
+   "anio": 2022,
+   "poblacion": 101087,
+   "area_km2": 17.8,
+   "densidad_hab_km2": 5691
+  },
+  {
+   "sb_codigo": "20",
+   "anio": 2022,
+   "poblacion": 51239,
+   "area_km2": 9.2,
+   "densidad_hab_km2": 5555
+  },
+  {
+   "sb_codigo": "21",
+   "anio": 2022,
+   "poblacion": 80309,
+   "area_km2": 16.5,
+   "densidad_hab_km2": 4868
+  },
+  {
+   "sb_codigo": "22",
+   "anio": 2022,
+   "poblacion": 54619,
+   "area_km2": 34.1,
+   "densidad_hab_km2": 1604
+  },
+  {
+   "sb_codigo": "23",
+   "anio": 2022,
+   "poblacion": 36017,
+   "area_km2": 15.5,
+   "densidad_hab_km2": 2331
+  },
+  {
+   "sb_codigo": "24",
+   "anio": 2022,
+   "poblacion": 63110,
+   "area_km2": 28.9,
+   "densidad_hab_km2": 2181
+  },
+  {
+   "sb_codigo": "25",
+   "anio": 2022,
+   "poblacion": 56855,
+   "area_km2": 5.3,
+   "densidad_hab_km2": 10756
+  },
+  {
+   "sb_codigo": "00",
+   "anio": 2023,
+   "poblacion": 1589026,
+   "area_km2": 310.7,
+   "densidad_hab_km2": 5114
+  },
+  {
+   "sb_codigo": "01",
+   "anio": 2023,
+   "poblacion": 20860,
+   "area_km2": 3.1,
+   "densidad_hab_km2": 6631
+  },
+  {
+   "sb_codigo": "02",
+   "anio": 2023,
+   "poblacion": 49876,
+   "area_km2": 4.4,
+   "densidad_hab_km2": 11331
+  },
+  {
+   "sb_codigo": "03",
+   "anio": 2023,
+   "poblacion": 51945,
+   "area_km2": 4.3,
+   "densidad_hab_km2": 12085
+  },
+  {
+   "sb_codigo": "04",
+   "anio": 2023,
+   "poblacion": 68254,
+   "area_km2": 4.4,
+   "densidad_hab_km2": 15643
+  },
+  {
+   "sb_codigo": "05",
+   "anio": 2023,
+   "poblacion": 63583,
+   "area_km2": 4.2,
+   "densidad_hab_km2": 15067
+  },
+  {
+   "sb_codigo": "06",
+   "anio": 2023,
+   "poblacion": 40790,
+   "area_km2": 3.9,
+   "densidad_hab_km2": 10356
+  },
+  {
+   "sb_codigo": "07",
+   "anio": 2023,
+   "poblacion": 62065,
+   "area_km2": 7.8,
+   "densidad_hab_km2": 7942
+  },
+  {
+   "sb_codigo": "08",
+   "anio": 2023,
+   "poblacion": null,
+   "area_km2": null,
+   "densidad_hab_km2": 13878
+  },
+  {
+   "sb_codigo": "09",
+   "anio": 2023,
+   "poblacion": 100396,
+   "area_km2": 12.9,
+   "densidad_hab_km2": 7774
+  },
+  {
+   "sb_codigo": "10",
+   "anio": 2023,
+   "poblacion": 55851,
+   "area_km2": 11.1,
+   "densidad_hab_km2": 5034
+  },
+  {
+   "sb_codigo": "11",
+   "anio": 2023,
+   "poblacion": 76971,
+   "area_km2": 13.4,
+   "densidad_hab_km2": 5737
+  },
+  {
+   "sb_codigo": "12",
+   "anio": 2023,
+   "poblacion": 76986,
+   "area_km2": 25.7,
+   "densidad_hab_km2": 2999
+  },
+  {
+   "sb_codigo": "13",
+   "anio": 2023,
+   "poblacion": 94337,
+   "area_km2": 23.7,
+   "densidad_hab_km2": 3978
+  },
+  {
+   "sb_codigo": "14",
+   "anio": 2023,
+   "poblacion": 47037,
+   "area_km2": 6.3,
+   "densidad_hab_km2": 7448
+  },
+  {
+   "sb_codigo": "15",
+   "anio": 2023,
+   "poblacion": 75728,
+   "area_km2": 22.5,
+   "densidad_hab_km2": 3373
+  },
+  {
+   "sb_codigo": "16",
+   "anio": 2023,
+   "poblacion": 120085,
+   "area_km2": 19.9,
+   "densidad_hab_km2": 6035
+  },
+  {
+   "sb_codigo": "17",
+   "anio": 2023,
+   "poblacion": 53795,
+   "area_km2": 5.7,
+   "densidad_hab_km2": 9403
+  },
+  {
+   "sb_codigo": "18",
+   "anio": 2023,
+   "poblacion": 53909,
+   "area_km2": 8.1,
+   "densidad_hab_km2": 6691
+  },
+  {
+   "sb_codigo": "19",
+   "anio": 2023,
+   "poblacion": 101992,
+   "area_km2": 17.8,
+   "densidad_hab_km2": 5742
+  },
+  {
+   "sb_codigo": "20",
+   "anio": 2023,
+   "poblacion": 51446,
+   "area_km2": 9.2,
+   "densidad_hab_km2": 5578
+  },
+  {
+   "sb_codigo": "21",
+   "anio": 2023,
+   "poblacion": 81246,
+   "area_km2": 16.5,
+   "densidad_hab_km2": 4925
+  },
+  {
+   "sb_codigo": "22",
+   "anio": 2023,
+   "poblacion": 57502,
+   "area_km2": 34.1,
+   "densidad_hab_km2": 1688
+  },
+  {
+   "sb_codigo": "23",
+   "anio": 2023,
+   "poblacion": 35918,
+   "area_km2": 15.5,
+   "densidad_hab_km2": 2325
+  },
+  {
+   "sb_codigo": "24",
+   "anio": 2023,
+   "poblacion": 63006,
+   "area_km2": 28.9,
+   "densidad_hab_km2": 2177
+  },
+  {
+   "sb_codigo": "25",
+   "anio": 2023,
+   "poblacion": 56716,
+   "area_km2": 5.3,
+   "densidad_hab_km2": 10729
+  },
+  {
+   "sb_codigo": "00",
+   "anio": 2024,
+   "poblacion": 1603776,
+   "area_km2": 310.7,
+   "densidad_hab_km2": 5161
+  },
+  {
+   "sb_codigo": "01",
+   "anio": 2024,
+   "poblacion": 20876,
+   "area_km2": 3.1,
+   "densidad_hab_km2": 6636
+  },
+  {
+   "sb_codigo": "02",
+   "anio": 2024,
+   "poblacion": 50081,
+   "area_km2": 4.4,
+   "densidad_hab_km2": 11378
+  },
+  {
+   "sb_codigo": "03",
+   "anio": 2024,
+   "poblacion": 52434,
+   "area_km2": 4.3,
+   "densidad_hab_km2": 12199
+  },
+  {
+   "sb_codigo": "04",
+   "anio": 2024,
+   "poblacion": 68610,
+   "area_km2": 4.4,
+   "densidad_hab_km2": 15724
+  },
+  {
+   "sb_codigo": "05",
+   "anio": 2024,
+   "poblacion": 63972,
+   "area_km2": 4.2,
+   "densidad_hab_km2": 15159
+  },
+  {
+   "sb_codigo": "06",
+   "anio": 2024,
+   "poblacion": 41002,
+   "area_km2": 3.9,
+   "densidad_hab_km2": 10409
+  },
+  {
+   "sb_codigo": "07",
+   "anio": 2024,
+   "poblacion": 62240,
+   "area_km2": 7.8,
+   "densidad_hab_km2": 7964
+  },
+  {
+   "sb_codigo": "08",
+   "anio": 2024,
+   "poblacion": null,
+   "area_km2": null,
+   "densidad_hab_km2": 13855
+  },
+  {
+   "sb_codigo": "09",
+   "anio": 2024,
+   "poblacion": 101901,
+   "area_km2": 12.9,
+   "densidad_hab_km2": 7890
+  },
+  {
+   "sb_codigo": "10",
+   "anio": 2024,
+   "poblacion": 56015,
+   "area_km2": 11.1,
+   "densidad_hab_km2": 5049
+  },
+  {
+   "sb_codigo": "11",
+   "anio": 2024,
+   "poblacion": 77281,
+   "area_km2": 13.4,
+   "densidad_hab_km2": 5760
+  },
+  {
+   "sb_codigo": "12",
+   "anio": 2024,
+   "poblacion": 77092,
+   "area_km2": 25.7,
+   "densidad_hab_km2": 3003
+  },
+  {
+   "sb_codigo": "13",
+   "anio": 2024,
+   "poblacion": 95475,
+   "area_km2": 23.7,
+   "densidad_hab_km2": 4026
+  },
+  {
+   "sb_codigo": "14",
+   "anio": 2024,
+   "poblacion": 47367,
+   "area_km2": 6.3,
+   "densidad_hab_km2": 7500
+  },
+  {
+   "sb_codigo": "15",
+   "anio": 2024,
+   "poblacion": 76280,
+   "area_km2": 22.5,
+   "densidad_hab_km2": 3397
+  },
+  {
+   "sb_codigo": "16",
+   "anio": 2024,
+   "poblacion": 120776,
+   "area_km2": 19.9,
+   "densidad_hab_km2": 6070
+  },
+  {
+   "sb_codigo": "17",
+   "anio": 2024,
+   "poblacion": 54352,
+   "area_km2": 5.7,
+   "densidad_hab_km2": 9501
+  },
+  {
+   "sb_codigo": "18",
+   "anio": 2024,
+   "poblacion": 54067,
+   "area_km2": 8.1,
+   "densidad_hab_km2": 6710
+  },
+  {
+   "sb_codigo": "19",
+   "anio": 2024,
+   "poblacion": 103717,
+   "area_km2": 17.8,
+   "densidad_hab_km2": 5839
+  },
+  {
+   "sb_codigo": "20",
+   "anio": 2024,
+   "poblacion": 51637,
+   "area_km2": 9.2,
+   "densidad_hab_km2": 5598
+  },
+  {
+   "sb_codigo": "21",
+   "anio": 2024,
+   "poblacion": 81804,
+   "area_km2": 16.5,
+   "densidad_hab_km2": 4959
+  },
+  {
+   "sb_codigo": "22",
+   "anio": 2024,
+   "poblacion": 61011,
+   "area_km2": 34.1,
+   "densidad_hab_km2": 1791
+  },
+  {
+   "sb_codigo": "23",
+   "anio": 2024,
+   "poblacion": 36230,
+   "area_km2": 15.5,
+   "densidad_hab_km2": 2345
+  },
+  {
+   "sb_codigo": "24",
+   "anio": 2024,
+   "poblacion": 63756,
+   "area_km2": 28.9,
+   "densidad_hab_km2": 2203
+  },
+  {
+   "sb_codigo": "25",
+   "anio": 2024,
+   "poblacion": 57116,
+   "area_km2": 5.3,
+   "densidad_hab_km2": 10805
+  },
+  {
+   "sb_codigo": "00",
+   "anio": 2025,
+   "poblacion": 1612429,
+   "area_km2": 310.7,
+   "densidad_hab_km2": 5189
+  },
+  {
+   "sb_codigo": "01",
+   "anio": 2025,
+   "poblacion": 20606,
+   "area_km2": 3.1,
+   "densidad_hab_km2": 6550
+  },
+  {
+   "sb_codigo": "02",
+   "anio": 2025,
+   "poblacion": 50048,
+   "area_km2": 4.4,
+   "densidad_hab_km2": 11370
+  },
+  {
+   "sb_codigo": "03",
+   "anio": 2025,
+   "poblacion": 52501,
+   "area_km2": 4.3,
+   "densidad_hab_km2": 12215
+  },
+  {
+   "sb_codigo": "04",
+   "anio": 2025,
+   "poblacion": 69484,
+   "area_km2": 4.4,
+   "densidad_hab_km2": 15925
+  },
+  {
+   "sb_codigo": "05",
+   "anio": 2025,
+   "poblacion": 64122,
+   "area_km2": 4.2,
+   "densidad_hab_km2": 15195
+  },
+  {
+   "sb_codigo": "06",
+   "anio": 2025,
+   "poblacion": 41334,
+   "area_km2": 3.9,
+   "densidad_hab_km2": 10494
+  },
+  {
+   "sb_codigo": "07",
+   "anio": 2025,
+   "poblacion": 62640,
+   "area_km2": 7.8,
+   "densidad_hab_km2": 8016
+  },
+  {
+   "sb_codigo": "08",
+   "anio": 2025,
+   "poblacion": null,
+   "area_km2": null,
+   "densidad_hab_km2": 14228
+  },
+  {
+   "sb_codigo": "09",
+   "anio": 2025,
+   "poblacion": 102527,
+   "area_km2": 12.9,
+   "densidad_hab_km2": 7939
+  },
+  {
+   "sb_codigo": "10",
+   "anio": 2025,
+   "poblacion": 56150,
+   "area_km2": 11.1,
+   "densidad_hab_km2": 5061
+  },
+  {
+   "sb_codigo": "11",
+   "anio": 2025,
+   "poblacion": 77500,
+   "area_km2": 13.4,
+   "densidad_hab_km2": 5776
+  },
+  {
+   "sb_codigo": "12",
+   "anio": 2025,
+   "poblacion": 76809,
+   "area_km2": 25.7,
+   "densidad_hab_km2": 2992
+  },
+  {
+   "sb_codigo": "13",
+   "anio": 2025,
+   "poblacion": 95540,
+   "area_km2": 23.7,
+   "densidad_hab_km2": 4029
+  },
+  {
+   "sb_codigo": "14",
+   "anio": 2025,
+   "poblacion": 47185,
+   "area_km2": 6.3,
+   "densidad_hab_km2": 7472
+  },
+  {
+   "sb_codigo": "15",
+   "anio": 2025,
+   "poblacion": 77154,
+   "area_km2": 22.5,
+   "densidad_hab_km2": 3436
+  },
+  {
+   "sb_codigo": "16",
+   "anio": 2025,
+   "poblacion": 121271,
+   "area_km2": 19.9,
+   "densidad_hab_km2": 6095
+  },
+  {
+   "sb_codigo": "17",
+   "anio": 2025,
+   "poblacion": 54500,
+   "area_km2": 5.7,
+   "densidad_hab_km2": 9527
+  },
+  {
+   "sb_codigo": "18",
+   "anio": 2025,
+   "poblacion": 54227,
+   "area_km2": 8.1,
+   "densidad_hab_km2": 6730
+  },
+  {
+   "sb_codigo": "19",
+   "anio": 2025,
+   "poblacion": 104237,
+   "area_km2": 17.8,
+   "densidad_hab_km2": 5868
+  },
+  {
+   "sb_codigo": "20",
+   "anio": 2025,
+   "poblacion": 51809,
+   "area_km2": 9.2,
+   "densidad_hab_km2": 5617
+  },
+  {
+   "sb_codigo": "21",
+   "anio": 2025,
+   "poblacion": 81783,
+   "area_km2": 16.5,
+   "densidad_hab_km2": 4957
+  },
+  {
+   "sb_codigo": "22",
+   "anio": 2025,
+   "poblacion": 63207,
+   "area_km2": 34.1,
+   "densidad_hab_km2": 1856
+  },
+  {
+   "sb_codigo": "23",
+   "anio": 2025,
+   "poblacion": 36238,
+   "area_km2": 15.5,
+   "densidad_hab_km2": 2345
+  },
+  {
+   "sb_codigo": "24",
+   "anio": 2025,
+   "poblacion": 64586,
+   "area_km2": 28.9,
+   "densidad_hab_km2": 2232
+  },
+  {
+   "sb_codigo": "25",
+   "anio": 2025,
+   "poblacion": 57515,
+   "area_km2": 5.3,
+   "densidad_hab_km2": 10881
+  }
+ ]
+}

@@ -1,0 +1,1827 @@
+{
+ "fuente": "F02",
+ "vigencia": "2024-12-31",
+ "probado": "2026-10-06",
+ "registros": [
+  {
+   "sb_codigo": "00",
+   "anio": 2015,
+   "desempleo_pct": 3.7,
+   "desempleados_prom": 39247.0,
+   "poblacion_15_64": 1057168.0
+  },
+  {
+   "sb_codigo": "01",
+   "anio": 2015,
+   "desempleo_pct": 2.3,
+   "desempleados_prom": 358.3,
+   "poblacion_15_64": 15539.8
+  },
+  {
+   "sb_codigo": "02",
+   "anio": 2015,
+   "desempleo_pct": 3.5,
+   "desempleados_prom": 1469.0,
+   "poblacion_15_64": 42203.8
+  },
+  {
+   "sb_codigo": "03",
+   "anio": 2015,
+   "desempleo_pct": 2.7,
+   "desempleados_prom": 1155.8,
+   "poblacion_15_64": 42531.8
+  },
+  {
+   "sb_codigo": "04",
+   "anio": 2015,
+   "desempleo_pct": 2.8,
+   "desempleados_prom": 1361.0,
+   "poblacion_15_64": 49135.3
+  },
+  {
+   "sb_codigo": "05",
+   "anio": 2015,
+   "desempleo_pct": 2.9,
+   "desempleados_prom": 1332.8,
+   "poblacion_15_64": 45482.3
+  },
+  {
+   "sb_codigo": "06",
+   "anio": 2015,
+   "desempleo_pct": 4.2,
+   "desempleados_prom": 1277.3,
+   "poblacion_15_64": 30341.3
+  },
+  {
+   "sb_codigo": "07",
+   "anio": 2015,
+   "desempleo_pct": 4.4,
+   "desempleados_prom": 1756.8,
+   "poblacion_15_64": 40124.5
+  },
+  {
+   "sb_codigo": "08",
+   "anio": 2015,
+   "desempleo_pct": 4.1,
+   "desempleados_prom": 939.0,
+   "poblacion_15_64": 22894.3
+  },
+  {
+   "sb_codigo": "09",
+   "anio": 2015,
+   "desempleo_pct": 3.1,
+   "desempleados_prom": 2193.5,
+   "poblacion_15_64": 70276.0
+  },
+  {
+   "sb_codigo": "10",
+   "anio": 2015,
+   "desempleo_pct": 4.8,
+   "desempleados_prom": 1762.0,
+   "poblacion_15_64": 36795.8
+  },
+  {
+   "sb_codigo": "11",
+   "anio": 2015,
+   "desempleo_pct": 5.0,
+   "desempleados_prom": 2693.5,
+   "poblacion_15_64": 54184.0
+  },
+  {
+   "sb_codigo": "12",
+   "anio": 2015,
+   "desempleo_pct": 3.2,
+   "desempleados_prom": 1702.3,
+   "poblacion_15_64": 53954.0
+  },
+  {
+   "sb_codigo": "13",
+   "anio": 2015,
+   "desempleo_pct": 2.8,
+   "desempleados_prom": 1577.8,
+   "poblacion_15_64": 56662.0
+  },
+  {
+   "sb_codigo": "14",
+   "anio": 2015,
+   "desempleo_pct": 4.6,
+   "desempleados_prom": 1419.8,
+   "poblacion_15_64": 31168.0
+  },
+  {
+   "sb_codigo": "15",
+   "anio": 2015,
+   "desempleo_pct": 3.2,
+   "desempleados_prom": 1504.5,
+   "poblacion_15_64": 46325.5
+  },
+  {
+   "sb_codigo": "16",
+   "anio": 2015,
+   "desempleo_pct": 4.8,
+   "desempleados_prom": 3556.0,
+   "poblacion_15_64": 73615.0
+  },
+  {
+   "sb_codigo": "17",
+   "anio": 2015,
+   "desempleo_pct": 3.9,
+   "desempleados_prom": 1516.8,
+   "poblacion_15_64": 39307.3
+  },
+  {
+   "sb_codigo": "18",
+   "anio": 2015,
+   "desempleo_pct": 3.8,
+   "desempleados_prom": 1377.0,
+   "poblacion_15_64": 36510.0
+  },
+  {
+   "sb_codigo": "19",
+   "anio": 2015,
+   "desempleo_pct": 3.4,
+   "desempleados_prom": 2045.3,
+   "poblacion_15_64": 60903.3
+  },
+  {
+   "sb_codigo": "20",
+   "anio": 2015,
+   "desempleo_pct": 3.5,
+   "desempleados_prom": 1138.3,
+   "poblacion_15_64": 32740.5
+  },
+  {
+   "sb_codigo": "21",
+   "anio": 2015,
+   "desempleo_pct": 3.5,
+   "desempleados_prom": 1683.8,
+   "poblacion_15_64": 48320.5
+  },
+  {
+   "sb_codigo": "22",
+   "anio": 2015,
+   "desempleo_pct": 3.7,
+   "desempleados_prom": 1032.0,
+   "poblacion_15_64": 27873.0
+  },
+  {
+   "sb_codigo": "23",
+   "anio": 2015,
+   "desempleo_pct": 3.3,
+   "desempleados_prom": 680.3,
+   "poblacion_15_64": 20853.0
+  },
+  {
+   "sb_codigo": "24",
+   "anio": 2015,
+   "desempleo_pct": 4.7,
+   "desempleados_prom": 1904.8,
+   "poblacion_15_64": 40705.5
+  },
+  {
+   "sb_codigo": "25",
+   "anio": 2015,
+   "desempleo_pct": 3.8,
+   "desempleados_prom": 1457.8,
+   "poblacion_15_64": 38721.3
+  },
+  {
+   "sb_codigo": "00",
+   "anio": 2016,
+   "desempleo_pct": 3.5,
+   "desempleados_prom": 37262.8,
+   "poblacion_15_64": 1075503.8
+  },
+  {
+   "sb_codigo": "01",
+   "anio": 2016,
+   "desempleo_pct": 2.1,
+   "desempleados_prom": 329.3,
+   "poblacion_15_64": 15834.5
+  },
+  {
+   "sb_codigo": "02",
+   "anio": 2016,
+   "desempleo_pct": 3.0,
+   "desempleados_prom": 1303.3,
+   "poblacion_15_64": 43060.0
+  },
+  {
+   "sb_codigo": "03",
+   "anio": 2016,
+   "desempleo_pct": 2.5,
+   "desempleados_prom": 1060.0,
+   "poblacion_15_64": 42985.0
+  },
+  {
+   "sb_codigo": "04",
+   "anio": 2016,
+   "desempleo_pct": 2.5,
+   "desempleados_prom": 1248.5,
+   "poblacion_15_64": 49844.8
+  },
+  {
+   "sb_codigo": "05",
+   "anio": 2016,
+   "desempleo_pct": 3.0,
+   "desempleados_prom": 1370.0,
+   "poblacion_15_64": 45708.5
+  },
+  {
+   "sb_codigo": "06",
+   "anio": 2016,
+   "desempleo_pct": 3.9,
+   "desempleados_prom": 1206.3,
+   "poblacion_15_64": 30575.0
+  },
+  {
+   "sb_codigo": "07",
+   "anio": 2016,
+   "desempleo_pct": 3.9,
+   "desempleados_prom": 1599.3,
+   "poblacion_15_64": 41032.5
+  },
+  {
+   "sb_codigo": "08",
+   "anio": 2016,
+   "desempleo_pct": 3.8,
+   "desempleados_prom": 875.8,
+   "poblacion_15_64": 22944.5
+  },
+  {
+   "sb_codigo": "09",
+   "anio": 2016,
+   "desempleo_pct": 2.8,
+   "desempleados_prom": 1969.8,
+   "poblacion_15_64": 70593.5
+  },
+  {
+   "sb_codigo": "10",
+   "anio": 2016,
+   "desempleo_pct": 4.6,
+   "desempleados_prom": 1680.5,
+   "poblacion_15_64": 36815.3
+  },
+  {
+   "sb_codigo": "11",
+   "anio": 2016,
+   "desempleo_pct": 4.6,
+   "desempleados_prom": 2503.5,
+   "poblacion_15_64": 54861.0
+  },
+  {
+   "sb_codigo": "12",
+   "anio": 2016,
+   "desempleo_pct": 2.9,
+   "desempleados_prom": 1639.0,
+   "poblacion_15_64": 55757.0
+  },
+  {
+   "sb_codigo": "13",
+   "anio": 2016,
+   "desempleo_pct": 2.7,
+   "desempleados_prom": 1540.5,
+   "poblacion_15_64": 57873.8
+  },
+  {
+   "sb_codigo": "14",
+   "anio": 2016,
+   "desempleo_pct": 4.5,
+   "desempleados_prom": 1437.5,
+   "poblacion_15_64": 31654.3
+  },
+  {
+   "sb_codigo": "15",
+   "anio": 2016,
+   "desempleo_pct": 3.3,
+   "desempleados_prom": 1580.0,
+   "poblacion_15_64": 47710.8
+  },
+  {
+   "sb_codigo": "16",
+   "anio": 2016,
+   "desempleo_pct": 4.4,
+   "desempleados_prom": 3327.3,
+   "poblacion_15_64": 74858.5
+  },
+  {
+   "sb_codigo": "17",
+   "anio": 2016,
+   "desempleo_pct": 3.6,
+   "desempleados_prom": 1440.3,
+   "poblacion_15_64": 39760.5
+  },
+  {
+   "sb_codigo": "18",
+   "anio": 2016,
+   "desempleo_pct": 3.6,
+   "desempleados_prom": 1334.8,
+   "poblacion_15_64": 37474.8
+  },
+  {
+   "sb_codigo": "19",
+   "anio": 2016,
+   "desempleo_pct": 3.1,
+   "desempleados_prom": 1965.3,
+   "poblacion_15_64": 62798.5
+  },
+  {
+   "sb_codigo": "20",
+   "anio": 2016,
+   "desempleo_pct": 3.2,
+   "desempleados_prom": 1049.0,
+   "poblacion_15_64": 33202.0
+  },
+  {
+   "sb_codigo": "21",
+   "anio": 2016,
+   "desempleo_pct": 3.3,
+   "desempleados_prom": 1609.5,
+   "poblacion_15_64": 49128.5
+  },
+  {
+   "sb_codigo": "22",
+   "anio": 2016,
+   "desempleo_pct": 3.4,
+   "desempleados_prom": 1010.8,
+   "poblacion_15_64": 29379.0
+  },
+  {
+   "sb_codigo": "23",
+   "anio": 2016,
+   "desempleo_pct": 2.9,
+   "desempleados_prom": 614.0,
+   "poblacion_15_64": 21176.8
+  },
+  {
+   "sb_codigo": "24",
+   "anio": 2016,
+   "desempleo_pct": 4.5,
+   "desempleados_prom": 1850.0,
+   "poblacion_15_64": 41216.3
+  },
+  {
+   "sb_codigo": "25",
+   "anio": 2016,
+   "desempleo_pct": 3.7,
+   "desempleados_prom": 1450.5,
+   "poblacion_15_64": 39258.8
+  },
+  {
+   "sb_codigo": "00",
+   "anio": 2017,
+   "desempleo_pct": 3.3,
+   "desempleados_prom": 35020.3,
+   "poblacion_15_64": 1074843.8
+  },
+  {
+   "sb_codigo": "01",
+   "anio": 2017,
+   "desempleo_pct": 1.9,
+   "desempleados_prom": 302.5,
+   "poblacion_15_64": 15634.0
+  },
+  {
+   "sb_codigo": "02",
+   "anio": 2017,
+   "desempleo_pct": 2.9,
+   "desempleados_prom": 1230.5,
+   "poblacion_15_64": 41866.0
+  },
+  {
+   "sb_codigo": "03",
+   "anio": 2017,
+   "desempleo_pct": 2.2,
+   "desempleados_prom": 924.3,
+   "poblacion_15_64": 41740.5
+  },
+  {
+   "sb_codigo": "04",
+   "anio": 2017,
+   "desempleo_pct": 2.4,
+   "desempleados_prom": 1176.3,
+   "poblacion_15_64": 49794.3
+  },
+  {
+   "sb_codigo": "05",
+   "anio": 2017,
+   "desempleo_pct": 2.7,
+   "desempleados_prom": 1229.5,
+   "poblacion_15_64": 45495.3
+  },
+  {
+   "sb_codigo": "06",
+   "anio": 2017,
+   "desempleo_pct": 3.8,
+   "desempleados_prom": 1154.3,
+   "poblacion_15_64": 30569.3
+  },
+  {
+   "sb_codigo": "07",
+   "anio": 2017,
+   "desempleo_pct": 3.6,
+   "desempleados_prom": 1483.5,
+   "poblacion_15_64": 41191.0
+  },
+  {
+   "sb_codigo": "08",
+   "anio": 2017,
+   "desempleo_pct": 3.4,
+   "desempleados_prom": 776.0,
+   "poblacion_15_64": 22698.5
+  },
+  {
+   "sb_codigo": "09",
+   "anio": 2017,
+   "desempleo_pct": 2.7,
+   "desempleados_prom": 1919.8,
+   "poblacion_15_64": 70616.3
+  },
+  {
+   "sb_codigo": "10",
+   "anio": 2017,
+   "desempleo_pct": 4.0,
+   "desempleados_prom": 1483.0,
+   "poblacion_15_64": 37036.0
+  },
+  {
+   "sb_codigo": "11",
+   "anio": 2017,
+   "desempleo_pct": 4.2,
+   "desempleados_prom": 2289.0,
+   "poblacion_15_64": 54593.3
+  },
+  {
+   "sb_codigo": "12",
+   "anio": 2017,
+   "desempleo_pct": 2.8,
+   "desempleados_prom": 1574.3,
+   "poblacion_15_64": 55798.3
+  },
+  {
+   "sb_codigo": "13",
+   "anio": 2017,
+   "desempleo_pct": 2.5,
+   "desempleados_prom": 1431.3,
+   "poblacion_15_64": 57431.8
+  },
+  {
+   "sb_codigo": "14",
+   "anio": 2017,
+   "desempleo_pct": 4.3,
+   "desempleados_prom": 1369.3,
+   "poblacion_15_64": 31684.8
+  },
+  {
+   "sb_codigo": "15",
+   "anio": 2017,
+   "desempleo_pct": 3.3,
+   "desempleados_prom": 1575.0,
+   "poblacion_15_64": 48403.8
+  },
+  {
+   "sb_codigo": "16",
+   "anio": 2017,
+   "desempleo_pct": 4.3,
+   "desempleados_prom": 3251.0,
+   "poblacion_15_64": 75749.5
+  },
+  {
+   "sb_codigo": "17",
+   "anio": 2017,
+   "desempleo_pct": 3.4,
+   "desempleados_prom": 1362.5,
+   "poblacion_15_64": 39575.5
+  },
+  {
+   "sb_codigo": "18",
+   "anio": 2017,
+   "desempleo_pct": 3.2,
+   "desempleados_prom": 1199.8,
+   "poblacion_15_64": 36932.5
+  },
+  {
+   "sb_codigo": "19",
+   "anio": 2017,
+   "desempleo_pct": 3.1,
+   "desempleados_prom": 1962.8,
+   "poblacion_15_64": 63344.0
+  },
+  {
+   "sb_codigo": "20",
+   "anio": 2017,
+   "desempleo_pct": 2.8,
+   "desempleados_prom": 933.3,
+   "poblacion_15_64": 32849.0
+  },
+  {
+   "sb_codigo": "21",
+   "anio": 2017,
+   "desempleo_pct": 3.1,
+   "desempleados_prom": 1529.5,
+   "poblacion_15_64": 49493.5
+  },
+  {
+   "sb_codigo": "22",
+   "anio": 2017,
+   "desempleo_pct": 3.3,
+   "desempleados_prom": 986.8,
+   "poblacion_15_64": 30277.3
+  },
+  {
+   "sb_codigo": "23",
+   "anio": 2017,
+   "desempleo_pct": 2.5,
+   "desempleados_prom": 548.0,
+   "poblacion_15_64": 21709.8
+  },
+  {
+   "sb_codigo": "24",
+   "anio": 2017,
+   "desempleo_pct": 4.1,
+   "desempleados_prom": 1684.3,
+   "poblacion_15_64": 40763.8
+  },
+  {
+   "sb_codigo": "25",
+   "anio": 2017,
+   "desempleo_pct": 3.4,
+   "desempleados_prom": 1364.3,
+   "poblacion_15_64": 39596.3
+  },
+  {
+   "sb_codigo": "00",
+   "anio": 2018,
+   "desempleo_pct": 3.0,
+   "desempleados_prom": 31851.3,
+   "poblacion_15_64": 1069434.0
+  },
+  {
+   "sb_codigo": "01",
+   "anio": 2018,
+   "desempleo_pct": 2.1,
+   "desempleados_prom": 317.8,
+   "poblacion_15_64": 15427.3
+  },
+  {
+   "sb_codigo": "02",
+   "anio": 2018,
+   "desempleo_pct": 2.8,
+   "desempleados_prom": 1140.8,
+   "poblacion_15_64": 40340.5
+  },
+  {
+   "sb_codigo": "03",
+   "anio": 2018,
+   "desempleo_pct": 2.1,
+   "desempleados_prom": 865.8,
+   "poblacion_15_64": 40517.5
+  },
+  {
+   "sb_codigo": "04",
+   "anio": 2018,
+   "desempleo_pct": 2.3,
+   "desempleados_prom": 1112.8,
+   "poblacion_15_64": 49141.0
+  },
+  {
+   "sb_codigo": "05",
+   "anio": 2018,
+   "desempleo_pct": 2.4,
+   "desempleados_prom": 1094.3,
+   "poblacion_15_64": 44944.5
+  },
+  {
+   "sb_codigo": "06",
+   "anio": 2018,
+   "desempleo_pct": 3.5,
+   "desempleados_prom": 1068.5,
+   "poblacion_15_64": 30437.8
+  },
+  {
+   "sb_codigo": "07",
+   "anio": 2018,
+   "desempleo_pct": 3.3,
+   "desempleados_prom": 1344.5,
+   "poblacion_15_64": 41052.0
+  },
+  {
+   "sb_codigo": "08",
+   "anio": 2018,
+   "desempleo_pct": 3.1,
+   "desempleados_prom": 693.3,
+   "poblacion_15_64": 22385.0
+  },
+  {
+   "sb_codigo": "09",
+   "anio": 2018,
+   "desempleo_pct": 2.4,
+   "desempleados_prom": 1707.8,
+   "poblacion_15_64": 70052.5
+  },
+  {
+   "sb_codigo": "10",
+   "anio": 2018,
+   "desempleo_pct": 3.6,
+   "desempleados_prom": 1335.3,
+   "poblacion_15_64": 37017.5
+  },
+  {
+   "sb_codigo": "11",
+   "anio": 2018,
+   "desempleo_pct": 3.6,
+   "desempleados_prom": 1951.8,
+   "poblacion_15_64": 53766.5
+  },
+  {
+   "sb_codigo": "12",
+   "anio": 2018,
+   "desempleo_pct": 2.7,
+   "desempleados_prom": 1494.8,
+   "poblacion_15_64": 55667.5
+  },
+  {
+   "sb_codigo": "13",
+   "anio": 2018,
+   "desempleo_pct": 2.3,
+   "desempleados_prom": 1319.5,
+   "poblacion_15_64": 57520.0
+  },
+  {
+   "sb_codigo": "14",
+   "anio": 2018,
+   "desempleo_pct": 4.0,
+   "desempleados_prom": 1253.5,
+   "poblacion_15_64": 31729.0
+  },
+  {
+   "sb_codigo": "15",
+   "anio": 2018,
+   "desempleo_pct": 3.1,
+   "desempleados_prom": 1521.5,
+   "poblacion_15_64": 48862.5
+  },
+  {
+   "sb_codigo": "16",
+   "anio": 2018,
+   "desempleo_pct": 3.9,
+   "desempleados_prom": 2977.8,
+   "poblacion_15_64": 76147.5
+  },
+  {
+   "sb_codigo": "17",
+   "anio": 2018,
+   "desempleo_pct": 3.0,
+   "desempleados_prom": 1183.5,
+   "poblacion_15_64": 39276.0
+  },
+  {
+   "sb_codigo": "18",
+   "anio": 2018,
+   "desempleo_pct": 2.8,
+   "desempleados_prom": 1038.8,
+   "poblacion_15_64": 36505.3
+  },
+  {
+   "sb_codigo": "19",
+   "anio": 2018,
+   "desempleo_pct": 2.8,
+   "desempleados_prom": 1758.0,
+   "poblacion_15_64": 63287.8
+  },
+  {
+   "sb_codigo": "20",
+   "anio": 2018,
+   "desempleo_pct": 2.6,
+   "desempleados_prom": 861.5,
+   "poblacion_15_64": 32625.8
+  },
+  {
+   "sb_codigo": "21",
+   "anio": 2018,
+   "desempleo_pct": 2.7,
+   "desempleados_prom": 1352.3,
+   "poblacion_15_64": 49344.5
+  },
+  {
+   "sb_codigo": "22",
+   "anio": 2018,
+   "desempleo_pct": 3.1,
+   "desempleados_prom": 950.0,
+   "poblacion_15_64": 30962.0
+  },
+  {
+   "sb_codigo": "23",
+   "anio": 2018,
+   "desempleo_pct": 2.4,
+   "desempleados_prom": 523.0,
+   "poblacion_15_64": 21930.0
+  },
+  {
+   "sb_codigo": "24",
+   "anio": 2018,
+   "desempleo_pct": 3.6,
+   "desempleados_prom": 1485.8,
+   "poblacion_15_64": 40944.5
+  },
+  {
+   "sb_codigo": "25",
+   "anio": 2018,
+   "desempleo_pct": 3.1,
+   "desempleados_prom": 1238.3,
+   "poblacion_15_64": 39549.8
+  },
+  {
+   "sb_codigo": "00",
+   "anio": 2019,
+   "desempleo_pct": 2.8,
+   "desempleados_prom": 30167.0,
+   "poblacion_15_64": 1082295.0
+  },
+  {
+   "sb_codigo": "01",
+   "anio": 2019,
+   "desempleo_pct": 2.0,
+   "desempleados_prom": 304.8,
+   "poblacion_15_64": 15449.5
+  },
+  {
+   "sb_codigo": "02",
+   "anio": 2019,
+   "desempleo_pct": 2.6,
+   "desempleados_prom": 1048.5,
+   "poblacion_15_64": 40511.0
+  },
+  {
+   "sb_codigo": "03",
+   "anio": 2019,
+   "desempleo_pct": 2.1,
+   "desempleados_prom": 851.0,
+   "poblacion_15_64": 40798.0
+  },
+  {
+   "sb_codigo": "04",
+   "anio": 2019,
+   "desempleo_pct": 2.1,
+   "desempleados_prom": 1052.3,
+   "poblacion_15_64": 49452.3
+  },
+  {
+   "sb_codigo": "05",
+   "anio": 2019,
+   "desempleo_pct": 2.3,
+   "desempleados_prom": 1037.3,
+   "poblacion_15_64": 45303.3
+  },
+  {
+   "sb_codigo": "06",
+   "anio": 2019,
+   "desempleo_pct": 3.1,
+   "desempleados_prom": 959.5,
+   "poblacion_15_64": 30552.3
+  },
+  {
+   "sb_codigo": "07",
+   "anio": 2019,
+   "desempleo_pct": 3.0,
+   "desempleados_prom": 1232.0,
+   "poblacion_15_64": 41526.3
+  },
+  {
+   "sb_codigo": "08",
+   "anio": 2019,
+   "desempleo_pct": 3.0,
+   "desempleados_prom": 672.5,
+   "poblacion_15_64": 22421.3
+  },
+  {
+   "sb_codigo": "09",
+   "anio": 2019,
+   "desempleo_pct": 2.3,
+   "desempleados_prom": 1628.8,
+   "poblacion_15_64": 70541.5
+  },
+  {
+   "sb_codigo": "10",
+   "anio": 2019,
+   "desempleo_pct": 3.4,
+   "desempleados_prom": 1271.8,
+   "poblacion_15_64": 37674.5
+  },
+  {
+   "sb_codigo": "11",
+   "anio": 2019,
+   "desempleo_pct": 3.2,
+   "desempleados_prom": 1736.3,
+   "poblacion_15_64": 54582.3
+  },
+  {
+   "sb_codigo": "12",
+   "anio": 2019,
+   "desempleo_pct": 2.7,
+   "desempleados_prom": 1501.3,
+   "poblacion_15_64": 56272.8
+  },
+  {
+   "sb_codigo": "13",
+   "anio": 2019,
+   "desempleo_pct": 2.1,
+   "desempleados_prom": 1241.5,
+   "poblacion_15_64": 58963.8
+  },
+  {
+   "sb_codigo": "14",
+   "anio": 2019,
+   "desempleo_pct": 3.8,
+   "desempleados_prom": 1230.0,
+   "poblacion_15_64": 32357.0
+  },
+  {
+   "sb_codigo": "15",
+   "anio": 2019,
+   "desempleo_pct": 2.9,
+   "desempleados_prom": 1418.8,
+   "poblacion_15_64": 49538.0
+  },
+  {
+   "sb_codigo": "16",
+   "anio": 2019,
+   "desempleo_pct": 3.7,
+   "desempleados_prom": 2862.5,
+   "poblacion_15_64": 77396.0
+  },
+  {
+   "sb_codigo": "17",
+   "anio": 2019,
+   "desempleo_pct": 2.8,
+   "desempleados_prom": 1124.8,
+   "poblacion_15_64": 39503.8
+  },
+  {
+   "sb_codigo": "18",
+   "anio": 2019,
+   "desempleo_pct": 2.7,
+   "desempleados_prom": 982.3,
+   "poblacion_15_64": 36645.5
+  },
+  {
+   "sb_codigo": "19",
+   "anio": 2019,
+   "desempleo_pct": 2.6,
+   "desempleados_prom": 1663.0,
+   "poblacion_15_64": 64123.8
+  },
+  {
+   "sb_codigo": "20",
+   "anio": 2019,
+   "desempleo_pct": 2.5,
+   "desempleados_prom": 819.8,
+   "poblacion_15_64": 32869.3
+  },
+  {
+   "sb_codigo": "21",
+   "anio": 2019,
+   "desempleo_pct": 2.7,
+   "desempleados_prom": 1333.3,
+   "poblacion_15_64": 50042.0
+  },
+  {
+   "sb_codigo": "22",
+   "anio": 2019,
+   "desempleo_pct": 3.0,
+   "desempleados_prom": 947.8,
+   "poblacion_15_64": 31908.8
+  },
+  {
+   "sb_codigo": "23",
+   "anio": 2019,
+   "desempleo_pct": 2.1,
+   "desempleados_prom": 466.3,
+   "poblacion_15_64": 22629.3
+  },
+  {
+   "sb_codigo": "24",
+   "anio": 2019,
+   "desempleo_pct": 3.3,
+   "desempleados_prom": 1342.8,
+   "poblacion_15_64": 41280.5
+  },
+  {
+   "sb_codigo": "25",
+   "anio": 2019,
+   "desempleo_pct": 2.9,
+   "desempleados_prom": 1139.3,
+   "poblacion_15_64": 39952.8
+  },
+  {
+   "sb_codigo": "00",
+   "anio": 2020,
+   "desempleo_pct": 3.9,
+   "desempleados_prom": 42680.3,
+   "poblacion_15_64": 1087552.3
+  },
+  {
+   "sb_codigo": "01",
+   "anio": 2020,
+   "desempleo_pct": 2.7,
+   "desempleados_prom": 424.0,
+   "poblacion_15_64": 15453.5
+  },
+  {
+   "sb_codigo": "02",
+   "anio": 2020,
+   "desempleo_pct": 3.9,
+   "desempleados_prom": 1566.5,
+   "poblacion_15_64": 40418.3
+  },
+  {
+   "sb_codigo": "03",
+   "anio": 2020,
+   "desempleo_pct": 3.0,
+   "desempleados_prom": 1207.8,
+   "poblacion_15_64": 40869.5
+  },
+  {
+   "sb_codigo": "04",
+   "anio": 2020,
+   "desempleo_pct": 2.9,
+   "desempleados_prom": 1426.5,
+   "poblacion_15_64": 49505.3
+  },
+  {
+   "sb_codigo": "05",
+   "anio": 2020,
+   "desempleo_pct": 3.5,
+   "desempleados_prom": 1574.3,
+   "poblacion_15_64": 45513.3
+  },
+  {
+   "sb_codigo": "06",
+   "anio": 2020,
+   "desempleo_pct": 4.4,
+   "desempleados_prom": 1330.3,
+   "poblacion_15_64": 30361.0
+  },
+  {
+   "sb_codigo": "07",
+   "anio": 2020,
+   "desempleo_pct": 4.2,
+   "desempleados_prom": 1743.5,
+   "poblacion_15_64": 41765.0
+  },
+  {
+   "sb_codigo": "08",
+   "anio": 2020,
+   "desempleo_pct": 4.1,
+   "desempleados_prom": 923.8,
+   "poblacion_15_64": 22266.3
+  },
+  {
+   "sb_codigo": "09",
+   "anio": 2020,
+   "desempleo_pct": 3.4,
+   "desempleados_prom": 2385.0,
+   "poblacion_15_64": 70645.0
+  },
+  {
+   "sb_codigo": "10",
+   "anio": 2020,
+   "desempleo_pct": 4.5,
+   "desempleados_prom": 1712.0,
+   "poblacion_15_64": 37670.5
+  },
+  {
+   "sb_codigo": "11",
+   "anio": 2020,
+   "desempleo_pct": 4.5,
+   "desempleados_prom": 2461.0,
+   "poblacion_15_64": 54661.8
+  },
+  {
+   "sb_codigo": "12",
+   "anio": 2020,
+   "desempleo_pct": 3.6,
+   "desempleados_prom": 2042.8,
+   "poblacion_15_64": 56648.5
+  },
+  {
+   "sb_codigo": "13",
+   "anio": 2020,
+   "desempleo_pct": 3.2,
+   "desempleados_prom": 1906.0,
+   "poblacion_15_64": 60216.0
+  },
+  {
+   "sb_codigo": "14",
+   "anio": 2020,
+   "desempleo_pct": 4.9,
+   "desempleados_prom": 1591.8,
+   "poblacion_15_64": 32650.5
+  },
+  {
+   "sb_codigo": "15",
+   "anio": 2020,
+   "desempleo_pct": 3.8,
+   "desempleados_prom": 1890.5,
+   "poblacion_15_64": 49935.3
+  },
+  {
+   "sb_codigo": "16",
+   "anio": 2020,
+   "desempleo_pct": 5.2,
+   "desempleados_prom": 4029.5,
+   "poblacion_15_64": 78046.0
+  },
+  {
+   "sb_codigo": "17",
+   "anio": 2020,
+   "desempleo_pct": 4.0,
+   "desempleados_prom": 1574.5,
+   "poblacion_15_64": 39354.3
+  },
+  {
+   "sb_codigo": "18",
+   "anio": 2020,
+   "desempleo_pct": 3.7,
+   "desempleados_prom": 1367.5,
+   "poblacion_15_64": 36746.0
+  },
+  {
+   "sb_codigo": "19",
+   "anio": 2020,
+   "desempleo_pct": 3.8,
+   "desempleados_prom": 2443.8,
+   "poblacion_15_64": 64733.3
+  },
+  {
+   "sb_codigo": "20",
+   "anio": 2020,
+   "desempleo_pct": 3.3,
+   "desempleados_prom": 1092.5,
+   "poblacion_15_64": 32859.3
+  },
+  {
+   "sb_codigo": "21",
+   "anio": 2020,
+   "desempleo_pct": 3.8,
+   "desempleados_prom": 1929.5,
+   "poblacion_15_64": 51135.0
+  },
+  {
+   "sb_codigo": "22",
+   "anio": 2020,
+   "desempleo_pct": 4.3,
+   "desempleados_prom": 1393.5,
+   "poblacion_15_64": 32452.8
+  },
+  {
+   "sb_codigo": "23",
+   "anio": 2020,
+   "desempleo_pct": 3.2,
+   "desempleados_prom": 723.0,
+   "poblacion_15_64": 22375.8
+  },
+  {
+   "sb_codigo": "24",
+   "anio": 2020,
+   "desempleo_pct": 4.5,
+   "desempleados_prom": 1858.3,
+   "poblacion_15_64": 41450.5
+  },
+  {
+   "sb_codigo": "25",
+   "anio": 2020,
+   "desempleo_pct": 4.2,
+   "desempleados_prom": 1677.0,
+   "poblacion_15_64": 39820.0
+  },
+  {
+   "sb_codigo": "00",
+   "anio": 2021,
+   "desempleo_pct": 3.8,
+   "desempleados_prom": 41475.0,
+   "poblacion_15_64": 1088650.5
+  },
+  {
+   "sb_codigo": "01",
+   "anio": 2021,
+   "desempleo_pct": 2.5,
+   "desempleados_prom": 379.5,
+   "poblacion_15_64": 15222.8
+  },
+  {
+   "sb_codigo": "02",
+   "anio": 2021,
+   "desempleo_pct": 3.6,
+   "desempleados_prom": 1451.3,
+   "poblacion_15_64": 40068.3
+  },
+  {
+   "sb_codigo": "03",
+   "anio": 2021,
+   "desempleo_pct": 2.6,
+   "desempleados_prom": 1076.8,
+   "poblacion_15_64": 40713.3
+  },
+  {
+   "sb_codigo": "04",
+   "anio": 2021,
+   "desempleo_pct": 2.6,
+   "desempleados_prom": 1294.8,
+   "poblacion_15_64": 49345.3
+  },
+  {
+   "sb_codigo": "05",
+   "anio": 2021,
+   "desempleo_pct": 3.1,
+   "desempleados_prom": 1430.5,
+   "poblacion_15_64": 45847.5
+  },
+  {
+   "sb_codigo": "06",
+   "anio": 2021,
+   "desempleo_pct": 3.9,
+   "desempleados_prom": 1180.5,
+   "poblacion_15_64": 30241.0
+  },
+  {
+   "sb_codigo": "07",
+   "anio": 2021,
+   "desempleo_pct": 4.0,
+   "desempleados_prom": 1694.5,
+   "poblacion_15_64": 41986.0
+  },
+  {
+   "sb_codigo": "08",
+   "anio": 2021,
+   "desempleo_pct": 4.2,
+   "desempleados_prom": 924.5,
+   "poblacion_15_64": 21967.0
+  },
+  {
+   "sb_codigo": "09",
+   "anio": 2021,
+   "desempleo_pct": 3.3,
+   "desempleados_prom": 2289.3,
+   "poblacion_15_64": 70050.3
+  },
+  {
+   "sb_codigo": "10",
+   "anio": 2021,
+   "desempleo_pct": 4.5,
+   "desempleados_prom": 1708.3,
+   "poblacion_15_64": 37813.5
+  },
+  {
+   "sb_codigo": "11",
+   "anio": 2021,
+   "desempleo_pct": 4.6,
+   "desempleados_prom": 2508.8,
+   "poblacion_15_64": 54340.8
+  },
+  {
+   "sb_codigo": "12",
+   "anio": 2021,
+   "desempleo_pct": 3.5,
+   "desempleados_prom": 1952.3,
+   "poblacion_15_64": 56249.8
+  },
+  {
+   "sb_codigo": "13",
+   "anio": 2021,
+   "desempleo_pct": 3.0,
+   "desempleados_prom": 1857.3,
+   "poblacion_15_64": 61015.0
+  },
+  {
+   "sb_codigo": "14",
+   "anio": 2021,
+   "desempleo_pct": 4.9,
+   "desempleados_prom": 1598.8,
+   "poblacion_15_64": 32490.3
+  },
+  {
+   "sb_codigo": "15",
+   "anio": 2021,
+   "desempleo_pct": 3.7,
+   "desempleados_prom": 1898.0,
+   "poblacion_15_64": 50799.0
+  },
+  {
+   "sb_codigo": "16",
+   "anio": 2021,
+   "desempleo_pct": 5.0,
+   "desempleados_prom": 3904.0,
+   "poblacion_15_64": 77892.8
+  },
+  {
+   "sb_codigo": "17",
+   "anio": 2021,
+   "desempleo_pct": 3.7,
+   "desempleados_prom": 1428.5,
+   "poblacion_15_64": 38889.5
+  },
+  {
+   "sb_codigo": "18",
+   "anio": 2021,
+   "desempleo_pct": 3.5,
+   "desempleados_prom": 1297.8,
+   "poblacion_15_64": 36685.3
+  },
+  {
+   "sb_codigo": "19",
+   "anio": 2021,
+   "desempleo_pct": 3.7,
+   "desempleados_prom": 2433.3,
+   "poblacion_15_64": 65716.3
+  },
+  {
+   "sb_codigo": "20",
+   "anio": 2021,
+   "desempleo_pct": 3.3,
+   "desempleados_prom": 1101.3,
+   "poblacion_15_64": 32900.3
+  },
+  {
+   "sb_codigo": "21",
+   "anio": 2021,
+   "desempleo_pct": 3.8,
+   "desempleados_prom": 1984.8,
+   "poblacion_15_64": 51794.8
+  },
+  {
+   "sb_codigo": "22",
+   "anio": 2021,
+   "desempleo_pct": 4.3,
+   "desempleados_prom": 1445.3,
+   "poblacion_15_64": 33402.8
+  },
+  {
+   "sb_codigo": "23",
+   "anio": 2021,
+   "desempleo_pct": 3.4,
+   "desempleados_prom": 756.0,
+   "poblacion_15_64": 22452.8
+  },
+  {
+   "sb_codigo": "24",
+   "anio": 2021,
+   "desempleo_pct": 4.5,
+   "desempleados_prom": 1853.3,
+   "poblacion_15_64": 41474.5
+  },
+  {
+   "sb_codigo": "25",
+   "anio": 2021,
+   "desempleo_pct": 4.1,
+   "desempleados_prom": 1620.0,
+   "poblacion_15_64": 39292.3
+  },
+  {
+   "sb_codigo": "00",
+   "anio": 2022,
+   "desempleo_pct": 3.3,
+   "desempleados_prom": 36866.5,
+   "poblacion_15_64": 1102827.3
+  },
+  {
+   "sb_codigo": "01",
+   "anio": 2022,
+   "desempleo_pct": 2.1,
+   "desempleados_prom": 326.5,
+   "poblacion_15_64": 15302.8
+  },
+  {
+   "sb_codigo": "02",
+   "anio": 2022,
+   "desempleo_pct": 3.1,
+   "desempleados_prom": 1259.5,
+   "poblacion_15_64": 39999.0
+  },
+  {
+   "sb_codigo": "03",
+   "anio": 2022,
+   "desempleo_pct": 2.4,
+   "desempleados_prom": 988.8,
+   "poblacion_15_64": 41010.3
+  },
+  {
+   "sb_codigo": "04",
+   "anio": 2022,
+   "desempleo_pct": 2.3,
+   "desempleados_prom": 1157.3,
+   "poblacion_15_64": 49604.3
+  },
+  {
+   "sb_codigo": "05",
+   "anio": 2022,
+   "desempleo_pct": 2.8,
+   "desempleados_prom": 1308.5,
+   "poblacion_15_64": 46430.8
+  },
+  {
+   "sb_codigo": "06",
+   "anio": 2022,
+   "desempleo_pct": 3.5,
+   "desempleados_prom": 1061.5,
+   "poblacion_15_64": 30437.0
+  },
+  {
+   "sb_codigo": "07",
+   "anio": 2022,
+   "desempleo_pct": 3.4,
+   "desempleados_prom": 1445.8,
+   "poblacion_15_64": 42586.8
+  },
+  {
+   "sb_codigo": "08",
+   "anio": 2022,
+   "desempleo_pct": 3.5,
+   "desempleados_prom": 771.3,
+   "poblacion_15_64": 21923.8
+  },
+  {
+   "sb_codigo": "09",
+   "anio": 2022,
+   "desempleo_pct": 3.0,
+   "desempleados_prom": 2103.3,
+   "poblacion_15_64": 70691.5
+  },
+  {
+   "sb_codigo": "10",
+   "anio": 2022,
+   "desempleo_pct": 3.9,
+   "desempleados_prom": 1494.3,
+   "poblacion_15_64": 38110.3
+  },
+  {
+   "sb_codigo": "11",
+   "anio": 2022,
+   "desempleo_pct": 4.0,
+   "desempleados_prom": 2181.8,
+   "poblacion_15_64": 54937.3
+  },
+  {
+   "sb_codigo": "12",
+   "anio": 2022,
+   "desempleo_pct": 3.2,
+   "desempleados_prom": 1766.5,
+   "poblacion_15_64": 56056.0
+  },
+  {
+   "sb_codigo": "13",
+   "anio": 2022,
+   "desempleo_pct": 2.7,
+   "desempleados_prom": 1698.3,
+   "poblacion_15_64": 62281.3
+  },
+  {
+   "sb_codigo": "14",
+   "anio": 2022,
+   "desempleo_pct": 4.3,
+   "desempleados_prom": 1400.5,
+   "poblacion_15_64": 32553.5
+  },
+  {
+   "sb_codigo": "15",
+   "anio": 2022,
+   "desempleo_pct": 3.3,
+   "desempleados_prom": 1705.3,
+   "poblacion_15_64": 51571.5
+  },
+  {
+   "sb_codigo": "16",
+   "anio": 2022,
+   "desempleo_pct": 4.4,
+   "desempleados_prom": 3422.5,
+   "poblacion_15_64": 78668.8
+  },
+  {
+   "sb_codigo": "17",
+   "anio": 2022,
+   "desempleo_pct": 3.0,
+   "desempleados_prom": 1190.8,
+   "poblacion_15_64": 39194.8
+  },
+  {
+   "sb_codigo": "18",
+   "anio": 2022,
+   "desempleo_pct": 3.2,
+   "desempleados_prom": 1209.3,
+   "poblacion_15_64": 37306.8
+  },
+  {
+   "sb_codigo": "19",
+   "anio": 2022,
+   "desempleo_pct": 3.2,
+   "desempleados_prom": 2174.8,
+   "poblacion_15_64": 67003.3
+  },
+  {
+   "sb_codigo": "20",
+   "anio": 2022,
+   "desempleo_pct": 3.1,
+   "desempleados_prom": 1043.3,
+   "poblacion_15_64": 33635.8
+  },
+  {
+   "sb_codigo": "21",
+   "anio": 2022,
+   "desempleo_pct": 3.2,
+   "desempleados_prom": 1718.3,
+   "poblacion_15_64": 53117.3
+  },
+  {
+   "sb_codigo": "22",
+   "anio": 2022,
+   "desempleo_pct": 3.6,
+   "desempleados_prom": 1261.8,
+   "poblacion_15_64": 35093.3
+  },
+  {
+   "sb_codigo": "23",
+   "anio": 2022,
+   "desempleo_pct": 3.2,
+   "desempleados_prom": 752.5,
+   "poblacion_15_64": 23440.0
+  },
+  {
+   "sb_codigo": "24",
+   "anio": 2022,
+   "desempleo_pct": 3.9,
+   "desempleados_prom": 1640.3,
+   "poblacion_15_64": 42020.0
+  },
+  {
+   "sb_codigo": "25",
+   "anio": 2022,
+   "desempleo_pct": 3.7,
+   "desempleados_prom": 1454.8,
+   "poblacion_15_64": 39851.8
+  },
+  {
+   "sb_codigo": "00",
+   "anio": 2023,
+   "desempleo_pct": 3.6,
+   "desempleados_prom": 39317.3,
+   "poblacion_15_64": 1106489.0
+  },
+  {
+   "sb_codigo": "01",
+   "anio": 2023,
+   "desempleo_pct": 2.5,
+   "desempleados_prom": 387.3,
+   "poblacion_15_64": 15304.0
+  },
+  {
+   "sb_codigo": "02",
+   "anio": 2023,
+   "desempleo_pct": 3.3,
+   "desempleados_prom": 1308.0,
+   "poblacion_15_64": 39125.0
+  },
+  {
+   "sb_codigo": "03",
+   "anio": 2023,
+   "desempleo_pct": 2.9,
+   "desempleados_prom": 1173.8,
+   "poblacion_15_64": 41009.3
+  },
+  {
+   "sb_codigo": "04",
+   "anio": 2023,
+   "desempleo_pct": 2.6,
+   "desempleados_prom": 1273.0,
+   "poblacion_15_64": 49449.5
+  },
+  {
+   "sb_codigo": "05",
+   "anio": 2023,
+   "desempleo_pct": 2.9,
+   "desempleados_prom": 1371.8,
+   "poblacion_15_64": 46567.8
+  },
+  {
+   "sb_codigo": "06",
+   "anio": 2023,
+   "desempleo_pct": 3.6,
+   "desempleados_prom": 1081.3,
+   "poblacion_15_64": 30239.0
+  },
+  {
+   "sb_codigo": "07",
+   "anio": 2023,
+   "desempleo_pct": 3.5,
+   "desempleados_prom": 1496.8,
+   "poblacion_15_64": 43073.8
+  },
+  {
+   "sb_codigo": "08",
+   "anio": 2023,
+   "desempleo_pct": 3.9,
+   "desempleados_prom": 862.0,
+   "poblacion_15_64": 21877.0
+  },
+  {
+   "sb_codigo": "09",
+   "anio": 2023,
+   "desempleo_pct": 3.1,
+   "desempleados_prom": 2211.0,
+   "poblacion_15_64": 70561.8
+  },
+  {
+   "sb_codigo": "10",
+   "anio": 2023,
+   "desempleo_pct": 4.1,
+   "desempleados_prom": 1578.0,
+   "poblacion_15_64": 38279.0
+  },
+  {
+   "sb_codigo": "11",
+   "anio": 2023,
+   "desempleo_pct": 4.0,
+   "desempleados_prom": 2196.0,
+   "poblacion_15_64": 54947.0
+  },
+  {
+   "sb_codigo": "12",
+   "anio": 2023,
+   "desempleo_pct": 3.4,
+   "desempleados_prom": 1858.3,
+   "poblacion_15_64": 55255.3
+  },
+  {
+   "sb_codigo": "13",
+   "anio": 2023,
+   "desempleo_pct": 3.0,
+   "desempleados_prom": 1898.5,
+   "poblacion_15_64": 62371.8
+  },
+  {
+   "sb_codigo": "14",
+   "anio": 2023,
+   "desempleo_pct": 4.6,
+   "desempleados_prom": 1516.8,
+   "poblacion_15_64": 32670.8
+  },
+  {
+   "sb_codigo": "15",
+   "anio": 2023,
+   "desempleo_pct": 3.6,
+   "desempleados_prom": 1871.5,
+   "poblacion_15_64": 51606.0
+  },
+  {
+   "sb_codigo": "16",
+   "anio": 2023,
+   "desempleo_pct": 4.6,
+   "desempleados_prom": 3640.0,
+   "poblacion_15_64": 79089.8
+  },
+  {
+   "sb_codigo": "17",
+   "anio": 2023,
+   "desempleo_pct": 3.2,
+   "desempleados_prom": 1233.8,
+   "poblacion_15_64": 39027.8
+  },
+  {
+   "sb_codigo": "18",
+   "anio": 2023,
+   "desempleo_pct": 3.4,
+   "desempleados_prom": 1263.0,
+   "poblacion_15_64": 37329.8
+  },
+  {
+   "sb_codigo": "19",
+   "anio": 2023,
+   "desempleo_pct": 3.5,
+   "desempleados_prom": 2383.8,
+   "poblacion_15_64": 67790.0
+  },
+  {
+   "sb_codigo": "20",
+   "anio": 2023,
+   "desempleo_pct": 3.2,
+   "desempleados_prom": 1086.3,
+   "poblacion_15_64": 33940.5
+  },
+  {
+   "sb_codigo": "21",
+   "anio": 2023,
+   "desempleo_pct": 3.3,
+   "desempleados_prom": 1798.3,
+   "poblacion_15_64": 54089.8
+  },
+  {
+   "sb_codigo": "22",
+   "anio": 2023,
+   "desempleo_pct": 4.0,
+   "desempleados_prom": 1488.5,
+   "poblacion_15_64": 37226.5
+  },
+  {
+   "sb_codigo": "23",
+   "anio": 2023,
+   "desempleo_pct": 3.2,
+   "desempleados_prom": 769.3,
+   "poblacion_15_64": 23761.0
+  },
+  {
+   "sb_codigo": "24",
+   "anio": 2023,
+   "desempleo_pct": 4.0,
+   "desempleados_prom": 1659.8,
+   "poblacion_15_64": 41939.5
+  },
+  {
+   "sb_codigo": "25",
+   "anio": 2023,
+   "desempleo_pct": 4.0,
+   "desempleados_prom": 1616.8,
+   "poblacion_15_64": 39957.8
+  },
+  {
+   "sb_codigo": "00",
+   "anio": 2024,
+   "desempleo_pct": 3.9,
+   "desempleados_prom": 43723.3,
+   "poblacion_15_64": 1117076.3
+  },
+  {
+   "sb_codigo": "01",
+   "anio": 2024,
+   "desempleo_pct": 3.0,
+   "desempleados_prom": 457.8,
+   "poblacion_15_64": 15370.0
+  },
+  {
+   "sb_codigo": "02",
+   "anio": 2024,
+   "desempleo_pct": 3.5,
+   "desempleados_prom": 1374.3,
+   "poblacion_15_64": 39057.0
+  },
+  {
+   "sb_codigo": "03",
+   "anio": 2024,
+   "desempleo_pct": 3.2,
+   "desempleados_prom": 1311.8,
+   "poblacion_15_64": 41348.3
+  },
+  {
+   "sb_codigo": "04",
+   "anio": 2024,
+   "desempleo_pct": 2.9,
+   "desempleados_prom": 1449.5,
+   "poblacion_15_64": 49670.8
+  },
+  {
+   "sb_codigo": "05",
+   "anio": 2024,
+   "desempleo_pct": 3.6,
+   "desempleados_prom": 1669.8,
+   "poblacion_15_64": 46941.8
+  },
+  {
+   "sb_codigo": "06",
+   "anio": 2024,
+   "desempleo_pct": 4.1,
+   "desempleados_prom": 1232.8,
+   "poblacion_15_64": 30275.5
+  },
+  {
+   "sb_codigo": "07",
+   "anio": 2024,
+   "desempleo_pct": 3.9,
+   "desempleados_prom": 1702.0,
+   "poblacion_15_64": 43341.5
+  },
+  {
+   "sb_codigo": "08",
+   "anio": 2024,
+   "desempleo_pct": 4.4,
+   "desempleados_prom": 955.3,
+   "poblacion_15_64": 21791.8
+  },
+  {
+   "sb_codigo": "09",
+   "anio": 2024,
+   "desempleo_pct": 3.3,
+   "desempleados_prom": 2381.3,
+   "poblacion_15_64": 71327.5
+  },
+  {
+   "sb_codigo": "10",
+   "anio": 2024,
+   "desempleo_pct": 4.4,
+   "desempleados_prom": 1676.0,
+   "poblacion_15_64": 38500.3
+  },
+  {
+   "sb_codigo": "11",
+   "anio": 2024,
+   "desempleo_pct": 4.3,
+   "desempleados_prom": 2389.8,
+   "poblacion_15_64": 55334.5
+  },
+  {
+   "sb_codigo": "12",
+   "anio": 2024,
+   "desempleo_pct": 3.6,
+   "desempleados_prom": 1997.0,
+   "poblacion_15_64": 55162.0
+  },
+  {
+   "sb_codigo": "13",
+   "anio": 2024,
+   "desempleo_pct": 3.6,
+   "desempleados_prom": 2261.0,
+   "poblacion_15_64": 63085.0
+  },
+  {
+   "sb_codigo": "14",
+   "anio": 2024,
+   "desempleo_pct": 5.2,
+   "desempleados_prom": 1692.3,
+   "poblacion_15_64": 32822.0
+  },
+  {
+   "sb_codigo": "15",
+   "anio": 2024,
+   "desempleo_pct": 3.9,
+   "desempleados_prom": 2026.3,
+   "poblacion_15_64": 52267.3
+  },
+  {
+   "sb_codigo": "16",
+   "anio": 2024,
+   "desempleo_pct": 5.0,
+   "desempleados_prom": 3994.3,
+   "poblacion_15_64": 79808.8
+  },
+  {
+   "sb_codigo": "17",
+   "anio": 2024,
+   "desempleo_pct": 3.7,
+   "desempleados_prom": 1450.5,
+   "poblacion_15_64": 39378.3
+  },
+  {
+   "sb_codigo": "18",
+   "anio": 2024,
+   "desempleo_pct": 3.8,
+   "desempleados_prom": 1409.8,
+   "poblacion_15_64": 37416.5
+  },
+  {
+   "sb_codigo": "19",
+   "anio": 2024,
+   "desempleo_pct": 3.9,
+   "desempleados_prom": 2664.5,
+   "poblacion_15_64": 69148.5
+  },
+  {
+   "sb_codigo": "20",
+   "anio": 2024,
+   "desempleo_pct": 3.5,
+   "desempleados_prom": 1191.0,
+   "poblacion_15_64": 34200.5
+  },
+  {
+   "sb_codigo": "21",
+   "anio": 2024,
+   "desempleo_pct": 3.7,
+   "desempleados_prom": 2024.5,
+   "poblacion_15_64": 54577.3
+  },
+  {
+   "sb_codigo": "22",
+   "anio": 2024,
+   "desempleo_pct": 4.4,
+   "desempleados_prom": 1743.5,
+   "poblacion_15_64": 39418.5
+  },
+  {
+   "sb_codigo": "23",
+   "anio": 2024,
+   "desempleo_pct": 3.4,
+   "desempleados_prom": 812.3,
+   "poblacion_15_64": 23974.0
+  },
+  {
+   "sb_codigo": "24",
+   "anio": 2024,
+   "desempleo_pct": 4.5,
+   "desempleados_prom": 1909.8,
+   "poblacion_15_64": 42550.0
+  },
+  {
+   "sb_codigo": "25",
+   "anio": 2024,
+   "desempleo_pct": 4.5,
+   "desempleados_prom": 1805.3,
+   "poblacion_15_64": 40309.0
+  }
+ ]
+}
