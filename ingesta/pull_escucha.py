@@ -10,6 +10,8 @@ Decisiones:
 - Desde enero de 2025 hasta el último mes completo.
 """
 
+from __future__ import annotations
+
 import json
 from datetime import date, timedelta
 

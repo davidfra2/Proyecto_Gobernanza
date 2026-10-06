@@ -11,6 +11,8 @@ Decisiones:
   se guarda como null, no como 0. La densidad de 08 sí viene publicada.
 """
 
+from __future__ import annotations
+
 import csv
 import io
 

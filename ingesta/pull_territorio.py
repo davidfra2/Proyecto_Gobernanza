@@ -13,6 +13,8 @@ Decisiones:
 - La superficie se toma del atributo oficial flaeche_qm (no se calcula del polígono simplificado).
 """
 
+from __future__ import annotations
+
 import json
 import math
 

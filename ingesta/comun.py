@@ -7,6 +7,8 @@ Cada archivo del lago tiene la misma envoltura:
 - probado: día en que el script descargó la fuente de verdad.
 """
 
+from __future__ import annotations
+
 import json
 import os
 import urllib.request

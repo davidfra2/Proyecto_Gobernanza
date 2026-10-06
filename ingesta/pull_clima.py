@@ -13,6 +13,8 @@ Decisiones:
 - La estación queda en Neuhausen-Nymphenburg (distrito 09): describe la ciudad, no cada distrito.
 """
 
+from __future__ import annotations
+
 import csv
 import io
 import zipfile

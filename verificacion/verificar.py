@@ -3,6 +3,8 @@
 Si algo falla, se arregla la ingesta; nunca se afloja el verificador.
 """
 
+from __future__ import annotations
+
 import json
 import re
 import sys

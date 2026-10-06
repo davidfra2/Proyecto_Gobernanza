@@ -10,6 +10,8 @@ Decisiones:
 - Los desempleados y la población de 15 a 64 años son promedios anuales: traen decimales.
 """
 
+from __future__ import annotations
+
 import csv
 import io
 
