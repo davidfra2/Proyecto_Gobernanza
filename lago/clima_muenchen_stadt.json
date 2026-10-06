@@ -1,0 +1,178 @@
+{
+ "fuente": "F04",
+ "vigencia": "2026-09",
+ "probado": "2026-10-06",
+ "registros": [
+  {
+   "mes": "2025-03",
+   "temp_media_c": 6.75,
+   "temp_max_media_c": 12.0,
+   "temp_min_media_c": 2.04,
+   "precipitacion_mm": 37.8,
+   "sol_horas": 181.8,
+   "nivel_calidad": 9
+  },
+  {
+   "mes": "2025-04",
+   "temp_media_c": 11.8,
+   "temp_max_media_c": 17.7,
+   "temp_min_media_c": 6.28,
+   "precipitacion_mm": 5.8,
+   "sol_horas": 257.2,
+   "nivel_calidad": 9
+  },
+  {
+   "mes": "2025-05",
+   "temp_media_c": 13.65,
+   "temp_max_media_c": 18.85,
+   "temp_min_media_c": 8.11,
+   "precipitacion_mm": 44.7,
+   "sol_horas": 229.2,
+   "nivel_calidad": 9
+  },
+  {
+   "mes": "2025-06",
+   "temp_media_c": 20.82,
+   "temp_max_media_c": 27.16,
+   "temp_min_media_c": 14.74,
+   "precipitacion_mm": 65.6,
+   "sol_horas": 309.7,
+   "nivel_calidad": 9
+  },
+  {
+   "mes": "2025-07",
+   "temp_media_c": 19.05,
+   "temp_max_media_c": 24.26,
+   "temp_min_media_c": 14.69,
+   "precipitacion_mm": 129.5,
+   "sol_horas": 202.1,
+   "nivel_calidad": 9
+  },
+  {
+   "mes": "2025-08",
+   "temp_media_c": 19.39,
+   "temp_max_media_c": 25.08,
+   "temp_min_media_c": 14.29,
+   "precipitacion_mm": 122.3,
+   "sol_horas": 264.1,
+   "nivel_calidad": 9
+  },
+  {
+   "mes": "2025-09",
+   "temp_media_c": 15.33,
+   "temp_max_media_c": 19.81,
+   "temp_min_media_c": 11.05,
+   "precipitacion_mm": 80.3,
+   "sol_horas": 155.4,
+   "nivel_calidad": 9
+  },
+  {
+   "mes": "2025-10",
+   "temp_media_c": 9.62,
+   "temp_max_media_c": 13.88,
+   "temp_min_media_c": 6.05,
+   "precipitacion_mm": 53.9,
+   "sol_horas": 107.5,
+   "nivel_calidad": 9
+  },
+  {
+   "mes": "2025-11",
+   "temp_media_c": 4.83,
+   "temp_max_media_c": 8.94,
+   "temp_min_media_c": 1.32,
+   "precipitacion_mm": 68.3,
+   "sol_horas": 101.7,
+   "nivel_calidad": 9
+  },
+  {
+   "mes": "2025-12",
+   "temp_media_c": 2.05,
+   "temp_max_media_c": 4.75,
+   "temp_min_media_c": -0.19,
+   "precipitacion_mm": 25.5,
+   "sol_horas": 67.4,
+   "nivel_calidad": 9
+  },
+  {
+   "mes": "2026-01",
+   "temp_media_c": -0.37,
+   "temp_max_media_c": 3.33,
+   "temp_min_media_c": -3.64,
+   "precipitacion_mm": 39.5,
+   "sol_horas": 123.1,
+   "nivel_calidad": 9
+  },
+  {
+   "mes": "2026-02",
+   "temp_media_c": 4.54,
+   "temp_max_media_c": 8.21,
+   "temp_min_media_c": 1.29,
+   "precipitacion_mm": 93.1,
+   "sol_horas": 89.6,
+   "nivel_calidad": 9
+  },
+  {
+   "mes": "2026-03",
+   "temp_media_c": 6.29,
+   "temp_max_media_c": 11.54,
+   "temp_min_media_c": 1.75,
+   "precipitacion_mm": 32.1,
+   "sol_horas": 179.22,
+   "nivel_calidad": 3
+  },
+  {
+   "mes": "2026-04",
+   "temp_media_c": 10.93,
+   "temp_max_media_c": 16.24,
+   "temp_min_media_c": 5.15,
+   "precipitacion_mm": 6.8,
+   "sol_horas": 243.97,
+   "nivel_calidad": 3
+  },
+  {
+   "mes": "2026-05",
+   "temp_media_c": 15.91,
+   "temp_max_media_c": 22.44,
+   "temp_min_media_c": 9.44,
+   "precipitacion_mm": 42.1,
+   "sol_horas": 289.33,
+   "nivel_calidad": 3
+  },
+  {
+   "mes": "2026-06",
+   "temp_media_c": 21.28,
+   "temp_max_media_c": 27.29,
+   "temp_min_media_c": 15.28,
+   "precipitacion_mm": 89.8,
+   "sol_horas": 277.92,
+   "nivel_calidad": 3
+  },
+  {
+   "mes": "2026-07",
+   "temp_media_c": 21.73,
+   "temp_max_media_c": 27.69,
+   "temp_min_media_c": 15.51,
+   "precipitacion_mm": 79.3,
+   "sol_horas": 308.48,
+   "nivel_calidad": 1
+  },
+  {
+   "mes": "2026-08",
+   "temp_media_c": 22.32,
+   "temp_max_media_c": 28.7,
+   "temp_min_media_c": 16.32,
+   "precipitacion_mm": 87.4,
+   "sol_horas": 279.78,
+   "nivel_calidad": 1
+  },
+  {
+   "mes": "2026-09",
+   "temp_media_c": 17.17,
+   "temp_max_media_c": 23.6,
+   "temp_min_media_c": 11.38,
+   "precipitacion_mm": 37.3,
+   "sol_horas": 250.08,
+   "nivel_calidad": 1
+  }
+ ]
+}
