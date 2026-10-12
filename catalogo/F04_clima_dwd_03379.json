@@ -1,0 +1,23 @@
+{
+ "id": "F04",
+ "nombre": "Clima mensual de la estación 03379 München-Stadt (monatswerte_KL, carpeta recent)",
+ "entidad": "dwd",
+ "url": "https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/monthly/kl/recent/monatswerte_KL_03379_akt.zip",
+ "pagina": "https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/monthly/kl/recent/",
+ "formato": "ZIP con TXT separado por «;» en Latin-1",
+ "acceso": "descarga_directa",
+ "licencia": "cc-by-4.0",
+ "licencia_texto": "The Creative Commons BY 4.0 - Licence \"CC BY 4.0\" apply.",
+ "licencia_donde": "https://opendata.dwd.de/climate_environment/CDC/Terms_of_use.pdf (estado: mayo de 2024)",
+ "personas": "no",
+ "cobertura": "Un punto: la estación 03379 München-Stadt (48.1632, 11.5429), en Neuhausen-Nymphenburg (09)",
+ "periodo": "2025-03 a 2026-09 (la carpeta recent cubre unos 18 meses; la serie larga está en historical)",
+ "frecuencia": "Mensual",
+ "estado": "integrado",
+ "probado": "2026-10-12",
+ "respuesta": "HTTP 200 · application/zip · 16 348 bytes · Last-Modified 2026-10-12",
+ "script": "ingesta/pull_clima.py",
+ "salida": ["lago/clima_muenchen_stadt.json"],
+ "como_se_encontro": "La IA (Claude) la propuso para la familia «ambiente»; comprobamos la estación en la lista del DWD y la licencia en Terms_of_use.pdf.",
+ "nota": "Los faltantes vienen como -999 y se guardan como null. Los meses recientes tienen nivel de calidad 1 o 3 y todavía pueden corregirse: por eso el lago guarda el nivel de cada mes. En la lista de estaciones del DWD es la única activa dentro de la ciudad (München-Flughafen queda fuera; Bogenhausen, Botanischer Garten, Nymphenburg, Perlach y Riem están cerradas), así que el clima no se puede dar por distrito."
+}

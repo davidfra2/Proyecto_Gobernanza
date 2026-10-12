@@ -1,0 +1,23 @@
+{
+ "id": "F08",
+ "nombre": "Página de horarios de MVG (URL propuesta por la IA)",
+ "entidad": "mvg",
+ "url": "https://www.mvg.de/de/services/fahrgastinformation/fahrplandaten.html",
+ "pagina": null,
+ "formato": "Página web",
+ "acceso": "pagina_web",
+ "licencia": "no_declara",
+ "licencia_texto": null,
+ "licencia_donde": "No aplica: la página no existe",
+ "personas": "no",
+ "cobertura": null,
+ "periodo": null,
+ "frecuencia": null,
+ "estado": "no_existe",
+ "probado": "2026-10-12",
+ "respuesta": "HTTP 404 «Seite nicht gefunden»",
+ "script": null,
+ "salida": [],
+ "como_se_encontro": "La IA (Claude) la dio como dirección de descarga del GTFS de MVG (Bitácora IA, encargo 7).",
+ "nota": "La URL tiene una forma razonable pero nunca existió: también dio 404 el 2026-10-06. La fuente real es F07. La página que enlaza el catálogo CKAN es otra (https://www.mvg.de/verbindungen/Fahrplandaten.html) y sí responde 200."
+}

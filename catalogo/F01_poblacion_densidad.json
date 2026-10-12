@@ -1,0 +1,23 @@
+{
+ "id": "F01",
+ "nombre": "Indikatorenatlas: Bevölkerung – Bevölkerungsdichte (población, superficie y densidad por Stadtbezirk)",
+ "entidad": "statistisches_amt_muenchen",
+ "url": "https://opendata.muenchen.de/dataset/0be6dc92-9ca5-4ae9-8a08-ba4039f2a225/resource/3f4aea4c-a79a-4f5b-ab01-a6ad540449f0/download/indikat_2605bevoelkerung_bevoelkerungsdichte_18_05_26.csv",
+ "pagina": "https://opendata.muenchen.de/dataset/indikatorenatlas-bevoelkerung-bevoelkerungsdichte-83r65mct",
+ "formato": "CSV",
+ "acceso": "descarga_directa",
+ "licencia": "dl-de-by-2.0",
+ "licencia_texto": "Datenlizenz Deutschland Namensnennung 2.0 (dl-by-de)",
+ "licencia_donde": "Metadatos del conjunto en el catálogo CKAN de opendata.muenchen.de (license_id «dl-by-de/2.0»)",
+ "personas": "solo_conteos_por_zona",
+ "cobertura": "Ciudad (código 00) y sus 25 Stadtbezirke",
+ "periodo": "2002 a 2025 (el lago guarda 2015 a 2025)",
+ "frecuencia": "Anual",
+ "estado": "integrado",
+ "probado": "2026-10-12",
+ "respuesta": "HTTP 200 · text/csv · 91 621 bytes · Last-Modified 2026-05-22",
+ "script": "ingesta/pull_poblacion.py",
+ "salida": ["lago/poblacion_stadtbezirke.json"],
+ "como_se_encontro": "La IA (Claude) lo propuso buscando en el catálogo CKAN de opendata.muenchen.de; lo abrimos y lo baja el script.",
+ "nota": "La ciudad renombra el archivo en cada actualización, así que el script pide la URL vigente al catálogo CKAN. En 08 Schwanthalerhöhe la población y la superficie vienen como «X» (dato reservado) y se guardan como null; la densidad sí viene publicada. verificar.py comprueba que la densidad cuadre con población / superficie en 275 de los 286 registros (los 11 de 08 no se pueden comprobar). Los nombres de distrito no coinciden con los de F03: se cruza por código."
+}

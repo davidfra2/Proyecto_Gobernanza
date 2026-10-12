@@ -1,0 +1,23 @@
+{
+ "id": "F11",
+ "nombre": "GENESIS-Online (Destatis): tablas por Kreis, München = 09162",
+ "entidad": "destatis",
+ "url": "https://www-genesis.destatis.de/datenbank/online",
+ "pagina": "https://www.destatis.de/EN/Service/OpenData/api-webservice.html",
+ "formato": "Web; la API publica JSON y CSV según Destatis",
+ "acceso": "pagina_web",
+ "licencia": "dl-de-by-2.0",
+ "licencia_texto": "GENESIS-Online can be used free of charge and without registering under the \"Data Licence Germany - Namensnennung - Version 2.0\".",
+ "licencia_donde": "https://www.destatis.de/EN/Service/OpenData/api-webservice.html",
+ "personas": "solo_conteos_por_zona",
+ "cobertura": "Alemania, Länder y Kreise (München como Kreis 09162)",
+ "periodo": "Depende de la tabla",
+ "frecuencia": "Depende de la tabla",
+ "estado": "candidato",
+ "probado": "2026-10-12",
+ "respuesta": "HTTP 200 con curl · text/html · 2 506 bytes. Desde Python (urllib) falla: CERTIFICATE_VERIFY_FAILED, el servidor no envía el certificado intermedio.",
+ "script": null,
+ "salida": [],
+ "como_se_encontro": "La IA (Claude) la propuso para comparar München con otras ciudades alemanas (Bitácora IA, encargo 10).",
+ "nota": "Solo probamos que la base de datos web responde; la API todavía no la hemos llamado, así que «acceso» queda como página web. Para integrarla: que un script descargue una tabla de München (09162) y resolver el error de certificado en Python sin desactivar la verificación."
+}

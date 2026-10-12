@@ -1,0 +1,23 @@
+{
+ "id": "F09",
+ "nombre": "Calidad del aire: balances anuales de NO₂ por estación (Luftdaten API v3)",
+ "entidad": "uba",
+ "url": "https://luftdaten.umweltbundesamt.de/api/air-data/v3/annualbalances/json?component=5&year=2025&lang=de",
+ "pagina": "https://luftdaten.umweltbundesamt.de/api/air-data/v3/doc",
+ "formato": "JSON",
+ "acceso": "api_sin_llave",
+ "licencia": "no_declara",
+ "licencia_texto": null,
+ "licencia_donde": "No aparece en la respuesta de la API y la página de documentación que citó la IA dio 404. Catálogos de terceros (GDI-DE) le atribuyen la Datenlizenz Deutschland – Namensnennung 2.0, pero no la hemos leído en el sitio del UBA.",
+ "personas": "no",
+ "cobertura": "5 estaciones activas en München con NO₂ de 2025: Landshuter Allee (38 µg/m³), Stachus (25), Lothstraße (18), Allach (17) y Johanneskirchen (14)",
+ "periodo": "2025 (balance anual)",
+ "frecuencia": "Anual (balance)",
+ "estado": "candidato",
+ "probado": "2026-10-12",
+ "respuesta": "HTTP 200 · application/json · 10 463 bytes",
+ "script": null,
+ "salida": [],
+ "como_se_encontro": "La IA (Claude) la propuso para la familia «ambiente» (Bitácora IA, encargo 8).",
+ "nota": "La URL que dio la IA (www.umweltbundesamt.de/api/air_data/v3) redirige (302) a este dominio. Los IDs de estación se cruzan con /stations/json. Sin licencia confirmada en la fuente no entra al lago, aunque los datos respondan. Para integrarla: encontrar las condiciones de uso en el sitio del UBA y copiar aquí la licencia exacta."
+}

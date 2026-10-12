@@ -1,0 +1,37 @@
+{
+ "estados": {
+  "integrado": "Entró al lago y alimenta algún archivo de lago/ o territorio/",
+  "candidato": "Responde y sirve, pero falta algo para integrarla (licencia, trabajo o una pregunta que la necesite)",
+  "caido": "Existió o la publica alguien, pero no respondió el día de la prueba (error exacto en «respuesta»)",
+  "no_existe": "La URL nunca existió: la propuso la IA y respondió 404 o el dominio no resuelve",
+  "declarado": "Alguien dice que existe, pero nadie del grupo la ha abierto todavía",
+  "excluido": "Responde, pero decidimos no usarla (duplicada, datos sensibles, no responde ninguna pregunta)"
+ },
+ "entidades": {
+  "statistisches_amt_muenchen": {"nombre": "Statistisches Amt München (Landeshauptstadt München)", "tipo": "entidad_publica"},
+  "geodatenservice_muenchen": {"nombre": "GeodatenService München (Kommunalreferat, Landeshauptstadt München)", "tipo": "entidad_publica"},
+  "dwd": {"nombre": "Deutscher Wetterdienst (DWD), Climate Data Center", "tipo": "entidad_publica"},
+  "wikimedia": {"nombre": "Wikimedia Foundation", "tipo": "plataforma_colaborativa"},
+  "mvg": {"nombre": "Münchner Verkehrsgesellschaft mbH (MVG), sociedad de la ciudad", "tipo": "empresa_publica"},
+  "uba": {"nombre": "Umweltbundesamt (UBA)", "tipo": "entidad_publica"},
+  "destatis": {"nombre": "Statistisches Bundesamt (Destatis)", "tipo": "entidad_publica"}
+ },
+ "licencias": {
+  "dl-de-by-2.0": {"nombre": "Datenlizenz Deutschland – Namensnennung – Version 2.0", "url": "https://www.govdata.de/dl-de/by-2-0", "uso": "Libre, también comercial, citando la fuente"},
+  "cc-by-4.0": {"nombre": "Creative Commons Atribución 4.0 Internacional", "url": "https://creativecommons.org/licenses/by/4.0/", "uso": "Libre, también comercial, citando la fuente"},
+  "cc0-1.0": {"nombre": "Creative Commons CC0 1.0 (dominio público)", "url": "https://creativecommons.org/publicdomain/zero/1.0/", "uso": "Libre, sin obligación de citar (la citamos igual)"},
+  "no_declara": {"nombre": "La fuente no declara licencia (o no pudimos leerla en la fuente)", "url": null, "uso": "No se integra hasta confirmar la licencia en la propia fuente"}
+ },
+ "personas": {
+  "no": "No trae datos de personas",
+  "solo_conteos_por_zona": "Trae conteos agregados por zona; ninguna fila es una persona",
+  "identificables": "Trae filas que corresponden a personas o permiten identificarlas",
+  "texto_libre": "Trae texto escrito por personas (comentarios, publicaciones)"
+ },
+ "accesos": {
+  "descarga_directa": "Archivo que se baja con una URL",
+  "api_sin_llave": "API que responde sin registro ni llave",
+  "api_con_llave_gratis": "API que pide registro o llave gratuita",
+  "pagina_web": "Solo una página web o un PDF; no hay descarga ni API probada"
+ }
+}

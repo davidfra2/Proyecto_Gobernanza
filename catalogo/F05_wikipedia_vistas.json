@@ -1,0 +1,23 @@
+{
+ "id": "F05",
+ "nombre": "Vistas mensuales del artículo «München» en la Wikipedia en alemán",
+ "entidad": "wikimedia",
+ "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/de.wikipedia/all-access/user/M%C3%BCnchen/monthly/20250101/20260930",
+ "pagina": "https://wikimedia.org/api/rest_v1/#/Pageviews%20data",
+ "formato": "JSON",
+ "acceso": "api_sin_llave",
+ "licencia": "cc0-1.0",
+ "licencia_texto": "All Analytics datasets are available under the Creative Commons CC0 dedication.",
+ "licencia_donde": "https://dumps.wikimedia.org/other/analytics/",
+ "personas": "no",
+ "cobertura": "El artículo «München» de de.wikipedia (interés en la ciudad, no un dato del territorio)",
+ "periodo": "2025-01 a 2026-09",
+ "frecuencia": "Mensual",
+ "estado": "integrado",
+ "probado": "2026-10-12",
+ "respuesta": "HTTP 200 · application/json · 3 119 bytes · 21 meses",
+ "script": "ingesta/pull_escucha.py",
+ "salida": ["lago/escucha.json"],
+ "como_se_encontro": "Réplica del ejercicio de escucha del taller; la IA cambió el artículo a de.wikipedia.",
+ "nota": "agent=user: cuenta personas, no bots. La URL de la ficha es la del día de la prueba; el script calcula el último mes completo cada vez. Las ediciones es y en no se integraron: la consulta desde otra página del navegador falló por CORS."
+}

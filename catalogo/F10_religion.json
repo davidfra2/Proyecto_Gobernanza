@@ -1,0 +1,23 @@
+{
+ "id": "F10",
+ "nombre": "Indikatorenatlas: Bevölkerung – Religionszugehörigkeit",
+ "entidad": "statistisches_amt_muenchen",
+ "url": "https://opendata.muenchen.de/dataset/55d39494-79c4-47af-b5cf-163f0712e5f9/resource/42dd45fc-2300-4b7c-bb67-05da5386e174/download/indikat_2605bevoelkerung_religionszugehoerigkeit_18_05_26.csv",
+ "pagina": "https://opendata.muenchen.de/dataset/indikatorenatlas-bevoelkerung-religionszugehoerigkeit",
+ "formato": "CSV",
+ "acceso": "descarga_directa",
+ "licencia": "dl-de-by-2.0",
+ "licencia_texto": "Datenlizenz Deutschland Namensnennung 2.0 (dl-by-de)",
+ "licencia_donde": "Metadatos del conjunto en el catálogo CKAN de opendata.muenchen.de (license_id «dl-by-de/2.0»)",
+ "personas": "solo_conteos_por_zona",
+ "cobertura": "Ciudad y sus 25 Stadtbezirke",
+ "periodo": "2000 a 2025",
+ "frecuencia": "Anual",
+ "estado": "excluido",
+ "probado": "2026-10-12",
+ "respuesta": "HTTP 200 · text/csv · 379 115 bytes · Last-Modified 2026-05-22",
+ "script": null,
+ "salida": [],
+ "como_se_encontro": "La IA (Claude) la señaló al revisar qué tablas del Indikatorenatlas no deberían entrar (Bitácora IA, encargo 9).",
+ "nota": "No responde ninguna de nuestras preguntas. Además, la religión es categoría especial del RGPD (art. 9); aunque una cifra agregada por distrito no es un dato personal, no había razón para mostrarla."
+}

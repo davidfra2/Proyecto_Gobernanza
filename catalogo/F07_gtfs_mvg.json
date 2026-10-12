@@ -1,0 +1,23 @@
+{
+ "id": "F07",
+ "nombre": "MVG-Fahrplandaten (Solldaten) en formato GTFS",
+ "entidad": "mvg",
+ "url": "https://www.mvg.de/static/gtfs/google_transit.zip",
+ "pagina": "https://opendata.muenchen.de/dataset/mvg-fahrplandaten-solldaten",
+ "formato": "ZIP (GTFS: stops.txt, routes.txt, trips.txt, stop_times.txt…)",
+ "acceso": "descarga_directa",
+ "licencia": "cc-by-4.0",
+ "licencia_texto": "Attribution 4.0 International (CC BY 4.0)",
+ "licencia_donde": "Metadatos del conjunto en el catálogo CKAN de opendata.muenchen.de (license_id «CC-BY-4.0»)",
+ "personas": "no",
+ "cobertura": "Red de MVG: 243 rutas de U-Bahn, tranvía y bus; ninguna de S-Bahn (comprobado en routes.txt el 2026-10-12)",
+ "periodo": "Horario vigente",
+ "frecuencia": "No declarada; el archivo se regenera a menudo",
+ "estado": "candidato",
+ "probado": "2026-10-12",
+ "respuesta": "HTTP 200 (HEAD) · application/zip · 27 087 056 bytes · Last-Modified 2026-10-12",
+ "script": null,
+ "salida": [],
+ "como_se_encontro": "Buscando «GTFS» en el catálogo CKAN de opendata.muenchen.de, después de que falló la URL que dio la IA (F08).",
+ "nota": "El 2026-10-06 pesaba 29 804 502 bytes y el 2026-10-12, 27 087 056: cambia entre descargas. Pendiente: contar paradas por distrito cruzando stops.txt con F03 y decidir qué pregunta responde. El mismo catálogo ofrece los GTFS de MVV (regional y red completa, CC BY 4.0), que no hemos probado."
+}

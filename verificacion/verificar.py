@@ -139,6 +139,49 @@ meses = [r["mes"] for r in esc["registros"]]
 revisar(meses == sorted(set(meses)), "F05: meses repetidos o desordenados")
 revisar(all(r["vistas"] >= 0 for r in esc["registros"]), "F05: vistas negativas")
 
+# Catálogo · cada ficha bien formada, con valores de las listas cerradas, y unida al lago
+listas = json.loads((RAIZ / "catalogo" / "listas.json").read_text(encoding="utf-8"))
+CAMPOS_FICHA = (
+    "id", "nombre", "entidad", "url", "formato", "acceso", "licencia", "licencia_donde",
+    "personas", "estado", "probado", "respuesta", "salida", "como_se_encontro", "nota",
+)
+fichas: dict[str, dict] = {}
+for archivo in sorted((RAIZ / "catalogo").glob("F*.json")):
+    ficha = json.loads(archivo.read_text(encoding="utf-8"))
+    nombre = f"catalogo/{archivo.name}"
+    faltan = [c for c in CAMPOS_FICHA if c not in ficha]
+    revisar(not faltan, f"{nombre}: faltan campos {faltan}")
+    if faltan:
+        continue
+    revisar(archivo.name.startswith(ficha["id"] + "_"), f"{nombre}: el nombre no empieza por su id {ficha['id']}")
+    revisar(ficha["id"] not in fichas, f"{nombre}: id {ficha['id']} repetido")
+    fichas[ficha["id"]] = ficha
+    for campo, lista in (("estado", "estados"), ("entidad", "entidades"), ("licencia", "licencias"),
+                         ("personas", "personas"), ("acceso", "accesos")):
+        revisar(ficha[campo] in listas[lista], f"{nombre}: {campo} «{ficha[campo]}» no está en listas.json")
+    probado = str(ficha["probado"])
+    revisar(bool(PROBADO.match(probado)) and probado <= date.today().isoformat(),
+            f"{nombre}: probado «{probado}» no es AAAA-MM-DD o es posterior a hoy")
+    if ficha["estado"] == "integrado":
+        revisar(ficha["licencia"] != "no_declara", f"{nombre}: integrada sin licencia confirmada")
+        revisar(bool(ficha["salida"]), f"{nombre}: integrada sin archivo de salida")
+        revisar(bool(ficha.get("script")) and (RAIZ / str(ficha.get("script"))).exists(),
+                f"{nombre}: integrada sin script de ingesta que exista")
+        for salida in ficha["salida"]:
+            ruta = RAIZ / salida
+            if not ruta.exists():
+                revisar(False, f"{nombre}: no existe la salida {salida}")
+                continue
+            fuente = json.loads(ruta.read_text(encoding="utf-8")).get("fuente")
+            revisar(fuente == ficha["id"], f"{nombre}: {salida} dice fuente «{fuente}», no {ficha['id']}")
+    else:
+        revisar(not ficha["salida"], f"{nombre}: tiene salida pero su estado es «{ficha['estado']}»")
+# Lo que está en el lago tiene que estar en el catálogo como integrado
+for datos in (pob, des, geo, cli, esc):
+    ficha = fichas.get(datos.get("fuente"))
+    revisar(ficha is not None and ficha["estado"] == "integrado",
+            f"lago: la fuente {datos.get('fuente')} no está integrada en el catálogo")
+
 if fallos:
     print(f"{len(fallos)} comprobaciones fallaron. No se publica.")
     print("\n".join(fallos))

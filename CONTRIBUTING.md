@@ -24,11 +24,9 @@ sube directo a `main`. Si dos eligen lo mismo, lo hablan antes de cambiar la tab
 
 | Persona | Usuario GitHub | Papel principal | Papel compartido |
 |---|---|---|---|
-| Juan Carlos Muñoz | _(pendiente)_ | Curaduría | — |
+| Juan Carlos Muñoz | katals | Curaduría | — |
 | David Felipe Rios | davidfra2 | Interfaz | — |
 | Samuel Molina  | Smuel24 | Datos | — |
-
-| | | | |
 
 La exploración de herramientas no es de un papel: cada papel prueba **al menos dos
 herramientas** en sus tramos y las anota en la bitácora del README.
@@ -36,12 +34,12 @@ herramientas** en sus tramos y las anota en la bitácora del README.
 ### Qué entrega cada papel
 
 **Curaduría** — sale del tramo cuando:
-- [ ] Cada fuente tiene su ficha en `catalogo/`, con `probado`, `estado`, `licencia` y `personas`.
-- [ ] Hay fuentes de al menos **tres familias** distintas (estadística, territorio, ambiente,
+- [x] Cada fuente tiene su ficha en `catalogo/`, con `probado`, `estado`, `licencia` y `personas`.
+- [x] Hay fuentes de al menos **tres familias** distintas (estadística, territorio, ambiente,
       economía, movilidad, lo que se dice…).
-- [ ] Las fuentes caídas o descartadas también tienen ficha, con el error exacto.
-- [ ] `catalogo/listas.json` define las listas cerradas de `entidad` y `licencia`.
-- [ ] El README dice qué **no existe** abierto para München (sección «Huecos»).
+- [x] Las fuentes caídas o descartadas también tienen ficha, con el error exacto.
+- [x] `catalogo/listas.json` define las listas cerradas de `entidad` y `licencia`.
+- [x] El README dice qué **no existe** abierto para München (sección «Huecos»).
 - [ ] Al menos dos herramientas de rastreo probadas (p. ej. DuckDB, QGIS, Overture Maps) y
       anotadas en la bitácora de exploración.
 - [ ] Más adelante: revisar que cada cifra de las vistas llegue a su ficha.
@@ -85,31 +83,33 @@ Tramos: `catalogo`, `ingesta`, `lago`, `verificacion`, `vistas`, `api`, `segurid
 ## 3. Convenciones de código y datos
 
 **Python (ingesta y verificación)**
-- Python 3.12+. Un script por tema: `ingesta/pull_<tema>.py`.
+- Python 3.9 o superior (el que trae macOS), solo biblioteca estándar. Un script por tema: `ingesta/pull_<tema>.py`.
 - Nombres en `snake_case`; formato y lint con `ruff format` y `ruff check`.
 - Cada script es **idempotente**: se puede correr dos veces y deja el mismo resultado.
 - Nada de llaves de pago. Si una API pide llave gratuita, va en `.env` (nunca en el código).
 - Dependencias en `requirements.txt` con versión fijada.
 
-**Catálogo** (`catalogo/<id>.json`, una ficha por fuente, **incluidas las caídas y descartadas**)
+**Catálogo** (`catalogo/<ID>_<tema>.json`, una ficha por fuente, **incluidas las caídas y descartadas**)
 
-```json
-{
-  "id": "muenchen_bevoelkerung_stadtbezirke",
-  "nombre": "Población por distrito (Stadtbezirk)",
-  "entidad": "Landeshauptstadt München",
-  "url": "https://...",
-  "estado": "integrado",
-  "licencia": "dl-de-by-2.0",
-  "probado": "2026-09-27",
-  "personas": "no",
-  "nota": ""
-}
-```
+El ID (F01, F02…) es el mismo del Excel «Diccionario de datos» y del campo `fuente` del lago.
+Ejemplo completo: [catalogo/F01_poblacion_densidad.json](catalogo/F01_poblacion_densidad.json).
 
-- `estado` solo puede ser: `integrado`, `candidato`, `caido`, `declarado`, `excluido`.
-- `licencia` y `entidad` salen de una **lista cerrada** (`catalogo/listas.json`). El catálogo de
-  Lima escribió la licencia de 34 maneras distintas: no repetirlo.
+| Campo | Qué lleva |
+|---|---|
+| `id`, `nombre` | ID del Excel y nombre del conjunto tal como lo publica la fuente |
+| `entidad`, `licencia`, `estado`, `personas`, `acceso` | Un valor de las **listas cerradas** de `catalogo/listas.json` |
+| `licencia_texto`, `licencia_donde` | La licencia copiada tal como aparece, y dónde la leímos |
+| `url`, `pagina` | URL exacta que se probó, y página del conjunto en su portal |
+| `probado`, `respuesta` | Día de la prueba y lo que respondió (código HTTP, tipo, tamaño o error exacto) |
+| `script`, `salida` | Script de ingesta y archivos del lago que produce (vacío si no está integrada) |
+| `cobertura`, `periodo`, `frecuencia`, `formato` | Qué territorio y qué años cubre, cada cuánto se actualiza |
+| `como_se_encontro`, `nota` | Si vino de la IA o de una búsqueda, y todo lo que hay que saber para usarla |
+
+- `estado`: `integrado`, `candidato`, `caido`, `no_existe` (URL inventada por la IA), `declarado`, `excluido`.
+- Las listas cerradas existen porque el catálogo de Lima escribió la licencia de 34 maneras
+  distintas. Para añadir una entidad o licencia nueva, se añade primero a `listas.json`.
+- `verificar.py` comprueba el catálogo: campos completos, valores de las listas, que lo integrado
+  tenga licencia, script y salida, y que cada archivo del lago apunte a una ficha integrada.
 - Cruzar territorio por **código oficial** (AGS / código de Stadtbezirk), nunca por nombre.
 
 **Lago**
