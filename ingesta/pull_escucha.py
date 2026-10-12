@@ -15,7 +15,7 @@ from __future__ import annotations
 import json
 from datetime import date, timedelta
 
-from comun import LAGO, descargar, escribir, hoy
+from comun import LAGO, descargar, escribir, fin_de_mes, hoy
 
 ARTICULO = "M%C3%BCnchen"
 DESDE = "20250101"
@@ -37,7 +37,7 @@ def transformar(items: list[dict]) -> list[dict]:
 
 def construir(items: list[dict]) -> dict:
     registros = transformar(items)
-    return {"fuente": "F05", "vigencia": registros[-1]["mes"], "probado": hoy(), "registros": registros}
+    return {"fuente": "F05", "vigencia": fin_de_mes(registros[-1]["mes"]), "probado": hoy(), "registros": registros}
 
 
 if __name__ == "__main__":

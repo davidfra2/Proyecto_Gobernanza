@@ -19,7 +19,7 @@ import csv
 import io
 import zipfile
 
-from comun import LAGO, descargar, escribir, hoy, numero
+from comun import LAGO, descargar, escribir, fin_de_mes, hoy, numero
 
 URL = (
     "https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/monthly/kl/recent/"
@@ -50,7 +50,7 @@ def transformar(texto: str) -> list[dict]:
 
 def construir(texto: str) -> dict:
     registros = transformar(texto)
-    return {"fuente": "F04", "vigencia": registros[-1]["mes"], "probado": hoy(), "registros": registros}
+    return {"fuente": "F04", "vigencia": fin_de_mes(registros[-1]["mes"]), "probado": hoy(), "registros": registros}
 
 
 if __name__ == "__main__":

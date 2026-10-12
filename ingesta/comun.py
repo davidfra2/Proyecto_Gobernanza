@@ -3,12 +3,13 @@
 Cada archivo del lago tiene la misma envoltura:
     {"fuente": "F01", "vigencia": "AAAA-MM-DD", "probado": "AAAA-MM-DD", "registros": [...]}
 - fuente: ID de la fuente en el catálogo (hoja «1. Fuentes» del diccionario).
-- vigencia: hasta qué fecha cubren los datos.
+- vigencia: hasta qué fecha cubren los datos, siempre AAAA-MM-DD (fin de año, fin de mes o día de descarga).
 - probado: día en que el script descargó la fuente de verdad.
 """
 
 from __future__ import annotations
 
+import calendar
 import json
 import urllib.request
 from datetime import date
@@ -25,6 +26,12 @@ def hoy() -> str:
     """Fecha de prueba: el día en que el script descargó la fuente. No se puede fijar a mano,
     porque cada script vuelve a descargar y la fecha tiene que ser la de esa descarga."""
     return date.today().isoformat()
+
+
+def fin_de_mes(mes: str) -> str:
+    """'2026-09' -> '2026-09-30'. La vigencia siempre es una fecha completa (AAAA-MM-DD) en todo el lago."""
+    anio, numero_mes = int(mes[:4]), int(mes[5:7])
+    return f"{mes}-{calendar.monthrange(anio, numero_mes)[1]:02d}"
 
 
 def recurso_csv(dataset: str) -> str:

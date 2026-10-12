@@ -4,7 +4,8 @@
  "entidad": "geodatenservice_muenchen",
  "url": "https://geoportal.muenchen.de/geoserver/gsm_wfs/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=gsm_wfs:vablock_stadtbezirk&outputFormat=application/json&srsName=EPSG:4326",
  "pagina": "https://opendata.muenchen.de/dataset/vablock_stadtbezirke_opendata",
- "formato": "GeoJSON (servicio WFS)",
+ "formato": "geojson",
+ "formato_detalle": "GeoJSON servido por un WFS",
  "acceso": "api_sin_llave",
  "licencia": "dl-de-by-2.0",
  "licencia_texto": "Datenlizenz Deutschland Namensnennung 2.0 (dl-by-de)",
@@ -12,12 +13,15 @@
  "personas": "no",
  "cobertura": "Los 25 Stadtbezirke",
  "periodo": "Estado vigente el día de la descarga (el WFS no publica fecha de corte)",
- "frecuencia": "No declarada",
+ "frecuencia": "no_se_sabe",
+ "frecuencia_detalle": "La fuente no la declara",
  "estado": "integrado",
  "probado": "2026-10-12",
  "respuesta": "HTTP 200 · application/json · 381 122 bytes · 27 polígonos",
  "script": "ingesta/pull_territorio.py",
- "salida": ["territorio/stadtbezirke.geojson"],
+ "salida": [
+  "territorio/stadtbezirke.geojson"
+ ],
  "como_se_encontro": "La IA (Claude) lo propuso buscando «stadtbezirke» en el catálogo CKAN de opendata.muenchen.de; lo llamamos y lo baja el script.",
  "nota": "Devuelve 27 polígonos para 25 distritos (18 y 19 tienen pedazos sueltos): se unen en un MultiPolygon por distrito. Por defecto viene en EPSG:25832; se pide en EPSG:4326. Se redondea a 4 decimales sin simplificar, para que los distritos vecinos sigan encajando. La superficie sale del atributo oficial flaeche_qm y cuadra con F01 (±0,1 km²). Los nombres no coinciden con los de F01 («Schwabing-West» frente a «Schwabing - West»): se cruza por código."
 }

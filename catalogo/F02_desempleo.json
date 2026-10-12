@@ -4,7 +4,8 @@
  "entidad": "statistisches_amt_muenchen",
  "url": "https://opendata.muenchen.de/dataset/0771b22f-b1e7-4480-8fe5-d641c2586f3e/resource/55a1adb0-6c06-403b-ab7f-7e6c41d18e32/download/indikat_2605arbeitsmarkt_arbeitslose_-_anteil_18_05_26.csv",
  "pagina": "https://opendata.muenchen.de/dataset/indikatorenatlas-2014-arbeitsmarkt-arbeitslosendichte-83r65mct",
- "formato": "CSV",
+ "formato": "csv",
+ "formato_detalle": null,
  "acceso": "descarga_directa",
  "licencia": "dl-de-by-2.0",
  "licencia_texto": "Datenlizenz Deutschland Namensnennung 2.0 (dl-by-de)",
@@ -12,12 +13,15 @@
  "personas": "solo_conteos_por_zona",
  "cobertura": "Ciudad (código 00) y sus 25 Stadtbezirke",
  "periodo": "2000 a 2024 (el lago guarda 2015 a 2024)",
- "frecuencia": "Anual",
+ "frecuencia": "anual",
+ "frecuencia_detalle": null,
  "estado": "integrado",
  "probado": "2026-10-12",
  "respuesta": "HTTP 200 · text/csv · 569 234 bytes · Last-Modified 2026-05-22",
  "script": "ingesta/pull_desempleo.py",
- "salida": ["lago/desempleo_stadtbezirke.json"],
+ "salida": [
+  "lago/desempleo_stadtbezirke.json"
+ ],
  "como_se_encontro": "La IA (Claude) lo propuso buscando en el catálogo CKAN de opendata.muenchen.de; lo abrimos y lo baja el script.",
  "nota": "La fuente separa también por sexo (männlich, weiblich) y nacionalidad (deutsch, nichtdeutsch); el lago solo guarda «insgesamt» para no facilitar el cruce de desempleo con nacionalidad por barrio. Esos cortes siguen publicados en el portal. Desempleados y población de 15 a 64 años son promedios anuales y traen decimales. verificar.py comprueba que el porcentaje cuadre con sus bases en los 260 registros."
 }

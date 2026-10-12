@@ -97,7 +97,8 @@ Ejemplo completo: [catalogo/F01_poblacion_densidad.json](catalogo/F01_poblacion_
 | Campo | Qué lleva |
 |---|---|
 | `id`, `nombre` | ID del Excel y nombre del conjunto tal como lo publica la fuente |
-| `entidad`, `licencia`, `estado`, `personas`, `acceso` | Un valor de las **listas cerradas** de `catalogo/listas.json` |
+| `entidad`, `licencia`, `estado`, `personas`, `acceso`, `formato`, `frecuencia` | Un valor de las **listas cerradas** de `catalogo/listas.json` (cada valor dice su equivalente en el Excel) |
+| `formato_detalle`, `frecuencia_detalle` | Precisión libre cuando la lista se queda corta (p. ej. «ZIP con un TXT en Latin-1») |
 | `licencia_texto`, `licencia_donde` | La licencia copiada tal como aparece, y dónde la leímos |
 | `url`, `pagina` | URL exacta que se probó, y página del conjunto en su portal |
 | `probado`, `respuesta` | Día de la prueba y lo que respondió (código HTTP, tipo, tamaño o error exacto) |
@@ -105,17 +106,23 @@ Ejemplo completo: [catalogo/F01_poblacion_densidad.json](catalogo/F01_poblacion_
 | `cobertura`, `periodo`, `frecuencia`, `formato` | Qué territorio y qué años cubre, cada cuánto se actualiza |
 | `como_se_encontro`, `nota` | Si vino de la IA o de una búsqueda, y todo lo que hay que saber para usarla |
 
-- `estado`: `integrado`, `candidato`, `caido`, `no_existe` (URL inventada por la IA), `declarado`, `excluido`.
+- `estado`: `integrado`, `candidato`, `caido`, `no_existe` (URL inventada por la IA), `excluido`: los mismos cinco del Excel.
 - Las listas cerradas existen porque el catálogo de Lima escribió la licencia de 34 maneras
   distintas. Para añadir una entidad o licencia nueva, se añade primero a `listas.json`.
 - `verificar.py` comprueba el catálogo: campos completos, valores de las listas, que lo integrado
   tenga licencia, script y salida, y que cada archivo del lago apunte a una ficha integrada.
 - Cruzar territorio por **código oficial** (AGS / código de Stadtbezirk), nunca por nombre.
 
+**Diccionario** (`catalogo/diccionario.json`): una entrada por campo de cada archivo del lago, con
+tipo, unidad, si puede venir vacío, clasificación y las preguntas (P1–P4) que ayuda a responder.
+Un campo nuevo en el lago sin su entrada en el diccionario hace fallar `verificar.py`.
+
 **Lago**
 - `lago/raw/` guarda los crudos (bronce) y **nunca se sube** al repositorio (está en `.gitignore`).
-- `lago/` guarda el dato limpio (plata); cada cifra lleva `fuente`, `vigencia` y `probado`.
-- Fechas en ISO 8601 (`AAAA-MM-DD`). Codificación UTF-8.
+- `lago/` guarda el dato limpio (plata); cada archivo lleva `fuente`, `vigencia` y `probado`.
+- `probado` y `vigencia` siempre `AAAA-MM-DD` (ISO 8601); `mes` es `AAAA-MM`. Codificación UTF-8.
+- Solo datos observados: lo que se calcula se documenta y se verifica, pero no se guarda como si lo
+  hubiera publicado la fuente.
 
 **Secretos y datos personales**
 - Claves y contraseñas solo en `.env` local o en variables de entorno de Vercel.

@@ -1,0 +1,656 @@
+{
+ "_que_es": "Diccionario de datos del lago (DMBOK, cap. 12: metadatos). Una entrada por campo de cada archivo de lago/ y territorio/. Si un campo no está aquí, no existe: verificar.py comprueba que el lago y este diccionario coincidan en campos, tipos y vacíos. Es la versión en el repositorio de la hoja «2. Diccionario» del Excel.",
+ "revisado": "2026-10-12",
+ "campos": [
+  {
+   "archivo": "lago/poblacion_stadtbezirke.json",
+   "campo": "fuente",
+   "fuente": "F01",
+   "nombre_original": "(no existe en la fuente: lo agrega el script)",
+   "significado": "ID de la fuente en el catálogo; une el lago con la hoja «1. Fuentes»",
+   "tipo": "codigo",
+   "unidad": null,
+   "ejemplo": "F01",
+   "puede_vacio": false,
+   "valores_permitidos": "F01–F11",
+   "clasificacion": "publica",
+   "transformacion": "Se escribe fijo en cada script de ingesta",
+   "preguntas": [
+    "TODAS"
+   ]
+  },
+  {
+   "archivo": "lago/poblacion_stadtbezirke.json",
+   "campo": "vigencia",
+   "fuente": "F01",
+   "nombre_original": "(no existe en la fuente: lo agrega el script)",
+   "significado": "Hasta qué fecha cubren los datos del archivo",
+   "tipo": "fecha",
+   "unidad": null,
+   "ejemplo": "2025-12-31",
+   "puede_vacio": false,
+   "valores_permitidos": "AAAA-12-31 del último año",
+   "clasificacion": "publica",
+   "transformacion": "31 de diciembre del último año de la serie",
+   "preguntas": [
+    "TODAS"
+   ]
+  },
+  {
+   "archivo": "lago/poblacion_stadtbezirke.json",
+   "campo": "probado",
+   "fuente": "F01",
+   "nombre_original": "(no existe en la fuente: lo agrega el script)",
+   "significado": "Día en que el script descargó la fuente de verdad",
+   "tipo": "fecha",
+   "unidad": null,
+   "ejemplo": "2026-10-12",
+   "puede_vacio": false,
+   "valores_permitidos": "AAAA-MM-DD, no posterior a hoy",
+   "clasificacion": "publica",
+   "transformacion": "Fecha del día en que corre el script (el día de la descarga)",
+   "preguntas": [
+    "TODAS"
+   ]
+  },
+  {
+   "archivo": "lago/poblacion_stadtbezirke.json",
+   "campo": "sb_codigo",
+   "fuente": "F01",
+   "nombre_original": "Raumbezug",
+   "significado": "Código oficial del Stadtbezirk; 00 es la ciudad completa",
+   "tipo": "codigo",
+   "unidad": null,
+   "ejemplo": "09",
+   "puede_vacio": false,
+   "valores_permitidos": "00 a 25",
+   "clasificacion": "publica",
+   "transformacion": "Se toman los 2 primeros caracteres de Raumbezug («09 Neuhausen - Nymphenburg» → «09»); «Stadt München» → «00»",
+   "preguntas": [
+    "P1"
+   ]
+  },
+  {
+   "archivo": "lago/poblacion_stadtbezirke.json",
+   "campo": "anio",
+   "fuente": "F01",
+   "nombre_original": "Jahr",
+   "significado": "Año al que corresponde la cifra (fin de año)",
+   "tipo": "entero",
+   "unidad": "año",
+   "ejemplo": "2025",
+   "puede_vacio": false,
+   "valores_permitidos": "2015 a 2025",
+   "clasificacion": "publica",
+   "transformacion": "Texto a entero; se descartan los años anteriores a 2015",
+   "preguntas": [
+    "P1"
+   ]
+  },
+  {
+   "archivo": "lago/poblacion_stadtbezirke.json",
+   "campo": "poblacion",
+   "fuente": "F01",
+   "nombre_original": "Basiswert 1 (Hauptwohnsitzbevölkerung insgesamt)",
+   "significado": "Personas con residencia principal en el distrito",
+   "tipo": "entero",
+   "unidad": "personas",
+   "ejemplo": "102527",
+   "puede_vacio": true,
+   "valores_permitidos": "> 0; null solo en 08 (la fuente publica «X»; se puede deducir como ciudad − suma de los otros 24 distritos, pero el lago no guarda derivados)",
+   "clasificacion": "publica",
+   "transformacion": "«X» → null; texto a entero",
+   "preguntas": [
+    "P1"
+   ]
+  },
+  {
+   "archivo": "lago/poblacion_stadtbezirke.json",
+   "campo": "area_km2",
+   "fuente": "F01",
+   "nombre_original": "Basiswert 2 (Fläche in km²)",
+   "significado": "Superficie del distrito según la estadística de la ciudad",
+   "tipo": "decimal",
+   "unidad": "km²",
+   "ejemplo": "12.9",
+   "puede_vacio": true,
+   "valores_permitidos": "> 0; null solo en 08; ciudad = 310.7",
+   "clasificacion": "publica",
+   "transformacion": "«X» → null; texto a decimal",
+   "preguntas": [
+    "P1"
+   ]
+  },
+  {
+   "archivo": "lago/poblacion_stadtbezirke.json",
+   "campo": "densidad_hab_km2",
+   "fuente": "F01",
+   "nombre_original": "Indikatorwert",
+   "significado": "Habitantes por kilómetro cuadrado",
+   "tipo": "entero",
+   "unidad": "hab/km²",
+   "ejemplo": "7939",
+   "puede_vacio": false,
+   "valores_permitidos": "> 0; debe cuadrar ±3 % con poblacion / area_km2",
+   "clasificacion": "publica",
+   "transformacion": "Texto a entero; se comprueba en verificar.py",
+   "preguntas": [
+    "P1"
+   ]
+  },
+  {
+   "archivo": "lago/desempleo_stadtbezirke.json",
+   "campo": "fuente",
+   "fuente": "F02",
+   "nombre_original": "(no existe en la fuente: lo agrega el script)",
+   "significado": "ID de la fuente en el catálogo; une el lago con la hoja «1. Fuentes»",
+   "tipo": "codigo",
+   "unidad": null,
+   "ejemplo": "F02",
+   "puede_vacio": false,
+   "valores_permitidos": "F01–F11",
+   "clasificacion": "publica",
+   "transformacion": "Se escribe fijo en cada script de ingesta",
+   "preguntas": [
+    "TODAS"
+   ]
+  },
+  {
+   "archivo": "lago/desempleo_stadtbezirke.json",
+   "campo": "vigencia",
+   "fuente": "F02",
+   "nombre_original": "(no existe en la fuente: lo agrega el script)",
+   "significado": "Hasta qué fecha cubren los datos del archivo",
+   "tipo": "fecha",
+   "unidad": null,
+   "ejemplo": "2024-12-31",
+   "puede_vacio": false,
+   "valores_permitidos": "AAAA-12-31 del último año",
+   "clasificacion": "publica",
+   "transformacion": "31 de diciembre del último año de la serie",
+   "preguntas": [
+    "TODAS"
+   ]
+  },
+  {
+   "archivo": "lago/desempleo_stadtbezirke.json",
+   "campo": "probado",
+   "fuente": "F02",
+   "nombre_original": "(no existe en la fuente: lo agrega el script)",
+   "significado": "Día en que el script descargó la fuente de verdad",
+   "tipo": "fecha",
+   "unidad": null,
+   "ejemplo": "2026-10-12",
+   "puede_vacio": false,
+   "valores_permitidos": "AAAA-MM-DD, no posterior a hoy",
+   "clasificacion": "publica",
+   "transformacion": "Fecha del día en que corre el script (el día de la descarga)",
+   "preguntas": [
+    "TODAS"
+   ]
+  },
+  {
+   "archivo": "lago/desempleo_stadtbezirke.json",
+   "campo": "sb_codigo",
+   "fuente": "F02",
+   "nombre_original": "Raumbezug",
+   "significado": "Código oficial del Stadtbezirk; 00 es la ciudad completa",
+   "tipo": "codigo",
+   "unidad": null,
+   "ejemplo": "09",
+   "puede_vacio": false,
+   "valores_permitidos": "00 a 25",
+   "clasificacion": "publica",
+   "transformacion": "Se toman los 2 primeros caracteres de Raumbezug («09 Neuhausen - Nymphenburg» → «09»); «Stadt München» → «00»",
+   "preguntas": [
+    "P2"
+   ]
+  },
+  {
+   "archivo": "lago/desempleo_stadtbezirke.json",
+   "campo": "anio",
+   "fuente": "F02",
+   "nombre_original": "Jahr",
+   "significado": "Año del promedio anual",
+   "tipo": "entero",
+   "unidad": "año",
+   "ejemplo": "2024",
+   "puede_vacio": false,
+   "valores_permitidos": "2015 a 2024",
+   "clasificacion": "publica",
+   "transformacion": "Texto a entero; se descartan los años anteriores a 2015",
+   "preguntas": [
+    "P2"
+   ]
+  },
+  {
+   "archivo": "lago/desempleo_stadtbezirke.json",
+   "campo": "desempleo_pct",
+   "fuente": "F02",
+   "nombre_original": "Indikatorwert",
+   "significado": "Desempleados como porcentaje de la población de 15 a 64 años",
+   "tipo": "decimal",
+   "unidad": "%",
+   "ejemplo": "3.3",
+   "puede_vacio": false,
+   "valores_permitidos": "0 a 100; debe cuadrar ±0,06 con desempleados_prom / poblacion_15_64",
+   "clasificacion": "publica",
+   "transformacion": "Solo Ausprägung «insgesamt» (se dejan fuera sexo y nacionalidad)",
+   "preguntas": [
+    "P2"
+   ]
+  },
+  {
+   "archivo": "lago/desempleo_stadtbezirke.json",
+   "campo": "desempleados_prom",
+   "fuente": "F02",
+   "nombre_original": "Basiswert 1 (Arbeitslose insgesamt)",
+   "significado": "Promedio anual de personas desempleadas registradas",
+   "tipo": "decimal",
+   "unidad": "personas (promedio anual)",
+   "ejemplo": "2381.3",
+   "puede_vacio": false,
+   "valores_permitidos": "≥ 0; la suma de distritos ≤ ciudad",
+   "clasificacion": "publica",
+   "transformacion": "Texto a decimal (trae decimales por ser promedio)",
+   "preguntas": [
+    "P2"
+   ]
+  },
+  {
+   "archivo": "lago/desempleo_stadtbezirke.json",
+   "campo": "poblacion_15_64",
+   "fuente": "F02",
+   "nombre_original": "Basiswert 2 (Hauptwohnsitzbevölkerung 15 bis 64 Jahre)",
+   "significado": "Promedio anual de residentes de 15 a 64 años",
+   "tipo": "decimal",
+   "unidad": "personas (promedio anual)",
+   "ejemplo": "71327.5",
+   "puede_vacio": false,
+   "valores_permitidos": "> 0",
+   "clasificacion": "publica",
+   "transformacion": "Texto a decimal",
+   "preguntas": [
+    "P2"
+   ]
+  },
+  {
+   "archivo": "territorio/stadtbezirke.geojson",
+   "campo": "fuente",
+   "fuente": "F03",
+   "nombre_original": "(no existe en la fuente: lo agrega el script)",
+   "significado": "ID de la fuente en el catálogo; une el lago con la hoja «1. Fuentes»",
+   "tipo": "codigo",
+   "unidad": null,
+   "ejemplo": "F03",
+   "puede_vacio": false,
+   "valores_permitidos": "F01–F11",
+   "clasificacion": "publica",
+   "transformacion": "Se escribe fijo en cada script de ingesta",
+   "preguntas": [
+    "TODAS"
+   ]
+  },
+  {
+   "archivo": "territorio/stadtbezirke.geojson",
+   "campo": "vigencia",
+   "fuente": "F03",
+   "nombre_original": "(no existe en la fuente: lo agrega el script)",
+   "significado": "Hasta qué fecha cubren los datos del archivo",
+   "tipo": "fecha",
+   "unidad": null,
+   "ejemplo": "2026-10-12",
+   "puede_vacio": false,
+   "valores_permitidos": "AAAA-MM-DD (el WFS no trae fecha de corte)",
+   "clasificacion": "publica",
+   "transformacion": "Fecha de descarga: el WFS publica el estado vigente",
+   "preguntas": [
+    "TODAS"
+   ]
+  },
+  {
+   "archivo": "territorio/stadtbezirke.geojson",
+   "campo": "probado",
+   "fuente": "F03",
+   "nombre_original": "(no existe en la fuente: lo agrega el script)",
+   "significado": "Día en que el script descargó la fuente de verdad",
+   "tipo": "fecha",
+   "unidad": null,
+   "ejemplo": "2026-10-12",
+   "puede_vacio": false,
+   "valores_permitidos": "AAAA-MM-DD, no posterior a hoy",
+   "clasificacion": "publica",
+   "transformacion": "Fecha del día en que corre el script (el día de la descarga)",
+   "preguntas": [
+    "TODAS"
+   ]
+  },
+  {
+   "archivo": "territorio/stadtbezirke.geojson",
+   "campo": "sb_codigo",
+   "fuente": "F03",
+   "nombre_original": "sb_nummer",
+   "significado": "Código oficial del Stadtbezirk; llave para cruzar con F01 y F02",
+   "tipo": "codigo",
+   "unidad": null,
+   "ejemplo": "09",
+   "puede_vacio": false,
+   "valores_permitidos": "01 a 25, sin repetidos",
+   "clasificacion": "publica",
+   "transformacion": "Ninguna (ya viene con dos dígitos)",
+   "preguntas": [
+    "P1",
+    "P2"
+   ]
+  },
+  {
+   "archivo": "territorio/stadtbezirke.geojson",
+   "campo": "sb_nombre",
+   "fuente": "F03",
+   "nombre_original": "sb_name",
+   "significado": "Nombre oficial del distrito en la cartografía",
+   "tipo": "texto",
+   "unidad": null,
+   "ejemplo": "Neuhausen-Nymphenburg",
+   "puede_vacio": false,
+   "valores_permitidos": "25 nombres",
+   "clasificacion": "publica",
+   "transformacion": "Ninguna. Solo para mostrar: no coincide con el nombre de F01 («Schwabing-West» vs «Schwabing - West»)",
+   "preguntas": [
+    "P1",
+    "P2"
+   ]
+  },
+  {
+   "archivo": "territorio/stadtbezirke.geojson",
+   "campo": "area_km2",
+   "fuente": "F03",
+   "nombre_original": "flaeche_qm",
+   "significado": "Superficie oficial del distrito según la cartografía",
+   "tipo": "decimal",
+   "unidad": "km²",
+   "ejemplo": "12.91",
+   "puede_vacio": false,
+   "valores_permitidos": "> 0; ±0,1 km² de F01 en el último año",
+   "clasificacion": "publica",
+   "transformacion": "m² ÷ 1.000.000, redondeado a 2 decimales",
+   "preguntas": [
+    "P1",
+    "P2"
+   ]
+  },
+  {
+   "archivo": "territorio/stadtbezirke.geojson",
+   "campo": "geometry",
+   "fuente": "F03",
+   "nombre_original": "geometry (Polygon)",
+   "significado": "Contorno del distrito para dibujarlo en el mapa",
+   "tipo": "geometria",
+   "unidad": "grados (EPSG:4326)",
+   "ejemplo": "MultiPolygon [[[[11.5913, 48.1565], …]]]",
+   "puede_vacio": false,
+   "valores_permitidos": "Longitud 11.3–11.8; latitud 48.0–48.3; anillos cerrados",
+   "clasificacion": "publica",
+   "transformacion": "Pedido en EPSG:4326; 27 polígonos unidos en 25 MultiPolygon; redondeo a 4 decimales sin simplificar, para que los distritos vecinos encajen",
+   "preguntas": [
+    "P1",
+    "P2"
+   ]
+  },
+  {
+   "archivo": "lago/clima_muenchen_stadt.json",
+   "campo": "fuente",
+   "fuente": "F04",
+   "nombre_original": "(no existe en la fuente: lo agrega el script)",
+   "significado": "ID de la fuente en el catálogo; une el lago con la hoja «1. Fuentes»",
+   "tipo": "codigo",
+   "unidad": null,
+   "ejemplo": "F04",
+   "puede_vacio": false,
+   "valores_permitidos": "F01–F11",
+   "clasificacion": "publica",
+   "transformacion": "Se escribe fijo en cada script de ingesta",
+   "preguntas": [
+    "TODAS"
+   ]
+  },
+  {
+   "archivo": "lago/clima_muenchen_stadt.json",
+   "campo": "vigencia",
+   "fuente": "F04",
+   "nombre_original": "(no existe en la fuente: lo agrega el script)",
+   "significado": "Hasta qué fecha cubren los datos del archivo",
+   "tipo": "fecha",
+   "unidad": null,
+   "ejemplo": "2026-09-30",
+   "puede_vacio": false,
+   "valores_permitidos": "AAAA-MM-DD: último día del último mes",
+   "clasificacion": "publica",
+   "transformacion": "Último día del último mes de la serie",
+   "preguntas": [
+    "TODAS"
+   ]
+  },
+  {
+   "archivo": "lago/clima_muenchen_stadt.json",
+   "campo": "probado",
+   "fuente": "F04",
+   "nombre_original": "(no existe en la fuente: lo agrega el script)",
+   "significado": "Día en que el script descargó la fuente de verdad",
+   "tipo": "fecha",
+   "unidad": null,
+   "ejemplo": "2026-10-12",
+   "puede_vacio": false,
+   "valores_permitidos": "AAAA-MM-DD, no posterior a hoy",
+   "clasificacion": "publica",
+   "transformacion": "Fecha del día en que corre el script (el día de la descarga)",
+   "preguntas": [
+    "TODAS"
+   ]
+  },
+  {
+   "archivo": "lago/clima_muenchen_stadt.json",
+   "campo": "mes",
+   "fuente": "F04",
+   "nombre_original": "MESS_DATUM_BEGINN",
+   "significado": "Mes de la medición",
+   "tipo": "fecha",
+   "unidad": "mes",
+   "ejemplo": "2026-09",
+   "puede_vacio": false,
+   "valores_permitidos": "AAAA-MM, sin repetidos",
+   "clasificacion": "publica",
+   "transformacion": "AAAAMMDD → AAAA-MM",
+   "preguntas": [
+    "P3"
+   ]
+  },
+  {
+   "archivo": "lago/clima_muenchen_stadt.json",
+   "campo": "temp_media_c",
+   "fuente": "F04",
+   "nombre_original": "MO_TT",
+   "significado": "Temperatura media del aire a 2 m en el mes",
+   "tipo": "decimal",
+   "unidad": "°C",
+   "ejemplo": "17.17",
+   "puede_vacio": true,
+   "valores_permitidos": "-30 a 45; entre la mínima y la máxima",
+   "clasificacion": "publica",
+   "transformacion": "-999 → null; texto a decimal",
+   "preguntas": [
+    "P3"
+   ]
+  },
+  {
+   "archivo": "lago/clima_muenchen_stadt.json",
+   "campo": "temp_max_media_c",
+   "fuente": "F04",
+   "nombre_original": "MO_TX",
+   "significado": "Promedio de las temperaturas máximas diarias del mes",
+   "tipo": "decimal",
+   "unidad": "°C",
+   "ejemplo": "23.6",
+   "puede_vacio": true,
+   "valores_permitidos": "-30 a 45",
+   "clasificacion": "publica",
+   "transformacion": "-999 → null; texto a decimal",
+   "preguntas": [
+    "P3"
+   ]
+  },
+  {
+   "archivo": "lago/clima_muenchen_stadt.json",
+   "campo": "temp_min_media_c",
+   "fuente": "F04",
+   "nombre_original": "MO_TN",
+   "significado": "Promedio de las temperaturas mínimas diarias del mes",
+   "tipo": "decimal",
+   "unidad": "°C",
+   "ejemplo": "11.38",
+   "puede_vacio": true,
+   "valores_permitidos": "-30 a 45",
+   "clasificacion": "publica",
+   "transformacion": "-999 → null; texto a decimal",
+   "preguntas": [
+    "P3"
+   ]
+  },
+  {
+   "archivo": "lago/clima_muenchen_stadt.json",
+   "campo": "precipitacion_mm",
+   "fuente": "F04",
+   "nombre_original": "MO_RR",
+   "significado": "Lluvia total del mes",
+   "tipo": "decimal",
+   "unidad": "mm",
+   "ejemplo": "37.3",
+   "puede_vacio": true,
+   "valores_permitidos": "≥ 0",
+   "clasificacion": "publica",
+   "transformacion": "-999 → null; texto a decimal",
+   "preguntas": [
+    "P3"
+   ]
+  },
+  {
+   "archivo": "lago/clima_muenchen_stadt.json",
+   "campo": "sol_horas",
+   "fuente": "F04",
+   "nombre_original": "MO_SD_S",
+   "significado": "Horas de sol en el mes",
+   "tipo": "decimal",
+   "unidad": "horas",
+   "ejemplo": "250.08",
+   "puede_vacio": true,
+   "valores_permitidos": "≥ 0",
+   "clasificacion": "publica",
+   "transformacion": "-999 → null; texto a decimal",
+   "preguntas": [
+    "P3"
+   ]
+  },
+  {
+   "archivo": "lago/clima_muenchen_stadt.json",
+   "campo": "nivel_calidad",
+   "fuente": "F04",
+   "nombre_original": "QN_4",
+   "significado": "Nivel de control de calidad del DWD para el mes",
+   "tipo": "codigo",
+   "unidad": null,
+   "ejemplo": "1",
+   "puede_vacio": false,
+   "valores_permitidos": "1 = solo control formal · 3 = control automático · 9 = no todos los parámetros corregidos · 10 = control terminado",
+   "clasificacion": "publica",
+   "transformacion": "Texto a entero; se guarda para avisar que el dato puede cambiar",
+   "preguntas": [
+    "P3"
+   ]
+  },
+  {
+   "archivo": "lago/escucha.json",
+   "campo": "fuente",
+   "fuente": "F05",
+   "nombre_original": "(no existe en la fuente: lo agrega el script)",
+   "significado": "ID de la fuente en el catálogo; une el lago con la hoja «1. Fuentes»",
+   "tipo": "codigo",
+   "unidad": null,
+   "ejemplo": "F05",
+   "puede_vacio": false,
+   "valores_permitidos": "F01–F11",
+   "clasificacion": "publica",
+   "transformacion": "Se escribe fijo en cada script de ingesta",
+   "preguntas": [
+    "TODAS"
+   ]
+  },
+  {
+   "archivo": "lago/escucha.json",
+   "campo": "vigencia",
+   "fuente": "F05",
+   "nombre_original": "(no existe en la fuente: lo agrega el script)",
+   "significado": "Hasta qué fecha cubren los datos del archivo",
+   "tipo": "fecha",
+   "unidad": null,
+   "ejemplo": "2026-09-30",
+   "puede_vacio": false,
+   "valores_permitidos": "AAAA-MM-DD: último día del último mes completo",
+   "clasificacion": "publica",
+   "transformacion": "Último día del último mes completo de la serie",
+   "preguntas": [
+    "TODAS"
+   ]
+  },
+  {
+   "archivo": "lago/escucha.json",
+   "campo": "probado",
+   "fuente": "F05",
+   "nombre_original": "(no existe en la fuente: lo agrega el script)",
+   "significado": "Día en que el script descargó la fuente de verdad",
+   "tipo": "fecha",
+   "unidad": null,
+   "ejemplo": "2026-10-12",
+   "puede_vacio": false,
+   "valores_permitidos": "AAAA-MM-DD, no posterior a hoy",
+   "clasificacion": "publica",
+   "transformacion": "Fecha del día en que corre el script (el día de la descarga)",
+   "preguntas": [
+    "TODAS"
+   ]
+  },
+  {
+   "archivo": "lago/escucha.json",
+   "campo": "mes",
+   "fuente": "F05",
+   "nombre_original": "timestamp",
+   "significado": "Mes de las vistas",
+   "tipo": "fecha",
+   "unidad": "mes",
+   "ejemplo": "2026-09",
+   "puede_vacio": false,
+   "valores_permitidos": "AAAA-MM, desde 2025-01, sin repetidos",
+   "clasificacion": "publica",
+   "transformacion": "AAAAMMDDHH → AAAA-MM",
+   "preguntas": [
+    "P4"
+   ]
+  },
+  {
+   "archivo": "lago/escucha.json",
+   "campo": "vistas",
+   "fuente": "F05",
+   "nombre_original": "views",
+   "significado": "Vistas del artículo «München» hechas por personas en el mes",
+   "tipo": "entero",
+   "unidad": "vistas de personas",
+   "ejemplo": "66205",
+   "puede_vacio": false,
+   "valores_permitidos": "≥ 0",
+   "clasificacion": "publica",
+   "transformacion": "Solo agent=user (sin bots); ninguna otra",
+   "preguntas": [
+    "P4"
+   ]
+  }
+ ]
+}

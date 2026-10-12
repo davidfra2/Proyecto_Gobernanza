@@ -2,20 +2,31 @@
 
 Grupo: Juan Carlos Muñoz (Curaduría) · David Felipe Rios (Interfaz) · Samuel Molina (Datos) · Enlace: <url de las vistas> · Repositorio: https://github.com/davidfra2/Proyecto_Gobernanza · Revisado: 2026-10-12
 
-Réplica del Cerebro Lima para Múnich. Cómo trabajamos: [CONTRIBUTING.md](CONTRIBUTING.md).
+Réplica del Cerebro Lima para Múnich. Cómo trabajamos: [CONTRIBUTING.md](CONTRIBUTING.md) · Gobierno de datos según el DMBOK: [GOBIERNO.md](GOBIERNO.md).
+
+Reconstruir y comprobar el lago (Python 3.9 o superior, sin instalar nada):
+
+```bash
+cd ingesta && for s in pull_poblacion pull_desempleo pull_territorio pull_clima pull_escucha; do python3 $s.py; done; cd ..
+python3 verificacion/verificar.py
+```
 
 ## Para quién y qué pregunta
-- Usuario:
-- Preguntas (entre tres y seis):
-- Escala y comparación:
-- Lo que decidimos no mostrar, y por qué:
+- Usuario: un concejal o un comité de distrito (Bezirksausschuss) de München que necesita comparar los 25 Stadtbezirke con cifras oficiales y fechadas antes de decidir dónde intervenir.
+- Preguntas (entre tres y seis), definidas en [catalogo/listas.json](catalogo/listas.json) y citadas por cada campo del diccionario:
+  - **P1** · ¿Cuánta gente vive en cada distrito y dónde crece más rápido? (F01, F03)
+  - **P2** · ¿En qué distritos pesa más el desempleo y cómo cambió desde 2015? (F02, F03)
+  - **P3** · ¿Cómo cambian el calor y la lluvia de la ciudad mes a mes? (F04)
+  - **P4** · ¿Cuánto interés despierta München fuera de la ciudad y en qué meses sube? (F05)
+- Escala y comparación: los 25 Stadtbezirke y la ciudad (código 00), de 2015 al último año publicado (2025 en población, 2024 en desempleo); el clima y el interés en Wikipedia, por mes y para la ciudad entera.
+- Lo que decidimos no mostrar, y por qué: los cortes de desempleo por sexo y nacionalidad (F02), para no facilitar el señalamiento de barrios por nacionalidad; la religión por distrito (F10), que no responde ninguna pregunta; y los crudos de `lago/raw/`, que traen esos cortes.
 
 ## La réplica
-- Qué replicamos tal cual del ejemplo y qué tuvimos que cambiar para nuestra ciudad:
-- Fuentes catalogadas · integradas · caídas · descartadas: **11 catalogadas · 5 integradas · 3 candidatas · 0 caídas · 1 inexistente (inventada por la IA) · 2 excluidas**, de cinco familias: estadística (F01, F02, F06, F10, F11), territorio (F03), ambiente (F04, F09), movilidad (F07, F08) y lo que se dice (F05). Una ficha por fuente en [catalogo/](catalogo/), todas probadas el 2026-10-12; `verificacion/verificar.py` comprueba que el catálogo y el lago digan lo mismo.
+- Qué replicamos tal cual del ejemplo y qué tuvimos que cambiar para nuestra ciudad: replicamos la anatomía de carpetas del Cerebro Lima (`ingesta/`, `catalogo/`, `lago/` con `raw/` fuera del repositorio, `territorio/`, `verificacion/`, `api/`, `web/`), la ingesta con Python y solo la biblioteca estándar, el lago en JSON y un verificador propio que bloquea la publicación. Cambiamos: las URL de München se piden al catálogo CKAN porque la ciudad renombra los archivos; el cruce territorial va por código de Stadtbezirk porque los nombres no coinciden entre fuentes; las licencias son alemanas (Datenlizenz Deutschland) y el marco de datos personales es el RGPD; y sumamos al catálogo listas cerradas y un diccionario que el verificador contrasta con el lago.
+- Fuentes catalogadas · integradas · caídas · descartadas: **11 catalogadas · 5 integradas · 3 candidatas · 0 caídas · 1 inexistente (inventada por la IA) · 2 excluidas**, de cinco familias: estadística (F01, F02, F06, F10, F11), territorio (F03), ambiente (F04, F09), movilidad (F07, F08) y lo que se dice (F05). Una ficha por fuente en [catalogo/](catalogo/), todas probadas el 2026-10-12, y un diccionario con los 38 campos del lago en [catalogo/diccionario.json](catalogo/diccionario.json); `verificacion/verificar.py` comprueba que catálogo, diccionario y lago digan lo mismo.
 - Huecos: lo que buscamos y no existe abierto para esta ciudad:
   - **Clima por distrito.** En la lista de estaciones del DWD, la 03379 München-Stadt (en Neuhausen-Nymphenburg) es la única activa dentro de la ciudad: el clima se responde para la ciudad entera (F04).
-  - **Población y superficie de 08 Schwanthalerhöhe.** F01 las reserva con «X» en todos los años; solo publica su densidad. F06 sí trae la población de 2024 (28 684): falta preguntar al Statistisches Amt por qué la reserva en F01 antes de usarla.
+  - **Población y superficie de 08 Schwanthalerhöhe.** F01 las marca con «X» en los 24 años, pero no están ocultas: el total de la ciudad menos los otros 24 distritos da su población (28 684 en 2024, la misma cifra que publica F06), y esa cifra dividida por la densidad publicada da 2,07 km² todos los años, la superficie de 08 en F03. El lago la deja en null porque sería un dato derivado; `verificar.py` comprueba que las tres cifras cuadren, y una vista que la muestre tiene que marcarla como derivada. No sabemos por qué F01 la marca.
   - **Calidad del aire con licencia confirmada.** La API del UBA responde con cinco estaciones en München (F09), pero no encontramos su licencia en el sitio del UBA.
   - **Comparación con otras ciudades alemanas.** GENESIS-Online (F11) es libre y sin registro, pero su API no está probada y Python rechaza su certificado.
 

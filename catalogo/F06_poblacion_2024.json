@@ -4,7 +4,8 @@
  "entidad": "statistisches_amt_muenchen",
  "url": "https://opendata.muenchen.de/dataset/e3f5dbd2-39cc-40cd-bc91-4bb49a0b1802/resource/a641ce6a-4e01-4f4b-9976-1ae6a47e3762/download/bevolkerung_bezirke_neu.csv",
  "pagina": "https://opendata.muenchen.de/dataset/bevoelkerung-stadtbezirken",
- "formato": "CSV",
+ "formato": "csv",
+ "formato_detalle": null,
  "acceso": "descarga_directa",
  "licencia": "dl-de-by-2.0",
  "licencia_texto": "Datenlizenz Deutschland Namensnennung 2.0 (dl-by-de)",
@@ -12,12 +13,13 @@
  "personas": "solo_conteos_por_zona",
  "cobertura": "Ciudad y sus 25 Stadtbezirke",
  "periodo": "31-12-2024 (un solo año)",
- "frecuencia": "Anual",
+ "frecuencia": "anual",
+ "frecuencia_detalle": null,
  "estado": "excluido",
  "probado": "2026-10-12",
  "respuesta": "HTTP 200 · text/csv · 1 364 bytes · Last-Modified 2026-08-03",
  "script": null,
  "salida": [],
  "como_se_encontro": "La IA (Claude) la encontró buscando «bevölkerung stadtbezirk» en el catálogo CKAN de opendata.muenchen.de.",
- "nota": "Duplica F01 con un solo año y tiene problemas de formato: «101 901» con espacio en Neuhausen, el total como un distrito «26 insgesamt» y la densidad en hab/ha. Sus cifras coinciden con F01 en 2024 (total 1 603 776; Altstadt 20 876). Hallazgo del 2026-10-12: publica la población de 08 Schwanthalerhöhe (28 684) y su superficie (207,03 ha), que F01 reserva con «X». Antes de usarla para llenar ese hueco hay que preguntar al Statistisches Amt por qué la reserva en F01."
+ "nota": "Duplica F01 con un solo año y tiene problemas de formato: «101 901» con espacio en Neuhausen, el total como un distrito «26 insgesamt» y la densidad en hab/ha. Sus cifras coinciden con F01 en 2024 (total 1 603 776; Altstadt 20 876). Publica la población de 08 Schwanthalerhöhe (28 684) y su superficie (207,03 ha), que F01 marca con «X»; las dos cuadran con lo que se deduce de F01 y F03, así que la reserva de F01 no oculta nada. No sabemos por qué F01 la marca: se puede preguntar al Statistisches Amt."
 }
