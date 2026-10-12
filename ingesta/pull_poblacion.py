@@ -16,14 +16,15 @@ from __future__ import annotations
 import csv
 import io
 
-from comun import LAGO, descargar, escribir, hoy, numero
+from comun import LAGO, descargar, escribir, hoy, numero, recurso_csv
 
-URL = (
-    "https://opendata.muenchen.de/dataset/0be6dc92-9ca5-4ae9-8a08-ba4039f2a225/resource/"
-    "3f4aea4c-a79a-4f5b-ab01-a6ad540449f0/download/"
-    "indikat_2605bevoelkerung_bevoelkerungsdichte_18_05_26.csv"
-)
+DATASET = "0be6dc92-9ca5-4ae9-8a08-ba4039f2a225"  # la URL del CSV se resuelve en el catálogo
 DESDE = 2015
+
+
+def entero(texto: str) -> int | None:
+    valor = numero(texto)
+    return int(valor) if valor is not None else None
 
 
 def codigo(raumbezug: str) -> str:
@@ -36,14 +37,14 @@ def transformar(texto: str) -> list[dict]:
     for fila in csv.DictReader(io.StringIO(texto)):
         if fila["Ausprägung"] != "insgesamt" or int(fila["Jahr"]) < DESDE:
             continue
-        poblacion = numero(fila["Basiswert 1"])
         registros.append(
             {
                 "sb_codigo": codigo(fila["Raumbezug"]),
                 "anio": int(fila["Jahr"]),
-                "poblacion": int(poblacion) if poblacion is not None else None,
+                "poblacion": entero(fila["Basiswert 1"]),
                 "area_km2": numero(fila["Basiswert 2"]),
-                "densidad_hab_km2": int(numero(fila["Indikatorwert"])),
+                # Si algún día la densidad también viene reservada, queda null y lo marca verificar.py
+                "densidad_hab_km2": entero(fila["Indikatorwert"]),
             }
         )
     registros.sort(key=lambda r: (r["anio"], r["sb_codigo"]))
@@ -57,5 +58,5 @@ def construir(texto: str) -> dict:
 
 
 if __name__ == "__main__":
-    crudo = descargar(URL, "poblacion_bevoelkerungsdichte.csv").decode("utf-8-sig")
+    crudo = descargar(recurso_csv(DATASET), "poblacion_bevoelkerungsdichte.csv").decode("utf-8-sig")
     escribir(LAGO / "poblacion_stadtbezirke.json", construir(crudo))

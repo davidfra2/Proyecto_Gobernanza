@@ -15,14 +15,10 @@ from __future__ import annotations
 import csv
 import io
 
-from comun import LAGO, descargar, escribir, hoy, numero
+from comun import LAGO, descargar, escribir, hoy, numero, recurso_csv
 from pull_poblacion import codigo
 
-URL = (
-    "https://opendata.muenchen.de/dataset/0771b22f-b1e7-4480-8fe5-d641c2586f3e/resource/"
-    "55a1adb0-6c06-403b-ab7f-7e6c41d18e32/download/"
-    "indikat_2605arbeitsmarkt_arbeitslose_-_anteil_18_05_26.csv"
-)
+DATASET = "0771b22f-b1e7-4480-8fe5-d641c2586f3e"  # la URL del CSV se resuelve en el catálogo
 DESDE = 2015
 
 
@@ -51,5 +47,5 @@ def construir(texto: str) -> dict:
 
 
 if __name__ == "__main__":
-    crudo = descargar(URL, "desempleo_arbeitslose_anteil.csv").decode("utf-8-sig")
+    crudo = descargar(recurso_csv(DATASET), "desempleo_arbeitslose_anteil.csv").decode("utf-8-sig")
     escribir(LAGO / "desempleo_stadtbezirke.json", construir(crudo))
