@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>München · sistema de información</title>
+  <meta name="description" content="Los 25 distritos de München comparados con datos oficiales: población, desempleo, clima e interés. Cada cifra con su fuente, vigencia y fecha de prueba.">
+  <!-- Solo se cargan recursos propios, MapLibre (versión fija, con huella SRI) y el mapa base de OpenFreeMap -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; img-src 'self' data: blob: https://tiles.openfreemap.org; connect-src 'self' https://tiles.openfreemap.org; worker-src blob:; child-src blob:; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl.css"
+        integrity="sha384-uTttxo/aOKbdE5RlD/SPzSDoDmNvGlUYPjONi2MN/b7c9HPSvW07OIuyP7uL6jxK" crossorigin="anonymous">
+  <link rel="stylesheet" href="estilos.css">
+  <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl.js"
+          integrity="sha384-5+cfbwT0iiub6VsQAdn6yz16nr6sDiQoHx6tm4O8OVYXHYOxcffFmCJBL0dgdvGp" crossorigin="anonymous" defer></script>
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+  <header class="cabecera">
+    <div class="cabecera-interior">
+      <p class="antetitulo">Gestión y Gobernanza de Datos · EAFIT 2026-2</p>
+      <h1>München · sistema de información</h1>
+      <p class="bajada">Los 25 distritos (Stadtbezirke) comparados con datos oficiales y abiertos. Cada cifra dice de dónde sale, hasta cuándo es válida y cuándo se comprobó: toca la etiqueta de fuente.</p>
+      <p class="grupo">Juan Carlos Muñoz (Curaduría) · David Felipe Rios (Interfaz) · Samuel Molina (Datos)</p>
+    </div>
+    <nav class="indice" aria-label="Secciones">
+      <a href="#panorama">Panorama</a>
+      <a href="#mapa-seccion">Mapa</a>
+      <a href="#poblacion">P1 Población</a>
+      <a href="#desempleo">P2 Desempleo</a>
+      <a href="#clima">P3 Clima</a>
+      <a href="#interes">P4 Interés</a>
+      <a href="#fuentes">Fuentes y método</a>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <p id="estado-carga" class="aviso" role="status">Cargando el lago…</p>
+
+    <section id="panorama" aria-labelledby="t-panorama">
+      <h2 id="t-panorama">Panorama de la ciudad</h2>
+      <div id="kpis" class="kpis"></div>
+    </section>
+
+    <div class="controles" role="group" aria-label="Distrito que se compara con la ciudad">
+      <label for="selector-distrito">Distrito</label>
+      <select id="selector-distrito"></select>
+      <span class="ayuda">También puedes elegirlo tocando el mapa o una barra.</span>
+    </div>
+
+    <section id="mapa-seccion" aria-labelledby="t-mapa">
+      <h2 id="t-mapa">Los 25 distritos en el mapa</h2>
+      <div class="controles" role="radiogroup" aria-label="Qué muestra el mapa" id="selector-indicador"></div>
+      <div class="mapa-rejilla">
+        <div id="mapa" class="mapa" role="region" aria-label="Mapa de los distritos de München. Para elegir un distrito con el teclado, usa el selector de distrito."></div>
+        <aside id="panel-distrito" class="panel" aria-live="polite"></aside>
+      </div>
+      <div id="leyenda-mapa" class="leyenda"></div>
+      <div id="fuente-mapa" class="fuentes-linea"></div>
+      <details><summary>Ver tabla</summary><div id="tabla-mapa" class="tabla-envoltura"></div></details>
+    </section>
+
+    <section id="poblacion" aria-labelledby="t-poblacion">
+      <h2 id="t-poblacion">P1 · ¿Cuánta gente vive en cada distrito y dónde crece más rápido?</h2>
+      <div class="tarjeta">
+        <h3>Crecimiento de la población, 2015 → 2025</h3>
+        <p class="nota">Rojo: el distrito perdió población. La barra clara con * es un dato derivado (ver 08 en el panel del distrito).</p>
+        <div id="g-crecimiento" class="grafico"></div>
+        <div id="fuente-crecimiento" class="fuentes-linea"></div>
+      </div>
+      <div class="tarjeta">
+        <h3 id="t-indice">Población, índice 2015 = 100</h3>
+        <p class="nota">Las dos series parten de 100 para poder compararlas en un solo eje: la ciudad tiene 1,6 millones de habitantes y un distrito, entre 20 000 y 120 000.</p>
+        <div id="g-indice" class="grafico"></div>
+        <div id="fuente-indice" class="fuentes-linea"></div>
+      </div>
+      <details><summary>Ver tabla</summary><div id="tabla-poblacion" class="tabla-envoltura"></div></details>
+    </section>
+
+    <section id="desempleo" aria-labelledby="t-desempleo">
+      <h2 id="t-desempleo">P2 · ¿En qué distritos pesa más el desempleo y cómo cambió desde 2015?</h2>
+      <div class="tarjeta">
+        <h3 id="t-desempleo-barras">Desempleo por distrito</h3>
+        <p class="nota">Desempleados como porcentaje de la población de 15 a 64 años (promedios anuales). Solo el total: el sistema no muestra los cortes por sexo ni por nacionalidad.</p>
+        <div id="g-desempleo" class="grafico"></div>
+        <div id="fuente-desempleo" class="fuentes-linea"></div>
+      </div>
+      <div class="tarjeta">
+        <h3>Desempleo, 2015 → último año</h3>
+        <div id="g-desempleo-serie" class="grafico"></div>
+        <div id="fuente-desempleo-serie" class="fuentes-linea"></div>
+      </div>
+      <details><summary>Ver tabla</summary><div id="tabla-desempleo" class="tabla-envoltura"></div></details>
+    </section>
+
+    <section id="clima" aria-labelledby="t-clima">
+      <h2 id="t-clima">P3 · ¿Cómo cambian el calor y la lluvia de la ciudad mes a mes?</h2>
+      <p class="nota">Una sola estación del DWD para toda la ciudad (03379 München-Stadt, en Neuhausen-Nymphenburg): no hay clima por distrito.</p>
+      <div class="tarjeta">
+        <h3>Temperatura mensual (°C)</h3>
+        <p class="nota">Línea: media del mes. Franja: entre la mínima y la máxima medias. Marcador hueco: dato provisional, el DWD todavía puede corregirlo.</p>
+        <div id="g-temperatura" class="grafico"></div>
+      </div>
+      <div class="tarjeta">
+        <h3>Lluvia mensual (mm)</h3>
+        <p class="nota">Columna clara: dato provisional.</p>
+        <div id="g-lluvia" class="grafico"></div>
+      </div>
+      <div id="fuente-clima" class="fuentes-linea"></div>
+      <details><summary>Ver tabla</summary><div id="tabla-clima" class="tabla-envoltura"></div></details>
+    </section>
+
+    <section id="interes" aria-labelledby="t-interes">
+      <h2 id="t-interes">P4 · ¿Cuánto interés despierta München fuera de la ciudad y en qué meses sube?</h2>
+      <div class="tarjeta">
+        <h3>Vistas mensuales del artículo «München» en la Wikipedia en alemán</h3>
+        <p class="nota">Solo lecturas de personas, sin bots. Es una medida de interés, no un dato del territorio.</p>
+        <div id="g-vistas" class="grafico"></div>
+        <div id="fuente-vistas" class="fuentes-linea"></div>
+      </div>
+      <details><summary>Ver tabla</summary><div id="tabla-vistas" class="tabla-envoltura"></div></details>
+    </section>
+
+    <section id="fuentes" aria-labelledby="t-fuentes">
+      <h2 id="t-fuentes">Fuentes y método</h2>
+      <p>El sistema rastreó <strong id="n-fuentes">—</strong> fuentes y usa <strong id="n-integradas">—</strong>. Las que no entraron también están aquí, con la razón. Cada cifra de esta página viene del lago del <a href="https://github.com/davidfra2/Proyecto_Gobernanza">repositorio</a>: un script descarga cada fuente, la limpia y la guarda con su fuente y su fecha, y <code>verificar.py</code> bloquea la publicación si algo no cuadra.</p>
+      <div id="lista-fuentes" class="fichas"></div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p>Datos: Landeshauptstadt München (Statistisches Amt, GeodatenService) · dl-de/by-2-0 · Deutscher Wetterdienst · CC BY 4.0 · Wikimedia Foundation · CC0. Mapa base: OpenFreeMap, con datos de © OpenStreetMap (ODbL).</p>
+    <p>Taller de datos · Gestión y Gobernanza de Datos · Universidad EAFIT · <a href="https://github.com/davidfra2/Proyecto_Gobernanza">código y lago en GitHub</a></p>
+  </footer>
+
+  <dialog id="dialogo-ficha" aria-labelledby="ficha-titulo">
+    <form method="dialog" class="dialogo-cerrar"><button aria-label="Cerrar">×</button></form>
+    <div id="ficha-contenido"></div>
+  </dialog>
+</body>
+</html>
