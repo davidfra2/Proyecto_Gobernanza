@@ -48,6 +48,8 @@ python3 verificacion/verificar.py
 ## Bitácora de exploración
 | Tramo | Herramienta | Qué pidió para empezar | Licencia | Dónde quedan los datos | ¿Se rehace con un comando? | Estado del proyecto | Qué resolvió | Qué no pudo | ¿Quedó? ¿Por qué? |
 |---|---|---|---|---|---|---|---|---|---|
+| Rastreo y catálogo | Python 3.11, solo biblioteca estándar ([explorar/perfil_stdlib.py](explorar/perfil_stdlib.py)) | Nada: Python ya estaba instalado | PSF (OSI), sin cambios | En memoria; no deja archivos | Sí: `python3 explorar/perfil_stdlib.py` | Python 3.11.9; el código corre desde 3.9 | Perfil de F01 y F02 antes de catalogarlas (2026-11-01): 624 y 3 250 filas, años 2002–2025 y 2000–2024, 26 zonas, los 5 cortes de F02 (incluida la nacionalidad) y las 24 «X» de F01, todas en el distrito 08. 4,4 s | Cada pregunta nueva exige escribir un bucle; no sirve para explorar al vuelo | **Sí**, para la ingesta y el perfil de cada ficha: da el mismo resultado sin añadir ninguna dependencia |
+| Rastreo y catálogo | DuckDB 2.0.0 ([explorar/perfil_duckdb.py](explorar/perfil_duckdb.py)) | `pip install duckdb==2.0.0`; la primera lectura de una URL descarga sin avisar la extensión `httpfs` (52,7 MB) en `~/.duckdb` | MIT (OSI), sin cambios | En memoria (tabla temporal); la extensión queda en `~/.duckdb`, fuera del repositorio | Sí: `python3 explorar/perfil_duckdb.py` | 2.0.0, publicada el 2026-10-21 | El mismo perfil, idéntico campo por campo, con SQL directamente sobre el CSV remoto. 4,3 s | Si adivina los tipos, convierte en texto, sin avisar, las columnas que tienen «X» (hubo que leerlo todo como texto). Con una vista en vez de una tabla volvía a descargar el CSV en cada consulta: 22 s la primera vez, 15 s la segunda | **No para la ingesta**: suma una dependencia y una descarga binaria sin ganar nada. **Sí** para consultar fuentes nuevas durante el rastreo, donde escribir SQL es más rápido que un bucle |
 
 ## Protección
 - Nivel: abierto · solo agregados · compuerta · no se publica
@@ -67,6 +69,25 @@ python3 verificacion/verificar.py
 ## Bitácora de IA
 | Tramo | Herramienta | Qué le encargamos | Qué entregó | Qué le corregimos |
 |---|---|---|---|---|
+| Rastreo | Claude | Una fuente abierta de población por distrito, con serie de varios años | El Indikatorenatlas (F01) y además la tabla «Bevölkerung in den Stadtbezirken» (F06) | Nada en la propuesta; la elección entre las dos tablas la hicimos nosotros (encargo 2) |
+| Catálogo | Claude | Comparar las dos tablas de población y decir cuál integrar | Integrar F01 (serie 2002–2025) y descartar F06 | Correcto; lo confirmamos abriendo F06: «101 901» con espacio, el total como distrito «26» y densidad en hab/ha |
+| Rastreo | Claude | Desempleo por distrito | El Indikatorenatlas de desempleo (F02), con cortes por sexo y nacionalidad | Correcto; `verificar.py` comprueba el porcentaje contra sus bases en los 260 registros |
+| Rastreo | Claude | Los límites oficiales de los distritos | El WFS del GeodatenService (F03) | Venían 27 polígonos para 25 distritos y en EPSG:25832: lo pedimos en EPSG:4326 y unimos los pedazos por código |
+| Rastreo | Claude | Clima mensual de la ciudad | La estación 03379 München-Stadt del DWD (F04) | Correcto; la licencia la leímos en Terms_of_use.pdf y los -999 se guardan como null |
+| Rastreo | Claude | Replicar la escucha del taller (vistas de Wikipedia) | La URL de de.wikipedia y sumar es y en (F05) | es y en fallaron por CORS desde el navegador: solo se integró de.wikipedia |
+| Rastreo | Claude | La dirección de descarga del GTFS de MVG | Una URL de mvg.de que da 404 (F08) | **Inventada.** La real (F07) apareció buscando «GTFS» en el catálogo CKAN |
+| Rastreo | Claude | Datos abiertos de calidad del aire | La API del UBA y una página de documentación con la licencia (F09) | La página dio 404 y la licencia no apareció: queda candidata |
+| Catálogo | Claude | Qué tablas del Indikatorenatlas no deberían entrar | La religión por distrito (F10), categoría especial del RGPD | Correcto; confirmamos que no responde ninguna pregunta |
+| Rastreo | Claude | Una fuente para comparar München con otras ciudades | GENESIS-Online de Destatis (F11), «sin registro» | Solo se leyó la página; la API sigue sin probar |
+| Ingesta | Claude | Los scripts de ingesta | Cinco scripts con sintaxis de Python 3.10 o superior | El Mac de David tiene Python 3.9.6: se añadió `from __future__ import annotations` |
+| Lago | Claude | Construir el lago con los datos bajados desde el navegador | Los archivos del lago armados a mano | Al correr el script, la geometría salió distinta (+18 puntos): se subió la versión del script |
+| Entrega 1 | Claude (Claude Code) | Responder el Word «Por qué estos datos» a partir del Excel | Las seis respuestas | Al revisarlas contra las fuentes: eran 5 estaciones de aire y no 2; «el 08 queda sin densidad» era falso; la densidad se comprueba en 275 registros y no en 286; la licencia del UBA no se pudo leer, no «no existe» |
+| Ingesta y verificación | Claude (Claude Code) | Revisar el PR #1 y corregir lo que encontrara | 10 hallazgos (un anillo de 3 puntos en el distrito 19, un verificador que se caía con vacíos, `PROBADO`, URL fijas, saltos de línea) y sus correcciones | Al probar sus propias correcciones, el verificador nuevo se caía con un tipo equivocado: se reordenó para revisar primero la estructura y después los valores |
+| Catálogo | Claude (Claude Code) | Las fichas de las 11 fuentes | 11 fichas, listas cerradas y su control en `verificar.py` | Afirmó que el GTFS de MVG no incluye la S-Bahn sin haberlo comprobado; se verificó en `routes.txt` antes de publicarlo (243 rutas, ninguna de S-Bahn) |
+| Gobierno | Claude (Claude Code) | Revisar que Excel, catálogo y lago no se contradigan, siguiendo el DMBOK | Diccionario en el repositorio, vocabulario único y `GOBIERNO.md` | La auditoría mostró que su propia respuesta del Word sobre el 08 era falsa (la población se deduce por resta): se corrigieron el Word y el Excel |
+| Vistas | Claude (Claude Code) | La primera versión de `web/` | Mapa, P1–P4 y la fuente de cada cifra a un clic | El validador de paleta rechazó la rampa del mapa (contraste 1,5:1) y los gráficos se dibujaban con ancho 0 en una pestaña oculta: se corrigieron antes de subirla |
+| Lago | Claude (Claude Code) | Actualizar el lago (2026-11-01) | Lago y fichas al día | `verificar.py` bloqueó la publicación hasta volver a probar las fuentes; F11 fallaba por otra causa que la anotada y se registró la nueva |
+| Rastreo y catálogo | Claude (Claude Code) | Probar dos herramientas para perfilar fuentes | `explorar/perfil_stdlib.py` y `explorar/perfil_duckdb.py` | Con una vista, DuckDB descargaba el CSV en cada consulta (se cambió a tabla); con tipos automáticos convertía en texto las columnas con «X» |
 
 ## Revisión cruzada
 - Tres cifras auditadas por el grupo <X>: resultado y correcciones
