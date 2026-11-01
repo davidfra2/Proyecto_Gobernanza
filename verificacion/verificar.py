@@ -271,6 +271,10 @@ for archivo in sorted((RAIZ / "catalogo").glob("F*.json")):
                         f"{nombre}: el lago se descargó ({datos.get('probado')}) después de la última prueba de la ficha")
     else:
         revisar(not ficha["salida"], f"{nombre}: tiene salida pero su estado es «{ficha['estado']}»")
+# El índice que leen las vistas lista exactamente las fichas que existen, en orden
+indice = leer("catalogo/indice.json")["fichas"]
+reales = sorted(p.name for p in (RAIZ / "catalogo").glob("F*.json"))
+revisar(indice == reales, f"catalogo/indice.json no coincide con las fichas: sobran {sorted(set(indice) - set(reales))}, faltan {sorted(set(reales) - set(indice))}")
 # Lo que está en el lago tiene que estar en el catálogo como integrado
 for ruta, datos in LAGO.items():
     ficha = fichas.get(datos.get("fuente"))

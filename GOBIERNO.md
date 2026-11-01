@@ -15,7 +15,7 @@ responde y qué control automático la vigila**. Si un área no tiene control, e
 | **Datos de referencia y maestros** (cap. 10) | [catalogo/listas.json](catalogo/listas.json): único vocabulario, enlazado a las listas del Excel. F03 es el maestro de los 25 distritos | Curaduría | `verificar.py`: todo valor del catálogo y del diccionario sale de las listas |
 | **Metadatos** (cap. 12) | Catálogo de fuentes [catalogo/F*.json](catalogo/) y diccionario de campos [catalogo/diccionario.json](catalogo/diccionario.json). Linaje: fuente → `script` → `salida` | Curaduría | `verificar.py`: catálogo ↔ lago ↔ diccionario |
 | **Calidad de datos** (cap. 13) | [verificacion/verificar.py](verificacion/verificar.py), por dimensiones: completitud, validez, consistencia, unicidad y actualidad | Datos | Se corre antes de cada publicación |
-| **Inteligencia de negocio** (cap. 11) | `web/`: vistas que responden P1–P4 | Interfaz | Pendiente: cada cifra debe mostrar fuente, vigencia y fecha de prueba a un clic |
+| **Inteligencia de negocio** (cap. 11) | [web/](web/): vistas que responden P1–P4; cada cifra con su etiqueta de fuente (vigencia, fecha de prueba, observada o derivada) que abre la ficha | Interfaz | Primera versión; falta publicarla y la segunda herramienta de la exploración |
 
 Gestión documental (cap. 9) no aplica: el sistema no guarda documentos ni contenido no estructurado.
 
@@ -48,6 +48,6 @@ En el vocabulario del DMBOK:
 
 - **Seguridad no tiene responsable.** Somos tres y nadie asumió el papel; tiene que ser alguien que
   no construya la compuerta.
-- **Las vistas no existen todavía**, así que la trazabilidad «a un clic» no se puede comprobar.
+- **Las vistas no están publicadas todavía.** La primera versión de `web/` funciona en local; falta el enlace público, y la auditoría de tres cifras de otro grupo se hará sobre él.
 - **El Excel se mantiene a mano.** La fuente de verdad es el repositorio: `catalogo/` y
   `catalogo/diccionario.json`. Si cambia algo aquí, se cambia también en el Excel antes de entregarlo.

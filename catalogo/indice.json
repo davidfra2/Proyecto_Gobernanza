@@ -1,0 +1,16 @@
+{
+ "_que_es": "Índice de las fichas del catálogo, para que las vistas las encuentren (un navegador no puede listar una carpeta). verificar.py comprueba que lista exactamente las fichas F*.json que existen.",
+ "fichas": [
+  "F01_poblacion_densidad.json",
+  "F02_desempleo.json",
+  "F03_limites_stadtbezirke.json",
+  "F04_clima_dwd_03379.json",
+  "F05_wikipedia_vistas.json",
+  "F06_poblacion_2024.json",
+  "F07_gtfs_mvg.json",
+  "F08_mvg_url_inventada.json",
+  "F09_aire_no2_uba.json",
+  "F10_religion.json",
+  "F11_genesis_destatis.json"
+ ]
+}

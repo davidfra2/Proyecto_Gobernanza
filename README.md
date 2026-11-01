@@ -58,8 +58,8 @@ python3 verificacion/verificar.py
 - Revisión de secretos en el historial:
 
 ## Herramienta elegida para las vistas
-- Qué necesitábamos mostrar:
-- Qué teníamos que proteger:
+- Qué necesitábamos mostrar: un mapa de los 25 distritos, rankings y series en el tiempo para P1–P4, y la fuente, vigencia y fecha de prueba de cada cifra a un clic, en un teléfono. Primera versión en [web/](web/README.md): HTML y JavaScript sin framework, MapLibre GL y gráficos SVG propios (la réplica mínima del Cerebro Lima).
+- Qué teníamos que proteger: solo hay agregados públicos; no se muestran los cortes de desempleo por nacionalidad. El nivel de protección sigue sin decidir.
 - Por qué esta herramienta cumple las dos cosas, y cuál descartamos por poco:
 
 ## Nuestra posición
