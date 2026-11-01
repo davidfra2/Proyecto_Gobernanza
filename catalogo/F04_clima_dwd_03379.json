@@ -12,16 +12,16 @@
  "licencia_donde": "https://opendata.dwd.de/climate_environment/CDC/Terms_of_use.pdf (estado: mayo de 2024)",
  "personas": "no",
  "cobertura": "Un punto: la estación 03379 München-Stadt (48.1632, 11.5429), en Neuhausen-Nymphenburg (09)",
- "periodo": "2025-03 a 2026-09 (la carpeta recent cubre unos 18 meses; la serie larga está en historical)",
+ "periodo": "2025-04 a 2026-09 (la carpeta recent cubre unos 18 meses; la serie larga está en historical)",
  "frecuencia": "mensual",
  "frecuencia_detalle": null,
  "estado": "integrado",
- "probado": "2026-10-12",
- "respuesta": "HTTP 200 · application/zip · 16 348 bytes · Last-Modified 2026-10-12",
+ "probado": "2026-11-01",
+ "respuesta": "HTTP 200 · application/zip · 16 287 bytes · Last-Modified 2026-11-01",
  "script": "ingesta/pull_clima.py",
  "salida": [
   "lago/clima_muenchen_stadt.json"
  ],
  "como_se_encontro": "La IA (Claude) la propuso para la familia «ambiente»; comprobamos la estación en la lista del DWD y la licencia en Terms_of_use.pdf.",
- "nota": "Los faltantes vienen como -999 y se guardan como null. Los meses recientes tienen nivel de calidad 1 o 3 y todavía pueden corregirse: por eso el lago guarda el nivel de cada mes. En la lista de estaciones del DWD es la única activa dentro de la ciudad (München-Flughafen queda fuera; Bogenhausen, Botanischer Garten, Nymphenburg, Perlach y Riem están cerradas), así que el clima no se puede dar por distrito."
+ "nota": "Los faltantes vienen como -999 y se guardan como null. Los meses recientes tienen nivel de calidad 1 o 3 y todavía pueden corregirse: por eso el lago guarda el nivel de cada mes. Entre la descarga del 2026-10-12 y la del 2026-11-01 el DWD corrigió marzo de 2026 (sol 179,22 → 179,6 h; nivel 3 → 9), abril de 2026 (sol 243,97 → 244,3 h) y julio de 2026 (nivel 1 → 3); la carpeta recent dejó de incluir marzo de 2025, y octubre de 2026 todavía no estaba publicado. En la lista de estaciones del DWD es la única activa dentro de la ciudad (München-Flughafen queda fuera; Bogenhausen, Botanischer Garten, Nymphenburg, Perlach y Riem están cerradas), así que el clima no se puede dar por distrito."
 }

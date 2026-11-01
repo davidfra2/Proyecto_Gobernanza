@@ -16,10 +16,10 @@
  "frecuencia": "no_se_sabe",
  "frecuencia_detalle": "No declarada; el archivo cambia entre descargas",
  "estado": "candidato",
- "probado": "2026-10-12",
- "respuesta": "HTTP 200 (HEAD) · application/zip · 27 087 056 bytes · Last-Modified 2026-10-12",
+ "probado": "2026-11-01",
+ "respuesta": "HTTP 200 (HEAD) · application/zip · 29 879 033 bytes · Last-Modified 2026-11-01",
  "script": null,
  "salida": [],
  "como_se_encontro": "Buscando «GTFS» en el catálogo CKAN de opendata.muenchen.de, después de que falló la URL que dio la IA (F08).",
- "nota": "El 2026-10-06 pesaba 29 804 502 bytes y el 2026-10-12, 27 087 056: cambia entre descargas. Pendiente: contar paradas por distrito cruzando stops.txt con F03 y decidir qué pregunta responde. El mismo catálogo ofrece los GTFS de MVV (regional y red completa, CC BY 4.0), que no hemos probado."
+ "nota": "Su tamaño cambia entre descargas: 29 804 502 bytes el 2026-10-06, 27 087 056 el 2026-10-12 y 29 879 033 el 2026-11-01. Pendiente: contar paradas por distrito cruzando stops.txt con F03 y decidir qué pregunta responde. El mismo catálogo ofrece los GTFS de MVV (regional y red completa, CC BY 4.0), que no hemos probado."
 }

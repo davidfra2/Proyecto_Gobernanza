@@ -16,7 +16,7 @@
  "frecuencia": "anual",
  "frecuencia_detalle": "Balance anual por estación",
  "estado": "candidato",
- "probado": "2026-10-12",
+ "probado": "2026-11-01",
  "respuesta": "HTTP 200 · application/json · 10 463 bytes",
  "script": null,
  "salida": [],

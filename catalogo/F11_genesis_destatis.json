@@ -16,10 +16,10 @@
  "frecuencia": "no_se_sabe",
  "frecuencia_detalle": "Depende de la tabla",
  "estado": "candidato",
- "probado": "2026-10-12",
- "respuesta": "HTTP 200 con curl · text/html · 2 506 bytes. Desde Python (urllib) falla: CERTIFICATE_VERIFY_FAILED, el servidor no envía el certificado intermedio.",
+ "probado": "2026-11-01",
+ "respuesta": "HTTP 200 con curl · text/html · 2 506 bytes. Desde Python (urllib) no conecta: WinError 10060, tiempo agotado.",
  "script": null,
  "salida": [],
  "como_se_encontro": "La IA (Claude) la propuso para comparar München con otras ciudades alemanas (Bitácora IA, encargo 10).",
- "nota": "Solo probamos que la base de datos web responde; la API todavía no la hemos llamado, así que «acceso» queda como página web. Para integrarla: que un script descargue una tabla de München (09162) y resolver el error de certificado en Python sin desactivar la verificación."
+ "nota": "Solo probamos que la base de datos web responde; la API todavía no la hemos llamado, así que «acceso» queda como página web. Desde Python falla de dos maneras distintas según el día: el 2026-10-12, CERTIFICATE_VERIFY_FAILED (el servidor no envía el certificado intermedio); el 2026-11-01, tiempo agotado al conectar, mientras curl responde. Para integrarla: que un script descargue una tabla de München (09162) y resolver la conexión desde Python sin desactivar la verificación del certificado."
 }

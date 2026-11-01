@@ -40,7 +40,7 @@ herramientas** en sus tramos y las anota en la bitácora del README.
 - [x] Las fuentes caídas o descartadas también tienen ficha, con el error exacto.
 - [x] `catalogo/listas.json` define las listas cerradas de `entidad` y `licencia`.
 - [x] El README dice qué **no existe** abierto para München (sección «Huecos»).
-- [ ] Al menos dos herramientas de rastreo probadas (p. ej. DuckDB, QGIS, Overture Maps) y
+- [x] Al menos dos herramientas de rastreo probadas (p. ej. DuckDB, QGIS, Overture Maps) y
       anotadas en la bitácora de exploración.
 - [ ] Más adelante: revisar que cada cifra de las vistas llegue a su ficha.
 
