@@ -16,7 +16,7 @@
  "frecuencia": "no_se_sabe",
  "frecuencia_detalle": "La fuente no la declara",
  "estado": "integrado",
- "probado": "2026-10-12",
+ "probado": "2026-11-01",
  "respuesta": "HTTP 200 · application/json · 381 122 bytes · 27 polígonos",
  "script": "ingesta/pull_territorio.py",
  "salida": [

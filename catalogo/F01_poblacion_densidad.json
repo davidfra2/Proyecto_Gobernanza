@@ -16,7 +16,7 @@
  "frecuencia": "anual",
  "frecuencia_detalle": null,
  "estado": "integrado",
- "probado": "2026-10-12",
+ "probado": "2026-11-01",
  "respuesta": "HTTP 200 · text/csv · 91 621 bytes · Last-Modified 2026-05-22",
  "script": "ingesta/pull_poblacion.py",
  "salida": [
