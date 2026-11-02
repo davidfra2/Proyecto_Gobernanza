@@ -10,12 +10,12 @@ responde y qué control automático la vigila**. Si un área no tiene control, e
 | **Arquitectura** (cap. 4) | Bronce `lago/raw/` (crudo, solo local) → plata `lago/` y `territorio/` (limpio, con fuente y fecha) → oro `web/` (vistas) | Datos | `.gitignore` impide subir el bronce |
 | **Modelado y diseño** (cap. 5) | Envoltura común `{fuente, vigencia, probado, registros}`; llave territorial `sb_codigo` (00 = ciudad, 01–25 = distritos) | Datos | `verificar.py`: estructura contra el diccionario |
 | **Almacenamiento y operaciones** (cap. 6) | JSON en UTF-8 con saltos `\n`; el lago se reconstruye con los cinco `ingesta/pull_*.py` | Datos | Reconstruir y comparar: el 2026-10-12 el lago salió idéntico |
-| **Seguridad** (cap. 7) | Clasificación de cada campo en el diccionario; decisiones de no publicar (cortes de F02 por nacionalidad, F10, crudos) | Seguridad (hoy sin asignar) | Ninguno automático todavía: falta la compuerta y el ataque autorizado |
+| **Seguridad** (cap. 7) | Clasificación de cada campo en el diccionario; decisiones de no publicar (cortes de F02 por nacionalidad, F10, crudos) | Seguridad (hoy sin asignar) | `verificar.py`: ningún campo publicado es sensible o personal, ningún conteo por distrito baja de 100 y `.vercelignore` excluye `lago/raw`. Nivel «abierto, solo agregados»: sin compuerta. Falta el ataque autorizado de otro grupo |
 | **Integración e interoperabilidad** (cap. 8) | Scripts de ingesta; URL resueltas en el catálogo CKAN; cruce entre fuentes solo por código oficial | Datos | `verificar.py`: cuadres F01 ↔ F02 ↔ F03 |
 | **Datos de referencia y maestros** (cap. 10) | [catalogo/listas.json](catalogo/listas.json): único vocabulario, enlazado a las listas del Excel. F03 es el maestro de los 25 distritos | Curaduría | `verificar.py`: todo valor del catálogo y del diccionario sale de las listas |
 | **Metadatos** (cap. 12) | Catálogo de fuentes [catalogo/F*.json](catalogo/) y diccionario de campos [catalogo/diccionario.json](catalogo/diccionario.json). Linaje: fuente → `script` → `salida` | Curaduría | `verificar.py`: catálogo ↔ lago ↔ diccionario |
 | **Calidad de datos** (cap. 13) | [verificacion/verificar.py](verificacion/verificar.py), por dimensiones: completitud, validez, consistencia, unicidad y actualidad | Datos | Se corre antes de cada publicación |
-| **Inteligencia de negocio** (cap. 11) | `web/`: vistas que responden P1–P4 | Interfaz | Pendiente: cada cifra debe mostrar fuente, vigencia y fecha de prueba a un clic |
+| **Inteligencia de negocio** (cap. 11) | [web/](web/): vistas que responden P1–P4 y dicen qué queda pendiente; cada cifra con su etiqueta de fuente (vigencia, fecha de prueba, observada, calculada o derivada) que abre la ficha | Interfaz | `verificar.py`: toda fuente citada en `web/` es una ficha integrada |
 
 Gestión documental (cap. 9) no aplica: el sistema no guarda documentos ni contenido no estructurado.
 
@@ -48,6 +48,6 @@ En el vocabulario del DMBOK:
 
 - **Seguridad no tiene responsable.** Somos tres y nadie asumió el papel; tiene que ser alguien que
   no construya la compuerta.
-- **Las vistas no existen todavía**, así que la trazabilidad «a un clic» no se puede comprobar.
-- **El Excel se mantiene a mano.** La fuente de verdad es el repositorio: `catalogo/` y
-  `catalogo/diccionario.json`. Si cambia algo aquí, se cambia también en el Excel antes de entregarlo.
+- **Falta el enlace público en Vercel**, y sobre él la auditoría de tres cifras y el ataque de otro grupo.
+- **El Excel ya no se mantiene a mano.** La fuente de verdad es el repositorio (`catalogo/` y
+  `catalogo/diccionario.json`); `catalogo/a_excel.py` genera el Excel desde ahí antes de cada entrega.

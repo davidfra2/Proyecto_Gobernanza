@@ -1,0 +1,14 @@
+# Al despliegue solo viaja lo que muestran las vistas: web/, lago/ (sin raw/), territorio/ y las
+# fichas del catálogo. Nivel de protección: abierto, solo agregados (ver README, «Protección»).
+lago/raw
+ingesta
+verificacion
+explorar
+api
+.github
+*.xlsx
+*.py
+*.md
+!web/README.md
+.env
+.env.*
