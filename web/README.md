@@ -55,7 +55,8 @@ el Excel y la documentación. Nivel de protección: abierto, solo agregados (REA
 
 ## Lo que falta
 
-- [ ] Publicar en Vercel y poner el enlace en el README.
-- [ ] Correr las pruebas de terminal del README contra el enlace publicado.
+- [x] Publicado en https://proyecto-gobernanza-muenchen.vercel.app (2026-11-02).
+- [x] Pruebas de terminal contra el enlace (resultados en el README, «Protección»).
+- [ ] Conectar el repositorio en Vercel para que cada push a `main` se publique solo (hoy se publica con `npx vercel deploy --prod`).
 - [ ] Revisión cruzada: tres cifras auditadas y el ataque de otro grupo.
 - [ ] Opcional: modo oscuro para el mapa base (OpenFreeMap tiene un estilo `dark`).

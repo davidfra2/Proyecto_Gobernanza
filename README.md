@@ -1,6 +1,6 @@
 # München · sistema de información
 
-Grupo: Juan Carlos Muñoz (Curaduría) · David Felipe Rios (Interfaz) · Samuel Molina (Datos) · Enlace: <url de Vercel, pendiente de publicar> · Repositorio: https://github.com/davidfra2/Proyecto_Gobernanza · Revisado: 2026-11-02
+Grupo: Juan Carlos Muñoz (Curaduría) · David Felipe Rios (Interfaz) · Samuel Molina (Datos) · Enlace: https://proyecto-gobernanza-muenchen.vercel.app · Repositorio: https://github.com/davidfra2/Proyecto_Gobernanza · Revisado: 2026-11-02
 
 Réplica del Cerebro Lima para Múnich. Cómo trabajamos: [CONTRIBUTING.md](CONTRIBUTING.md) · Gobierno de datos según el DMBOK: [GOBIERNO.md](GOBIERNO.md).
 
@@ -65,7 +65,11 @@ Regenerar el Excel del diccionario desde `catalogo/` (es el único paso que inst
 ## Protección
 - Nivel: **abierto, solo agregados.** Sin compuerta: las cinco fuentes integradas tienen licencias que permiten republicar (dl-de/by-2-0, CC BY 4.0, CC0) y ninguna fila es una persona. Una clave sería teatro; lo que sí hay que cuidar es qué viaja al despliegue.
 - Qué protegemos, y de quién: a los vecinos, de que un barrio se señale por nacionalidad o religión (no publicamos los cortes de F02 por sexo y nacionalidad ni F10). Los crudos que traen esos cortes se quedan en `lago/raw/`, que está en `.gitignore` y en `.vercelignore`, y `verificar.py` bloquea la publicación si sale de `.vercelignore`. Ningún conteo por distrito baja de 100 (el más chico es 302,5 desempleados en 01 Altstadt-Lehel, 2017). Y protegemos el sitio de un tercero alterado: MapLibre va con huella SRI, una CSP solo admite este sitio, jsdelivr y OpenFreeMap, [vercel.json](vercel.json) añade `nosniff`, `X-Frame-Options: DENY` y una política de permisos, y ningún dato se inserta con `innerHTML`.
-- Pruebas de terminal o de ventana privada: contra el enlace publicado, `curl -s -o /dev/null -w "%{http_code}\n"` debe dar 200 en `/web/` y en `/lago/poblacion_stadtbezirke.json` (público a propósito), y 404 en `/lago/raw/`, `/ingesta/comun.py`, `/catalogo/Diccionario_de_datos_Muenchen.xlsx` y `/.env`. *Pendiente de correr cuando esté el enlace.*
+- Pruebas de terminal o de ventana privada (2026-11-02, contra https://proyecto-gobernanza-muenchen.vercel.app, con `curl -s -o /dev/null -w "%{http_code}\n"`):
+  - **200**, públicos a propósito: `/web/`, `/web/app.js`, `/lago/poblacion_stadtbezirke.json`, `/territorio/stadtbezirke.geojson` y `/catalogo/F01_poblacion_densidad.json`. `/` responde 307 hacia `/web/`.
+  - **404**, no viajan al despliegue: `/lago/raw/`, `/lago/raw/.gitkeep`, `/ingesta/comun.py`, `/verificacion/verificar.py`, `/catalogo/Diccionario_de_datos_Muenchen.xlsx`, `/catalogo/a_excel.py`, `/README.md`, `/.env` y `/.git/config`.
+  - Cabeceras presentes: `x-content-type-options: nosniff`, `x-frame-options: DENY`, `referrer-policy` y `permissions-policy`.
+  - En una ventana nueva sin sesión (Chromium, 390 px), el sitio abre, el mapa carga, la ficha de F02 abre con un clic y la consola no muestra errores.
 - Revisión de secretos en el historial (2026-11-02, todas las ramas): `git log --all -p | grep -i -E "clave|secret|password|api_key|token"` da 61 coincidencias, todas falsos positivos revisados a mano: «clave» como nombre de variable, «secretos» en la documentación y «tokens de color» en el CSS. Ningún `.env` pasó nunca por el historial, y de `lago/raw/` solo el `.gitkeep`. El sistema no usa ninguna clave.
 
 ## Herramienta elegida para las vistas
