@@ -7,7 +7,7 @@ const decimal1 = new Intl.NumberFormat("es-CO", { minimumFractionDigits: 1, maxi
 const fNum = (v) => numero.format(v);
 const fPct = (v) => `${decimal1.format(v)} %`;
 const fSigno = (v) => `${v > 0 ? "+" : v < 0 ? "−" : ""}${decimal1.format(Math.abs(v))} %`;
-const fGrados = (v) => `${decimal1.format(v)} °C`;
+const fGrados = (v) => `${v < 0 ? "−" : ""}${decimal1.format(Math.abs(v))} °C`;
 const fMm = (v) => `${numero.format(v)} mm`;
 const fCompacto = (v) => (v >= 1000 ? `${decimal1.format(v / 1000).replace(/,0$/, "")} mil` : fNum(v));
 const fFecha = (iso) => new Date(`${iso.length === 7 ? `${iso}-01` : iso}T12:00:00`).toLocaleDateString("es-CO",
@@ -354,6 +354,72 @@ function vistaFuentes() {
     el("button", { class: "chip", type: "button", onclick: () => abrirFicha(f.id), texto: "Ver la ficha completa" }))));
 }
 
+// ------------------------------------------------------------------- respuestas escritas
+// Ninguna cifra de estas frases está escrita a mano: todas se calculan desde el lago al cargar,
+// para que un lago nuevo no deje la prosa diciendo otra cosa que los gráficos.
+function respuesta(id, ...partes) {
+  const chips = partes.filter((p) => p instanceof HTMLElement && p.classList.contains("chip"));
+  const textos = partes.filter((p) => !chips.includes(p));
+  document.getElementById(id).replaceChildren(...textos.map((t) => el("p", { texto: t })), el("div", { class: "fuentes-linea" }, ...chips));
+}
+
+function vistaRespuestas(M) {
+  const [a0, a1] = [M.aniosPob[0], M.aniosPob.at(-1)];
+  const crec = M.codigos.map((c) => ({ c, v: (M.poblacion(c, a1) / M.poblacion(c, a0) - 1) * 100, d: M.esDerivada(c, a1) }))
+    .sort((a, b) => b.v - a.v);
+  const mayor = M.codigos.filter((c) => !M.esDerivada(c, a1)).sort((a, b) => M.poblacion(b, a1) - M.poblacion(a, a1))[0];
+  const pierden = crec.filter((x) => x.v < 0);
+  const nombre = (c) => `${c} ${M.nombres[c]}`;
+  respuesta("r-p1",
+    `En ${a1} vivían ${fNum(M.poblacion("00", a1))} personas en München, ${fSigno((M.poblacion("00", a1) / M.poblacion("00", a0) - 1) * 100)} que en ${a0}. El distrito más poblado es ${nombre(mayor)} (${fNum(M.poblacion(mayor, a1))}).`,
+    `El que más creció fue ${nombre(crec[0].c)} (${fSigno(crec[0].v)}${crec[0].d ? "*" : ""}), seguido de ${nombre(crec[1].c)} (${fSigno(crec[1].v)}${crec[1].d ? "*" : ""}). ` +
+      (pierden.length ? `${pierden.length === 1 ? "Un distrito perdió" : `${pierden.length} distritos perdieron`} población: ${pierden.map((x) => `${nombre(x.c)} (${fSigno(x.v)}${x.d ? "*" : ""})`).join(", ")}.` : "Ningún distrito perdió población."),
+    ...(crec.some((x) => x.d) ? ["* 08 Schwanthalerhöhe: población derivada (total de la ciudad menos los otros 24 distritos), porque la fuente la reserva con «X»."] : []),
+    chip("F01"), chip("F01", "calculada"), chip("F01", "derivada"));
+
+  const aD0 = M.aniosDes[0], aD = M.aniosDes.at(-1);
+  const des = M.codigos.map((c) => ({ c, v: M.des[c][aD].desempleo_pct })).sort((a, b) => b.v - a.v);
+  const ciudad0 = M.des["00"][aD0].desempleo_pct, ciudad1 = M.des["00"][aD].desempleo_pct;
+  const subieron = M.codigos.filter((c) => M.des[c][aD].desempleo_pct > M.des[c][aD0].desempleo_pct).length;
+  respuesta("r-p2",
+    `En ${aD} el desempleo pesa más en ${nombre(des[0].c)} (${fPct(des[0].v)}) y en ${nombre(des[1].c)} (${fPct(des[1].v)}), y menos en ${nombre(des.at(-1).c)} (${fPct(des.at(-1).v)}). En toda la ciudad fue de ${fPct(ciudad1)}.`,
+    `Desde ${aD0} la ciudad pasó de ${fPct(ciudad0)} a ${fPct(ciudad1)}, y ${subieron} de los 25 distritos terminaron ${aD} más arriba que en ${aD0}.`,
+    chip("F02"));
+
+  const r = D.cli.registros.filter((m) => m.temp_media_c !== null);
+  const calido = r.reduce((a, b) => (b.temp_media_c > a.temp_media_c ? b : a));
+  const frio = r.reduce((a, b) => (b.temp_media_c < a.temp_media_c ? b : a));
+  const ll = D.cli.registros.filter((m) => m.precipitacion_mm !== null);
+  const lluvioso = ll.reduce((a, b) => (b.precipitacion_mm > a.precipitacion_mm ? b : a));
+  const seco = ll.reduce((a, b) => (b.precipitacion_mm < a.precipitacion_mm ? b : a));
+  const prov = D.cli.registros.filter((m) => m.nivel_calidad === 1 || m.nivel_calidad === 3).length;
+  respuesta("r-p3",
+    `Entre ${fFecha(D.cli.registros[0].mes)} y ${fFecha(D.cli.registros.at(-1).mes)} el mes más cálido fue ${fFecha(calido.mes)} (media de ${fGrados(calido.temp_media_c)}) y el más frío ${fFecha(frio.mes)} (${fGrados(frio.temp_media_c)}). El más lluvioso fue ${fFecha(lluvioso.mes)} (${fMm(lluvioso.precipitacion_mm)}) y el más seco ${fFecha(seco.mes)} (${fMm(seco.precipitacion_mm)}).`,
+    `Respuesta parcial: es una sola estación para toda la ciudad, y ${prov} de los ${D.cli.registros.length} meses todavía son provisionales.`,
+    chip("F04"));
+
+  const v = D.esc.registros;
+  const pico = v.reduce((a, b) => (b.vistas > a.vistas ? b : a));
+  const valle = v.reduce((a, b) => (b.vistas < a.vistas ? b : a));
+  respuesta("r-p4",
+    `El artículo «München» de la Wikipedia en alemán tuvo su mes más leído en ${fFecha(pico.mes)} (${fNum(pico.vistas)} vistas) y el menos leído en ${fFecha(valle.mes)} (${fNum(valle.vistas)}).`,
+    "Respuesta parcial: las vistas no dicen desde dónde se lee, así que no separan el interés de fuera del de quienes viven en la ciudad, y solo se integró la edición en alemán.",
+    chip("F05"));
+
+  const estados = [
+    ["P1", "Respondida", "poblacion", ["F01", "F03"], "Población, densidad y crecimiento de los 25 distritos, 2015–2025. El 08 lleva su población derivada, marcada."],
+    ["P2", "Respondida", "desempleo", ["F02", "F03"], "Desempleo de los 25 distritos, 2015–2024. Solo el total: sin cortes por sexo ni nacionalidad."],
+    ["P3", "Parcial", "clima", ["F04"], "Mes a mes para la ciudad entera. No hay clima por distrito, y la carpeta reciente del DWD cubre unos 18 meses."],
+    ["P4", "Parcial", "interes", ["F05"], "Vistas mensuales en de.wikipedia. No distingue de dónde viene quien lee."],
+  ];
+  document.getElementById("lista-preguntas").replaceChildren(...estados.map(([id, est, ancla, fuentes, texto]) =>
+    el("article", { class: "pregunta" },
+      el("span", { class: `estado${est === "Parcial" ? " parcial" : ""}`, texto: est }),
+      el("h3", {}, el("a", { href: `#${ancla}`, texto: `${id} · ${D.listas.preguntas[id]}` })),
+      el("p", { texto }),
+      el("div", { class: "fuentes-linea" }, ...fuentes.map((f) => chip(f))))));
+}
+
 // ---------------------------------------------------------------------------------- arranque
 function elegir(codigo) {
   estado.distrito = codigo && codigo !== "00" ? codigo : null;
@@ -374,6 +440,7 @@ async function iniciar() {
   const M = prepararModelo();
   vistaSelector(M);
   vistaKpis(M);
+  vistaRespuestas(M);
   vistaMapa(M);
   vistaPanel(M);
   vistaPoblacion(M);

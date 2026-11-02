@@ -284,6 +284,34 @@ for c in diccionario:
     revisar(c["fuente"] in fichas and fichas[c["fuente"]]["estado"] == "integrado",
             f"diccionario {c['archivo']}:{c['campo']}: su fuente {c['fuente']} no está integrada")
 
+# Vistas · toda fuente que cita web/ es una ficha integrada (Curaduría revisa a Interfaz): una etiqueta
+# «Fuente F09» en pantalla sería mostrar una cifra de una fuente sin licencia leída.
+citadas = set()
+for archivo in sorted((RAIZ / "web").glob("*.js")):
+    citadas |= set(re.findall(r'"(F\d{2})"', archivo.read_text(encoding="utf-8")))
+revisar(bool(citadas), "web/: las vistas no citan ninguna fuente")
+for id_fuente in sorted(citadas):
+    revisar(id_fuente in fichas and fichas[id_fuente]["estado"] == "integrado",
+            f"web/: las vistas citan {id_fuente}, que no es una ficha integrada")
+
+# Protección · nivel «abierto, solo agregados»: lo que se publica no tiene datos de personas, y los
+# crudos (que traen los cortes por sexo y nacionalidad) no viajan al despliegue.
+for c in diccionario:
+    revisar(c["clasificacion"] not in ("sensible", "dato_personal"),
+            f"diccionario {c['archivo']}:{c['campo']}: clasificado «{c['clasificacion']}» en un lago que se publica abierto")
+# Conteo mínimo por celda: ningún conteo de personas por distrito por debajo de 100. Es una decisión del
+# grupo, no una norma (README, «Nuestra posición»); si una fuente nueva baja de ahí, no se publica.
+MINIMO_CELDA = 100
+for r in pob["registros"]:
+    revisar(r["poblacion"] is None or r["poblacion"] >= MINIMO_CELDA,
+            f"F01 {r['anio']}/{r['sb_codigo']}: {r['poblacion']} habitantes, menos de {MINIMO_CELDA}")
+for r in des["registros"]:
+    for campo in ("desempleados_prom", "poblacion_15_64"):
+        revisar(r[campo] is None or r[campo] >= MINIMO_CELDA,
+                f"F02 {r['anio']}/{r['sb_codigo']}: {campo} = {r[campo]}, menos de {MINIMO_CELDA}")
+ignorados = (RAIZ / ".vercelignore").read_text(encoding="utf-8").split() if (RAIZ / ".vercelignore").exists() else []
+revisar("lago/raw" in ignorados, ".vercelignore: falta «lago/raw»; los crudos llegarían al despliegue")
+
 if fallos:
     print(f"{len(fallos)} comprobaciones fallaron. No se publica.")
     print("\n".join(fallos))

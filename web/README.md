@@ -47,13 +47,15 @@ y abrir http://localhost:8000/web/
   cdn.jsdelivr.net) y el mapa base de OpenFreeMap (datos © OpenStreetMap, ODbL). Si el mapa base no
   responde, el mapa sigue con un fondo liso.
 
-## Lo que falta (David)
+## Publicación
 
-- [ ] **Publicar el enlace** (por ejemplo, Vercel sirviendo la raíz del repositorio, con `/` → `/web/`).
-- [ ] **Decidir la protección** con quien asuma Seguridad: abierto, solo agregados o compuerta.
-      Si hay compuerta (`api/`), cambiar solo `leer()` en `datos.js` y probarla desde la terminal.
-- [ ] **Explorar una segunda herramienta** para las vistas sobre los mismos datos (por ejemplo,
-      Observable Plot, Leaflet, Evidence o Streamlit) y anotar las dos en la bitácora del README.
-- [ ] Llenar «Herramienta elegida para las vistas» en el README con esa comparación.
-- [ ] Revisar textos y orden de las secciones con el grupo.
+Vercel sirve la raíz del repositorio sin build: [vercel.json](../vercel.json) redirige `/` a `/web/`
+y añade cabeceras de seguridad; [.vercelignore](../.vercelignore) deja fuera `lago/raw/`, los scripts,
+el Excel y la documentación. Nivel de protección: abierto, solo agregados (README, «Protección»).
+
+## Lo que falta
+
+- [ ] Publicar en Vercel y poner el enlace en el README.
+- [ ] Correr las pruebas de terminal del README contra el enlace publicado.
+- [ ] Revisión cruzada: tres cifras auditadas y el ataque de otro grupo.
 - [ ] Opcional: modo oscuro para el mapa base (OpenFreeMap tiene un estilo `dark`).

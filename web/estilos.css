@@ -166,3 +166,19 @@ dialog dd { margin: 0; overflow-wrap: anywhere; }
 
 .pie { padding: 24px 16px 40px; color: var(--texto-2); font-size: 0.85rem; }
 .maplibregl-ctrl-attrib { font-size: 11px; }
+
+/* Respuestas escritas y estado de cada pregunta */
+.preguntas { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.pregunta { background: var(--superficie); border: 1px solid var(--borde); border-radius: var(--radio); padding: 14px 16px; }
+.pregunta h3 { font-size: 0.98rem; margin: 6px 0; }
+.pregunta p { margin: 4px 0; font-size: 0.9rem; color: var(--texto-2); }
+.pregunta a { color: var(--enlace); }
+.estado.parcial { border-style: dashed; }
+.pendientes { padding-left: 1.2em; max-width: 80ch; }
+.pendientes li { margin: 6px 0; color: var(--texto-2); }
+.pendientes strong { color: var(--texto); }
+#aviso-datos p { margin: 6px 0; max-width: 80ch; }
+.respuesta { border-left: 4px solid var(--serie-1); background: var(--superficie); padding: 10px 14px; margin: 8px 0 12px; border-radius: 0 var(--radio) var(--radio) 0; }
+.respuesta p { margin: 0 0 6px; max-width: 75ch; }
+.respuesta .fuentes-linea { margin-top: 6px; }
+#preguntas > h3 { margin-top: 20px; }

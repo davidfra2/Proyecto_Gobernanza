@@ -25,6 +25,7 @@
     </div>
     <nav class="indice" aria-label="Secciones">
       <a href="#panorama">Panorama</a>
+      <a href="#preguntas">Qué responde</a>
       <a href="#mapa-seccion">Mapa</a>
       <a href="#poblacion">P1 Población</a>
       <a href="#desempleo">P2 Desempleo</a>
@@ -40,6 +41,23 @@
     <section id="panorama" aria-labelledby="t-panorama">
       <h2 id="t-panorama">Panorama de la ciudad</h2>
       <div id="kpis" class="kpis"></div>
+    </section>
+
+    <section id="preguntas" aria-labelledby="t-preguntas">
+      <h2 id="t-preguntas">Qué responde este sistema, y qué no</h2>
+      <p class="nota">Las cuatro preguntas que nos hicimos en la primera entrega, cada una con lo que alcanza a responder, y las que quedan pendientes porque no existe una fuente abierta que las responda o porque todavía no la integramos.</p>
+      <div id="lista-preguntas" class="preguntas"></div>
+      <h3>Pendientes</h3>
+      <ul class="pendientes">
+        <li><strong>¿Qué distritos sufren más el calor?</strong> El DWD tiene una sola estación activa dentro de la ciudad (03379, en Neuhausen-Nymphenburg): no hay clima por distrito.</li>
+        <li><strong>¿Dónde se respira peor?</strong> La API del Umweltbundesamt (F09) responde con cinco estaciones, pero no encontramos su licencia en la propia fuente: no entra hasta leerla.</li>
+        <li><strong>¿Qué distritos están peor conectados al transporte?</strong> Los horarios GTFS de MVG (F07) son abiertos, pero no traen la S-Bahn y no los hemos integrado.</li>
+        <li><strong>¿Cómo se compara München con otras ciudades alemanas?</strong> GENESIS-Online (F11) es libre, pero su API sigue sin probar con un script.</li>
+      </ul>
+      <div class="aviso" id="aviso-datos">
+        <p><strong>Sin datos simulados ni aproximados (PROXY).</strong> Todas las cifras son observadas, es decir, publicadas tal cual por la fuente, o calculadas a partir de ellas (crecimiento, índice 2015 = 100). La única cifra que la fuente no publica es la población de <strong>08 Schwanthalerhöhe</strong>: se deduce restando y se marca siempre con * y la etiqueta «derivada».</p>
+        <p><strong>Sin datos de personas.</strong> Solo hay conteos por distrito. Los cortes de desempleo por sexo y nacionalidad y la religión por distrito existen abiertos, pero decidimos no mostrarlos.</p>
+      </div>
     </section>
 
     <div class="controles" role="group" aria-label="Distrito que se compara con la ciudad">
@@ -62,6 +80,7 @@
 
     <section id="poblacion" aria-labelledby="t-poblacion">
       <h2 id="t-poblacion">P1 · ¿Cuánta gente vive en cada distrito y dónde crece más rápido?</h2>
+      <div id="r-p1" class="respuesta" aria-live="polite"></div>
       <div class="tarjeta">
         <h3>Crecimiento de la población, 2015 → 2025</h3>
         <p class="nota">Rojo: el distrito perdió población. La barra clara con * es un dato derivado (ver 08 en el panel del distrito).</p>
@@ -79,6 +98,7 @@
 
     <section id="desempleo" aria-labelledby="t-desempleo">
       <h2 id="t-desempleo">P2 · ¿En qué distritos pesa más el desempleo y cómo cambió desde 2015?</h2>
+      <div id="r-p2" class="respuesta" aria-live="polite"></div>
       <div class="tarjeta">
         <h3 id="t-desempleo-barras">Desempleo por distrito</h3>
         <p class="nota">Desempleados como porcentaje de la población de 15 a 64 años (promedios anuales). Solo el total: el sistema no muestra los cortes por sexo ni por nacionalidad.</p>
@@ -95,6 +115,7 @@
 
     <section id="clima" aria-labelledby="t-clima">
       <h2 id="t-clima">P3 · ¿Cómo cambian el calor y la lluvia de la ciudad mes a mes?</h2>
+      <div id="r-p3" class="respuesta" aria-live="polite"></div>
       <p class="nota">Una sola estación del DWD para toda la ciudad (03379 München-Stadt, en Neuhausen-Nymphenburg): no hay clima por distrito.</p>
       <div class="tarjeta">
         <h3>Temperatura mensual (°C)</h3>
@@ -112,6 +133,7 @@
 
     <section id="interes" aria-labelledby="t-interes">
       <h2 id="t-interes">P4 · ¿Cuánto interés despierta München fuera de la ciudad y en qué meses sube?</h2>
+      <div id="r-p4" class="respuesta" aria-live="polite"></div>
       <div class="tarjeta">
         <h3>Vistas mensuales del artículo «München» en la Wikipedia en alemán</h3>
         <p class="nota">Solo lecturas de personas, sin bots. Es una medida de interés, no un dato del territorio.</p>

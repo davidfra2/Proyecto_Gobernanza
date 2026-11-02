@@ -1,0 +1,2 @@
+# Solo para catalogo/a_excel.py (exportar el catálogo al Excel). La ingesta y la verificación no instalan nada.
+openpyxl==3.1.5
