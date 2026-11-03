@@ -25,6 +25,14 @@ import openpyxl
 RAIZ = Path(__file__).resolve().parent.parent
 EXCEL = RAIZ / "catalogo" / "Diccionario_de_datos_Muenchen.xlsx"
 PRIMERA, ULTIMA = 5, 44  # filas amarillas de la plantilla
+# Hoja «Instrucciones»: datos del grupo y de esta entrega (lo demás es la plantilla del taller y no se toca)
+INSTRUCCIONES = {
+    "B1": "Taller de datos · Entrega 2 · El sistema: diccionario actualizado del lago",
+    "B4": "Datos del grupo: Grupo Munich",
+    "B6": "Grupo Munich · Integrantes: Juan Carlos Muñoz (Curaduría) · David Felipe Rios (Interfaz) · Samuel Molina (Datos)",
+    "B7": "Repositorio: https://github.com/davidfra2/Proyecto_Gobernanza (carpetas lago/ y territorio/) · "
+          "Sistema publicado: https://proyecto-gobernanza-muenchen.vercel.app",
+}
 EJEMPLO = 4  # fila gris de ejemplo (Medellín): se borra para que el Excel diga solo lo que hay en nuestro lago
 
 
@@ -89,6 +97,9 @@ def main() -> None:
         hoja = libro[nombre]
         for col in range(1, hoja.max_column + 1):
             hoja.cell(EJEMPLO, col).value = None
+
+    for celda, texto in INSTRUCCIONES.items():
+        libro["Instrucciones"][celda].value = texto
 
     libro.save(salida)
     print(f"{salida.relative_to(RAIZ) if salida.is_relative_to(RAIZ) else salida}: {len(fuentes)} fuentes, {len(diccionario)} campos")

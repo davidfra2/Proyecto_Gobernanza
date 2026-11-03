@@ -1,6 +1,6 @@
 # München · sistema de información
 
-Grupo: Juan Carlos Muñoz (Curaduría) · David Felipe Rios (Interfaz) · Samuel Molina (Datos) · Enlace: https://proyecto-gobernanza-muenchen.vercel.app · Repositorio: https://github.com/davidfra2/Proyecto_Gobernanza · Revisado: 2026-11-03
+**Grupo Munich:** Juan Carlos Muñoz (Curaduría) · David Felipe Rios (Interfaz) · Samuel Molina (Datos) · Enlace: https://proyecto-gobernanza-muenchen.vercel.app · Repositorio: https://github.com/davidfra2/Proyecto_Gobernanza · Revisado: 2026-11-03
 
 Réplica del Cerebro Lima para Múnich. Cómo trabajamos: [CONTRIBUTING.md](CONTRIBUTING.md) · Gobierno de datos según el DMBOK: [GOBIERNO.md](GOBIERNO.md).
 
