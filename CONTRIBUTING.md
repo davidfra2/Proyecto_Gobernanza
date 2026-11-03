@@ -113,6 +113,14 @@ Ejemplo completo: [catalogo/F01_poblacion_densidad.json](catalogo/F01_poblacion_
   tenga licencia, script y salida, y que cada archivo del lago apunte a una ficha integrada.
 - Cruzar territorio por **código oficial** (AGS / código de Stadtbezirk), nunca por nombre.
 
+**Glosario** (`catalogo/glosario.json`): cada cifra que muestran las vistas, con su tipo (observada,
+calculada, derivada, escala visual o concepto), su fórmula si no es observada y los campos del lago de
+los que sale. Una cifra nueva en `web/` necesita su término aquí.
+
+**Terceros** (`catalogo/dependencias.json`): todo servicio o paquete ajeno que carga la página, con su
+licencia, qué recibe de quien la visita y qué pasa si falla. Un origen nuevo en la CSP de
+`web/index.html` sin su entrada aquí hace fallar `verificar.py`.
+
 **Diccionario** (`catalogo/diccionario.json`): una entrada por campo de cada archivo del lago, con
 tipo, unidad, si puede venir vacío, clasificación y las preguntas (P1–P4) que ayuda a responder.
 Un campo nuevo en el lago sin su entrada en el diccionario hace fallar `verificar.py`.

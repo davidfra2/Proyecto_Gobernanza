@@ -45,7 +45,18 @@ y abrir http://localhost:8000/web/
   insertado con `innerHTML`.
 - **Dependencias externas, todas sin llave ni registro:** MapLibre GL JS 5.24.0 (BSD-3, desde
   cdn.jsdelivr.net) y el mapa base de OpenFreeMap (datos © OpenStreetMap, ODbL). Si el mapa base no
-  responde, el mapa sigue con un fondo liso.
+  responde, el mapa sigue con un fondo liso. Están inventariadas en
+  [catalogo/dependencias.json](../catalogo/dependencias.json), y `verificar.py` falla si la CSP deja
+  cargar un origen que no esté ahí.
+- **Vista 3D (botón «Vista 3D» del mapa).** A escala de ciudad, cada distrito se eleva en proporción
+  al indicador elegido: la altura repite el valor del color, no es una cifra nueva, y la leyenda avisa
+  que la perspectiva la deforma. Al acercarse (zoom 13 o más), los prismas se desvanecen y aparecen
+  los edificios del mapa base con su altura aproximada (`render_height` de OpenStreetMap): contexto
+  visual, no cifras del sistema. Respeta «reducir movimiento» del sistema operativo (sin animación).
+- **Glosario y terceros a la vista.** «Fuentes y método» muestra el glosario
+  ([catalogo/glosario.json](../catalogo/glosario.json)): cada cifra, si es observada, calculada o
+  derivada, cómo se obtiene y de qué campos sale; y el inventario de terceros, con lo que reciben de
+  quien visita la página.
 
 ## Publicación
 
@@ -59,4 +70,5 @@ el Excel y la documentación. Nivel de protección: abierto, solo agregados (REA
 - [x] Pruebas de terminal contra el enlace (resultados en el README, «Protección»).
 - [ ] Conectar el repositorio en Vercel para que cada push a `main` se publique solo (hoy se publica con `npx vercel deploy --prod`).
 - [ ] Revisión cruzada: tres cifras auditadas y el ataque de otro grupo.
-- [ ] Opcional: modo oscuro para el mapa base (OpenFreeMap tiene un estilo `dark`).
+- [x] Modo oscuro del mapa base (estilo `dark` de OpenFreeMap).
+- [x] Vista 3D del mapa (2026-11-03).

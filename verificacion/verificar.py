@@ -7,9 +7,10 @@ Cada comprobación cubre una dimensión de calidad del DMBOK (cap. 13):
 - validez: rangos, formatos de fecha y valores de las listas cerradas;
 - consistencia: las cifras cuadran entre sí y entre fuentes (F01 ↔ F03, catálogo ↔ lago);
 - unicidad: no hay registros repetidos;
-- actualidad: «probado» es una fecha real, no posterior a hoy.
-Además comprueba los metadatos: el lago coincide con catalogo/diccionario.json y cada archivo del
-lago apunta a una ficha integrada de catalogo/.
+- actualidad: «probado» es una fecha real, no posterior a hoy y de hace 60 días como mucho.
+Además comprueba los metadatos: el lago coincide con catalogo/diccionario.json, cada archivo del
+lago apunta a una ficha integrada de catalogo/, cada cifra del glosario sale de campos del diccionario,
+y todo tercero que la CSP de las vistas deja cargar está en catalogo/dependencias.json.
 """
 
 from __future__ import annotations
@@ -311,6 +312,39 @@ for r in des["registros"]:
                 f"F02 {r['anio']}/{r['sb_codigo']}: {campo} = {r[campo]}, menos de {MINIMO_CELDA}")
 ignorados = (RAIZ / ".vercelignore").read_text(encoding="utf-8").split() if (RAIZ / ".vercelignore").exists() else []
 revisar("lago/raw" in ignorados, ".vercelignore: falta «lago/raw»; los crudos llegarían al despliegue")
+
+# Actualidad · un lago viejo no se publica: cada archivo tiene que haberse probado en los últimos 60 días
+MAXIMO_DIAS = 60
+for ruta, datos in LAGO.items():
+    edad = (date.today() - date.fromisoformat(datos["probado"])).days
+    revisar(edad <= MAXIMO_DIAS, f"{ruta}: probado hace {edad} días (máximo {MAXIMO_DIAS}); corran la ingesta y vuelvan a probar las fichas")
+
+# Glosario · cada cifra que muestran las vistas tiene definición y sale de campos que existen en el diccionario
+glosario = leer("catalogo/glosario.json")["terminos"]
+documentados_todos = {f"{c['archivo']}:{c['campo']}" for c in diccionario}
+ids_glosario = [t["id"] for t in glosario]
+revisar(len(ids_glosario) == len(set(ids_glosario)), "glosario: términos repetidos")
+for t in glosario:
+    nombre = f"glosario {t['id']}"
+    revisar(t["tipo"] in listas["tipos_cifra"], f"{nombre}: tipo «{t['tipo']}» no está en listas.json")
+    revisar(bool(t["definicion"]) and bool(t["campos"]) and bool(t["fuentes"]), f"{nombre}: falta definición, campos o fuentes")
+    revisar(t["tipo"] not in ("calculada", "derivada", "escala_visual") or bool(t["formula"]), f"{nombre}: es {t['tipo']} y no dice cómo se obtiene")
+    for campo in t["campos"]:
+        revisar(campo in documentados_todos, f"{nombre}: el campo {campo} no está en el diccionario")
+    for id_fuente in t["fuentes"]:
+        revisar(id_fuente in fichas and fichas[id_fuente]["estado"] == "integrado", f"{nombre}: la fuente {id_fuente} no está integrada")
+
+# Terceros · todo origen externo que la política CSP de las vistas deja cargar está registrado, con licencia
+dependencias = leer("catalogo/dependencias.json")["dependencias"]
+registrados = {d["origen"] for d in dependencias}
+html = (RAIZ / "web" / "index.html").read_text(encoding="utf-8")
+csp = re.search(r'Content-Security-Policy" content="([^"]+)"', html)
+revisar(csp is not None, "web/index.html: no tiene política CSP")
+for origen in sorted(set(re.findall(r"https://[a-z0-9.-]+", csp.group(1) if csp else ""))):
+    revisar(origen in registrados, f"web/index.html: la CSP deja cargar {origen}, que no está en catalogo/dependencias.json")
+for d in dependencias:
+    revisar(bool(d.get("licencia")) and bool(d.get("si_falla")) and bool(d.get("recibe")),
+            f"dependencias {d['id']}: falta licencia, qué recibe o qué pasa si falla")
 
 if fallos:
     print(f"{len(fallos)} comprobaciones fallaron. No se publica.")
