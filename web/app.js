@@ -152,9 +152,9 @@ function vistaSelector(M) {
 }
 
 const INDICADORES = {
-  densidad: { nombre: "Densidad", fuente: "F01", valor: (M, c) => M.pob[c][M.aniosPob.at(-1)].densidad_hab_km2, formato: (v) => `${fNum(v)} hab/km²`, titulo: (M) => `Habitantes por km², ${M.aniosPob.at(-1)}` },
-  poblacion: { nombre: "Habitantes", fuente: "F01", valor: (M, c) => M.pob[c][M.aniosPob.at(-1)].poblacion, formato: fNum, titulo: (M) => `Habitantes, ${M.aniosPob.at(-1)}` },
-  desempleo: { nombre: "Desempleo", fuente: "F02", valor: (M, c) => M.des[c][M.aniosDes.at(-1)].desempleo_pct, formato: fPct, titulo: (M) => `Desempleo, ${M.aniosDes.at(-1)}` },
+  densidad: { nombre: "Densidad", fuente: "F01", valor: (M, c) => M.pob[c][M.aniosPob.at(-1)].densidad_hab_km2, formato: (v) => `${fNum(v)} hab/km²`, corto: fNum, titulo: (M) => `Habitantes por km², ${M.aniosPob.at(-1)}` },
+  poblacion: { nombre: "Habitantes", fuente: "F01", valor: (M, c) => M.pob[c][M.aniosPob.at(-1)].poblacion, formato: fNum, corto: fCompacto, titulo: (M) => `Habitantes, ${M.aniosPob.at(-1)}` },
+  desempleo: { nombre: "Desempleo", fuente: "F02", valor: (M, c) => M.des[c][M.aniosDes.at(-1)].desempleo_pct, formato: fPct, corto: fPct, titulo: (M) => `Desempleo, ${M.aniosDes.at(-1)}` },
 };
 
 // Clases por cuantiles: cinco grupos de cinco distritos
@@ -189,8 +189,11 @@ function vistaMapa(M) {
     // leyenda y tabla
     const limites = [Math.min(...Object.values(valores).filter((v) => v !== null)), ...cortes, Math.max(...Object.values(valores).filter((v) => v !== null))];
     const leyenda = document.getElementById("leyenda-mapa");
-    leyenda.replaceChildren(el("strong", { texto: ind.titulo(M) }), ...rampa.map((c, i) => el("span", { class: "leyenda-item" },
-      el("span", { class: "leyenda-muestra", style: `background:${c}` }), `${ind.formato(limites[i])} – ${ind.formato(limites[i + 1])}`)));
+    // Barra continua de cinco quintiles: los cortes van entre las muestras, la unidad solo en el título
+    leyenda.replaceChildren(el("strong", { class: "leyenda-titulo", texto: `${ind.titulo(M)} · cinco grupos de cinco distritos` }),
+      el("div", { class: "leyenda-rampa", role: "img", "aria-label": `Cortes: ${limites.map(ind.corto).join(", ")}` },
+        ...rampa.map((c) => el("span", { style: `background:${c}` }))),
+      el("div", { class: "leyenda-cortes", "aria-hidden": "true" }, ...limites.map((v) => el("span", { texto: ind.corto(v) }))));
     if (Object.values(valores).includes(null)) {
       leyenda.append(el("span", { class: "leyenda-item" }, el("span", { class: "leyenda-muestra", style: `background:${color("sin-dato")}` }), "Sin dato publicado"));
     }
@@ -206,30 +209,89 @@ function vistaMapa(M) {
     document.getElementById("mapa").replaceChildren(el("p", { class: "aviso", texto: "No se pudo cargar la librería del mapa. Los datos siguen en la tabla de abajo." }));
     return;
   }
-  // Mapa base sin llave (OpenFreeMap). Si no responde, el mapa sigue con un fondo liso.
-  const estiloBase = fetch("https://tiles.openfreemap.org/styles/positron").then((r) => (r.ok ? r.json() : Promise.reject()))
-    .catch(() => ({ version: 8, sources: {}, layers: [{ id: "fondo", type: "background", paint: { "background-color": "#efeee9" } }] }));
-  estiloBase.then((estilo) => {
+  // Mapa base sin llave (OpenFreeMap): claro u oscuro según el tema. Si no responde, fondo liso.
+  const estilos = {};
+  const estiloPara = (oscuro) => (estilos[oscuro] ??= fetch(`https://tiles.openfreemap.org/styles/${oscuro ? "dark" : "positron"}`)
+    .then((r) => (r.ok ? r.json() : Promise.reject()))
+    .catch(() => ({ version: 8, sources: {}, layers: [{ id: "fondo", type: "background", paint: { "background-color": color("sin-dato") } }] })));
+  const etiquetas = { type: "FeatureCollection", features: D.geo.features.map((f) => ({
+    type: "Feature", properties: { sb_codigo: f.properties.sb_codigo }, geometry: { type: "Point", coordinates: puntoEtiqueta(f.geometry) } })) };
+
+  // Las capas se vuelven a poner cada vez que cambia el estilo (tema claro ↔ oscuro)
+  const agregarCapas = (estilo) => {
+    if (mapa.getSource("distritos")) return;
+    mapa.addSource("distritos", { type: "geojson", data: geoInicial });
+    mapa.addSource("etiquetas", { type: "geojson", data: etiquetas });
+    mapa.addLayer({ id: "distritos-relleno", type: "fill", source: "distritos", paint: { "fill-color": ["get", "relleno"], "fill-opacity": 0.86 } });
+    // 2 px del color de la superficie entre distritos vecinos: separa sin dibujar una línea más
+    mapa.addLayer({ id: "distritos-borde", type: "line", source: "distritos", paint: { "line-color": color("superficie"), "line-width": 1.5 } });
+    mapa.addLayer({ id: "distritos-elegido", type: "line", source: "distritos", filter: ["==", ["get", "sb_codigo"], estado.distrito ?? ""], paint: { "line-color": color("texto"), "line-width": 3 } });
+    if (estilo.glyphs) {
+      mapa.addLayer({ id: "distritos-codigo", type: "symbol", source: "etiquetas",
+        layout: { "text-field": ["get", "sb_codigo"], "text-size": ["interpolate", ["linear"], ["zoom"], 9, 9, 10.5, 11, 12, 13], "text-font": ["Noto Sans Bold"], "text-allow-overlap": true },
+        paint: { "text-color": color("texto"), "text-halo-color": color("superficie"), "text-halo-width": 1.6 } });
+    }
+    pintar();
+  };
+
+  let oscuro = temaOscuro();
+  estiloPara(oscuro).then((estilo) => {
     mapa = new maplibregl.Map({ container: "mapa", style: estilo, center: [11.55, 48.14], zoom: 10, attributionControl: { compact: true }, cooperativeGestures: true });
     mapa.addControl(new maplibregl.NavigationControl({ showCompass: false }));
-    mapa.on("load", () => {
-      mapa.addSource("distritos", { type: "geojson", data: geoInicial });
-      mapa.addLayer({ id: "distritos-relleno", type: "fill", source: "distritos", paint: { "fill-color": ["get", "relleno"], "fill-opacity": 0.82 } });
-      mapa.addLayer({ id: "distritos-borde", type: "line", source: "distritos", paint: { "line-color": "#ffffff", "line-width": 1.2 } });
-      mapa.addLayer({ id: "distritos-elegido", type: "line", source: "distritos", filter: ["==", ["get", "sb_codigo"], estado.distrito ?? ""], paint: { "line-color": "#0b0b0b", "line-width": 3 } });
-      if (estilo.glyphs) {
-        mapa.addLayer({ id: "distritos-codigo", type: "symbol", source: "distritos",
-          layout: { "text-field": ["get", "sb_codigo"], "text-size": 12, "text-font": ["Noto Sans Regular"] },
-          paint: { "text-color": "#0b0b0b", "text-halo-color": "#ffffff", "text-halo-width": 1.5 } });
-      }
+    mapa.on("style.load", () => estiloPara(oscuro).then(agregarCapas));
+    mapa.once("load", () => {
       const caja = D.geo.features.flatMap((f) => f.geometry.coordinates.flat(2));
-      mapa.fitBounds([[Math.min(...caja.map((p) => p[0])), Math.min(...caja.map((p) => p[1]))], [Math.max(...caja.map((p) => p[0])), Math.max(...caja.map((p) => p[1]))]], { padding: 16, duration: 0 });
-      pintar();
+      mapa.fitBounds([[Math.min(...caja.map((q) => q[0])), Math.min(...caja.map((q) => q[1]))], [Math.max(...caja.map((q) => q[0])), Math.max(...caja.map((q) => q[1]))]], { padding: 16, duration: 0 });
     });
     mapa.on("click", "distritos-relleno", (e) => elegir(e.features[0].properties.sb_codigo));
     mapa.on("mouseenter", "distritos-relleno", () => { mapa.getCanvas().style.cursor = "pointer"; });
     mapa.on("mouseleave", "distritos-relleno", () => { mapa.getCanvas().style.cursor = ""; });
+    registrar(() => {
+      if (temaOscuro() === oscuro) return;
+      oscuro = temaOscuro();
+      estiloPara(oscuro).then((nuevo) => mapa.setStyle(nuevo, { diff: false }));
+    });
   });
+}
+
+function temaOscuro() {
+  const tema = document.documentElement.dataset.theme;
+  return tema ? tema === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+}
+
+// Un solo punto de etiqueta por distrito: el punto más interior (más lejos del borde) de su parte
+// más grande. El 18 y el 19 traen un pedazo mínimo además del principal, y MapLibre pondría una
+// etiqueta en cada pedazo; el centroide, en un distrito cóncavo, puede caer en el vecino.
+function puntoEtiqueta(geometria) {
+  const partes = geometria.type === "Polygon" ? [geometria.coordinates] : geometria.coordinates;
+  const area = (anillo) => Math.abs(anillo.reduce((a, [x1, y1], i) => { const [x2, y2] = anillo[(i + 1) % anillo.length]; return a + x1 * y2 - x2 * y1; }, 0)) / 2;
+  const parte = partes.reduce((a, b) => (area(b[0]) > area(a[0]) ? b : a));
+  const kx = Math.cos((48.14 * Math.PI) / 180); // a esta latitud un grado de longitud mide menos
+  const dentro = ([x, y], anillo) => {
+    let si = false;
+    for (let i = 0, j = anillo.length - 1; i < anillo.length; j = i++) {
+      const [xi, yi] = anillo[i], [xj, yj] = anillo[j];
+      if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) si = !si;
+    }
+    return si;
+  };
+  const distanciaBorde = ([x, y]) => Math.min(...parte.flatMap((anillo) => anillo.slice(1).map(([x2, y2], i) => {
+    const [x1, y1] = anillo[i];
+    const dx = (x2 - x1) * kx, dy = y2 - y1, px = (x - x1) * kx, py = y - y1;
+    const t = Math.max(0, Math.min(1, (px * dx + py * dy) / (dx * dx + dy * dy || 1)));
+    return Math.hypot(px - t * dx, py - t * dy);
+  })));
+  const xs = parte[0].map((q) => q[0]), ys = parte[0].map((q) => q[1]);
+  const [x0, x1, y0, y1] = [Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)];
+  let mejor = parte[0][0], mejorD = -1;
+  const N = 28;
+  for (let i = 1; i < N; i++) for (let j = 1; j < N; j++) {
+    const q = [x0 + ((x1 - x0) * i) / N, y0 + ((y1 - y0) * j) / N];
+    if (!dentro(q, parte[0]) || parte.slice(1).some((hueco) => dentro(q, hueco))) continue;
+    const d = distanciaBorde(q);
+    if (d > mejorD) { mejorD = d; mejor = q; }
+  }
+  return mejor;
 }
 
 function vistaPanel(M) {
@@ -345,6 +407,9 @@ function vistaFuentes() {
   const fichas = Object.values(D.fichas).sort((a, b) => a.id.localeCompare(b.id));
   document.getElementById("n-fuentes").textContent = fichas.length;
   document.getElementById("n-integradas").textContent = fichas.filter((f) => f.estado === "integrado").length;
+  const probado = Object.values(LAGO()).map((d) => d.probado).sort()[0];
+  document.getElementById("meta-sistema").textContent =
+    `${fichas.filter((f) => f.estado === "integrado").length} de ${fichas.length} fuentes integradas · lago probado el ${fFecha(probado)} · protección: abierto, solo agregados`;
   document.getElementById("lista-fuentes").replaceChildren(...fichas.map((f) => el("article", { class: "ficha" },
     el("h3", { texto: `${f.id} · ${f.nombre}` }),
     el("span", { class: "estado", texto: D.listas.estados[f.estado].excel }),
