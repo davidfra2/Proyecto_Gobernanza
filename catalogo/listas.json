@@ -335,5 +335,23 @@
   "derivada": "Una cifra que la fuente no publica, deducida de otras; se marca siempre con * y la etiqueta «derivada»",
   "escala_visual": "No es una cifra: repite otra para dibujarla (la altura en la vista 3D)",
   "concepto": "Un término que se usa para leer las cifras (distrito, vigencia, probado)"
+ },
+ "resultados_ia": {
+  "correcto": {
+   "excel": "Correcto",
+   "definicion": "Lo que entregó la IA resultó cierto al comprobarlo"
+  },
+  "parcial": {
+   "excel": "Parcial",
+   "definicion": "Sirvió, pero hubo que corregir algo al comprobarlo"
+  },
+  "incorrecto": {
+   "excel": "Incorrecto",
+   "definicion": "Lo que entregó era falso o habría hecho daño"
+  },
+  "inventado": {
+   "excel": "Inventado",
+   "definicion": "La fuente, URL o dato no existe"
+  }
  }
 }

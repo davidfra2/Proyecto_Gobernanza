@@ -350,6 +350,22 @@ for t in glosario:
     for id_fuente in t["fuentes"]:
         revisar(id_fuente in fichas and fichas[id_fuente]["estado"] == "integrado", f"{nombre}: la fuente {id_fuente} no está integrada")
 
+# Bitácora de IA · la hoja del Excel sale de este archivo: vocabulario cerrado, fuentes que existen y una fila
+# por cada fila de la bitácora del README, para que las dos no se separen
+bitacora = leer("catalogo/bitacora_ia.json")["filas"]
+for n, b in enumerate(bitacora, start=1):
+    nombre = f"bitacora_ia fila {n}"
+    revisar(all(b.get(c) for c in ("herramienta", "encargo", "respuesta", "comprobacion", "aprendizaje")),
+            f"{nombre}: falta herramienta, encargo, respuesta, comprobación o aprendizaje")
+    revisar(b.get("resultado") in listas["resultados_ia"], f"{nombre}: resultado «{b.get('resultado')}» no está en listas.json")
+    for id_fuente in b.get("fuentes", []):
+        revisar(id_fuente in fichas, f"{nombre}: la fuente {id_fuente} no tiene ficha")
+readme = (RAIZ / "README.md").read_text(encoding="utf-8")
+seccion = readme.split("## Bitácora de IA", 1)[-1].split("\n## ", 1)[0]
+filas_readme = [l for l in seccion.splitlines() if l.startswith("| ") and not l.startswith("| Tramo ")]
+revisar(len(filas_readme) == len(bitacora),
+        f"bitacora_ia.json tiene {len(bitacora)} filas y la bitácora de IA del README {len(filas_readme)}: añadan la que falta")
+
 # Terceros · todo origen externo que la política CSP de las vistas deja cargar está registrado, con licencia
 dependencias = leer("catalogo/dependencias.json")["dependencias"]
 registrados = {d["origen"] for d in dependencias}

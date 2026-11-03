@@ -3,9 +3,9 @@
 La fuente de verdad es el repositorio (catalogo/F*.json y catalogo/diccionario.json). El Excel se
 mantenía a mano y se separó del repositorio: fechas de prueba viejas, licencias resumidas en vez de
 copiadas y una nota del 08 que ya no era cierta. Este script reescribe las hojas «1. Fuentes» y
-«2. Diccionario» desde los JSON, borra la fila gris de ejemplo de Medellín (traía un campo que no
-está en nuestro lago) y deja intactos el formato, las listas desplegables, la «3. Bitácora IA» y las
-fórmulas del «Resumen».
+«2. Diccionario» desde los JSON y la «3. Bitácora IA» desde catalogo/bitacora_ia.json, borra la fila
+gris de ejemplo de Medellín (traía un campo que no está en nuestro lago) y deja intactos el formato,
+las listas desplegables y las fórmulas del «Resumen» (sus rangos se alargan si hay más filas).
 
 Es el único script del repositorio que necesita algo fuera de la biblioteca estándar (openpyxl, ver
 requirements-excel.txt); la ingesta y la verificación siguen sin instalar nada.
@@ -119,7 +119,14 @@ def main() -> None:
         " | ".join(f"{'Todas' if p == 'TODAS' else p}: {preguntas[p]}" for p in c["preguntas"]),
     ] for c in campos]
     ultima_diccionario = escribir_filas(libro["2. Diccionario"], diccionario)
-    extender_resumen(libro, {"1. Fuentes": ultima_fuentes, "2. Diccionario": ultima_diccionario})
+    # 3. Bitácora IA: los encargos a la IA, en el mismo orden que la bitácora del README
+    bitacora = [[
+        n, b["herramienta"], b["encargo"], b["respuesta"], b["comprobacion"], listas["resultados_ia"][b["resultado"]]["excel"],
+        ", ".join(b["fuentes"]) or "—", b["aprendizaje"],
+    ] for n, b in enumerate(leer(RAIZ / "catalogo" / "bitacora_ia.json")["filas"], start=1)]
+    ultima_bitacora = escribir_filas(libro["3. Bitácora IA"], bitacora)
+    extender_resumen(libro, {"1. Fuentes": ultima_fuentes, "2. Diccionario": ultima_diccionario,
+                             "3. Bitácora IA": ultima_bitacora})
 
     for nombre in ("1. Fuentes", "2. Diccionario", "3. Bitácora IA"):
         hoja = libro[nombre]
@@ -130,7 +137,8 @@ def main() -> None:
         libro["Instrucciones"][celda].value = texto
 
     libro.save(salida)
-    print(f"{salida.relative_to(RAIZ) if salida.is_relative_to(RAIZ) else salida}: {len(fuentes)} fuentes, {len(diccionario)} campos")
+    print(f"{salida.relative_to(RAIZ) if salida.is_relative_to(RAIZ) else salida}: "
+          f"{len(fuentes)} fuentes, {len(diccionario)} campos, {len(bitacora)} encargos a la IA")
 
 
 if __name__ == "__main__":

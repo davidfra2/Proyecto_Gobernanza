@@ -1,0 +1,463 @@
+{
+  "descripcion": "Bitácora de los encargos a la IA. Fuente de la hoja «3. Bitácora IA» del Excel (catalogo/a_excel.py); cada fila corresponde, en el mismo orden, a una fila de la bitácora de IA del README.",
+  "filas": [
+    {
+      "herramienta": "Claude",
+      "encargo": "Encontrar una fuente abierta de población por distrito de München, con serie de varios años",
+      "respuesta": "Propuso el Indikatorenatlas del Statistisches Amt en opendata.muenchen.de y encontró además la tabla «Bevölkerung in den Stadtbezirken»",
+      "comprobacion": "Bajamos los dos CSV desde el navegador (respuesta 200). verificar.py comprueba que la densidad cuadre con población / superficie en los 286 registros",
+      "resultado": "correcto",
+      "fuentes": [
+        "F01",
+        "F06"
+      ],
+      "aprendizaje": "La misma ciudad publica la misma cifra en dos tablas con formatos distintos: hay que elegir una y decir por qué.",
+      "entrega": 1
+    },
+    {
+      "herramienta": "Claude",
+      "encargo": "Comparar las dos tablas de población y decir cuál integrar",
+      "respuesta": "Recomendó el Indikatorenatlas (serie 2002–2025) y descartar la otra por tener un solo año y problemas de formato",
+      "comprobacion": "Abrimos el CSV descartado: «101 901» con espacio, el total como distrito «26 insgesamt» y densidad en hab/ha. El total 2024 (1.603.776) coincide en ambas",
+      "resultado": "correcto",
+      "fuentes": [
+        "F06"
+      ],
+      "aprendizaje": "Un «26» que no es distrito o una unidad distinta pasan sin error y dañan un mapa si nadie los revisa.",
+      "entrega": 1
+    },
+    {
+      "herramienta": "Claude",
+      "encargo": "Encontrar desempleo por distrito",
+      "respuesta": "Propuso «Indikatorenatlas: Arbeitslose – Anteil» con cortes por sexo y nacionalidad",
+      "comprobacion": "Descarga 200; verificar.py comprueba que el porcentaje cuadre con desempleados / población de 15 a 64 en los 260 registros",
+      "resultado": "correcto",
+      "fuentes": [
+        "F02"
+      ],
+      "aprendizaje": "Las bases vienen con decimales porque son promedios anuales; no es un error, hay que documentarlo.",
+      "entrega": 1
+    },
+    {
+      "herramienta": "Claude",
+      "encargo": "Encontrar los límites oficiales de los distritos para el mapa",
+      "respuesta": "Propuso el WFS del GeodatenService (dataset «Stadtbezirke»)",
+      "comprobacion": "Llamamos al WFS: 27 polígonos para 25 distritos y en EPSG:25832. Lo pedimos en EPSG:4326 y unimos los pedazos por código; la superficie cuadra con F01 (±0,1 km²)",
+      "resultado": "correcto",
+      "fuentes": [
+        "F03"
+      ],
+      "aprendizaje": "Los nombres del mapa y de la estadística no coinciden: se cruza por código oficial, nunca por nombre.",
+      "entrega": 1
+    },
+    {
+      "herramienta": "Claude",
+      "encargo": "Encontrar datos de clima mensuales para la ciudad",
+      "respuesta": "Propuso la estación 03379 München-Stadt del DWD (carpeta recent del Climate Data Center)",
+      "comprobacion": "Leímos la lista de estaciones (03379 con datos hasta 2026-09-30), descomprimimos el zip y revisamos la licencia en Terms_of_use.pdf (CC BY 4.0)",
+      "resultado": "correcto",
+      "fuentes": [
+        "F04"
+      ],
+      "aprendizaje": "Los faltantes vienen como -999: si no se convierten a null, una gráfica muestra -999 °C.",
+      "entrega": 1
+    },
+    {
+      "herramienta": "Claude",
+      "encargo": "Replicar la escucha del taller (vistas de Wikipedia) para München",
+      "respuesta": "Dio la URL de la API de vistas para de.wikipedia y sugirió sumar es y en",
+      "comprobacion": "La URL de de.wikipedia respondió con 21 meses. La consulta a es/en desde otra página falló por CORS y no la integramos",
+      "resultado": "parcial",
+      "fuentes": [
+        "F05"
+      ],
+      "aprendizaje": "Que una URL funcione en una pestaña no garantiza que funcione desde otra página: el navegador también decide.",
+      "entrega": 1
+    },
+    {
+      "herramienta": "Claude",
+      "encargo": "Dar la dirección de descarga de los horarios (GTFS) de MVG",
+      "respuesta": "Dio https://www.mvg.de/de/services/fahrgastinformation/fahrplandaten.html como página de descarga",
+      "comprobacion": "La abrimos: 404 «Seite nicht gefunden». La URL real (www.mvg.de/static/gtfs/google_transit.zip, 29,8 MB) apareció buscando «GTFS» en el catálogo CKAN",
+      "resultado": "inventado",
+      "fuentes": [
+        "F08",
+        "F07"
+      ],
+      "aprendizaje": "La IA arma URLs que parecen razonables pero no existen. Ninguna fuente entra sin abrirla.",
+      "entrega": 1
+    },
+    {
+      "herramienta": "Claude",
+      "encargo": "Encontrar datos abiertos de calidad del aire en München",
+      "respuesta": "Propuso la API Luftdaten del Umweltbundesamt y una página de documentación con la licencia",
+      "comprobacion": "La API respondió, pero por redirección (302) a un dominio nuevo; la página de documentación dio 404 y la licencia no apareció",
+      "resultado": "parcial",
+      "fuentes": [
+        "F09"
+      ],
+      "aprendizaje": "Queda como candidata: sin licencia confirmada no entra al lago, aunque los datos respondan.",
+      "entrega": 1
+    },
+    {
+      "herramienta": "Claude",
+      "encargo": "Revisar qué tablas del Indikatorenatlas no deberían entrar al lago",
+      "respuesta": "Señaló «Religionszugehörigkeit» como categoría especial del RGPD (art. 9) y sin relación con nuestras preguntas",
+      "comprobacion": "Bajamos el CSV (2000–2025, tres categorías por distrito) y confirmamos que no responde ninguna pregunta de nuestro sistema",
+      "resultado": "correcto",
+      "fuentes": [
+        "F10"
+      ],
+      "aprendizaje": "Que un dato sea público y agregado no obliga a usarlo: lo que no responde una pregunta sobra.",
+      "entrega": 1
+    },
+    {
+      "herramienta": "Claude",
+      "encargo": "Encontrar una fuente para comparar München con otras ciudades alemanas",
+      "respuesta": "Propuso GENESIS-Online de Destatis (München = Kreis 09162) y dijo que no pide registro",
+      "comprobacion": "Solo leímos la página de Destatis, que dice «kostenfrei und ohne Registrierung» y Datenlizenz Deutschland 2.0. La API todavía no la llamamos",
+      "resultado": "parcial",
+      "fuentes": [
+        "F11"
+      ],
+      "aprendizaje": "Lo que dice una página no es una prueba: falta que un script descargue la tabla.",
+      "entrega": 1
+    },
+    {
+      "herramienta": "Claude",
+      "encargo": "Escribir los scripts de ingesta para que cualquiera del grupo reconstruya el lago",
+      "respuesta": "Entregó cinco scripts con sintaxis de tipos de Python 3.10+ (float | None), aunque el CONTRIBUTING pide 3.12+",
+      "comprobacion": "David revisó su versión antes de correrlos: el Python de su Mac es 3.9.6. La IA agregó from __future__ import annotations y los probó en 3.9; el lago salió idéntico",
+      "resultado": "parcial",
+      "fuentes": [
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F05"
+      ],
+      "aprendizaje": "Hay que probar el código en la máquina de quien lo va a correr, no solo en la de quien lo escribió.",
+      "entrega": 1
+    },
+    {
+      "herramienta": "Claude",
+      "encargo": "Construir el lago con los datos bajados desde el navegador",
+      "respuesta": "Armó los archivos del lago pasando los datos por las mismas funciones de los scripts",
+      "comprobacion": "David corrió los cinco scripts y verificar.py en su Mac (2026-10-06): todo pasó, pero stadtbezirke.geojson cambió (+18 puntos). La IA había simplificado la geometría dos veces; se subió la versión del script",
+      "resultado": "parcial",
+      "fuentes": [
+        "F03"
+      ],
+      "aprendizaje": "El lago vale cuando lo produce el script; una copia armada a mano puede diferir aunque pase la verificación.",
+      "entrega": 1
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "Responder el Word «Por qué estos datos» a partir del Excel",
+      "respuesta": "Las seis respuestas del Word",
+      "comprobacion": "Revisamos cada respuesta contra las fuentes: eran 5 estaciones de aire y no 2; «el 08 queda sin densidad» era falso; la densidad se comprueba en 275 registros y no en 286; la licencia del UBA no se pudo leer, no «no existe»",
+      "resultado": "parcial",
+      "fuentes": [
+        "F01",
+        "F09"
+      ],
+      "aprendizaje": "Un texto bien escrito no es una cifra comprobada: cada número del Word se vuelve a sacar de la fuente",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "Revisar el PR #1 y corregir lo que encontrara",
+      "respuesta": "10 hallazgos (un anillo de 3 puntos en el distrito 19, un verificador que se caía con vacíos, PROBADO, URL fijas, saltos de línea) y sus correcciones",
+      "comprobacion": "Corrimos sus propias correcciones: el verificador nuevo se caía con un tipo equivocado",
+      "resultado": "parcial",
+      "fuentes": [
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F05"
+      ],
+      "aprendizaje": "Primero se revisa la estructura y después los valores; si no, un tipo raro tumba el verificador antes de decir qué falla",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "Escribir las fichas de las 11 fuentes",
+      "respuesta": "11 fichas, listas cerradas y su control en verificar.py",
+      "comprobacion": "Afirmó que el GTFS de MVG no incluye la S-Bahn sin haberlo comprobado; lo verificamos en routes.txt antes de publicarlo (243 rutas, ninguna de S-Bahn)",
+      "resultado": "parcial",
+      "fuentes": [
+        "F07"
+      ],
+      "aprendizaje": "Una afirmación de la IA que resulta cierta sigue sin valer hasta que alguien la comprueba en la fuente",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "Revisar que Excel, catálogo y lago no se contradigan, siguiendo el DMBOK",
+      "respuesta": "Diccionario en el repositorio, vocabulario único y GOBIERNO.md",
+      "comprobacion": "La auditoría encontró que su propia respuesta del Word sobre el 08 era falsa (la población se deduce por resta); se corrigieron el Word y el Excel",
+      "resultado": "parcial",
+      "fuentes": [
+        "F01"
+      ],
+      "aprendizaje": "Una sola fuente de verdad (el repositorio) evita que tres documentos digan tres cosas distintas",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "La primera versión de las vistas (web/)",
+      "respuesta": "Mapa, P1–P4 y la fuente de cada cifra a un clic",
+      "comprobacion": "El validador de paleta rechazó la rampa del mapa (contraste 1,5:1) y los gráficos se dibujaban con ancho 0 en una pestaña oculta; se corrigió antes de subirla",
+      "resultado": "parcial",
+      "fuentes": [
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F05"
+      ],
+      "aprendizaje": "Las vistas se prueban mirando la página dibujada, no leyendo el código",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "Actualizar el lago (2026-11-01)",
+      "respuesta": "Lago y fichas al día",
+      "comprobacion": "verificar.py bloqueó la publicación hasta volver a probar las fuentes; F11 fallaba por otra causa que la anotada y se registró la nueva",
+      "resultado": "correcto",
+      "fuentes": [
+        "F11"
+      ],
+      "aprendizaje": "Que el verificador bloquee es la señal de que funciona; la causa de un fallo también cambia y hay que anotarla de nuevo",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "Probar dos herramientas para perfilar fuentes",
+      "respuesta": "explorar/perfil_stdlib.py y explorar/perfil_duckdb.py",
+      "comprobacion": "Comparamos los perfiles: con una vista, DuckDB descargaba el CSV en cada consulta (se cambió a tabla) y con tipos automáticos convertía en texto las columnas con «X»",
+      "resultado": "parcial",
+      "fuentes": [
+        "F01",
+        "F02"
+      ],
+      "aprendizaje": "Los tipos automáticos esconden los vacíos marcados con «X»: hay que declararlos",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "Leer las láminas «La herramienta», «Cómo protegerlo» y «La entrega» del taller",
+      "respuesta": "Que la página no tenía esas láminas (el lector web solo devolvía «Cargando el taller…»)",
+      "comprobacion": "Era falso: la página arma las láminas con JavaScript. Se leyó directamente tallerdatos.js",
+      "resultado": "incorrecto",
+      "fuentes": [],
+      "aprendizaje": "Que una herramienta no vea algo no significa que no exista; hay que leer la fuente por otro camino",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "Actualizar el Excel del diccionario",
+      "respuesta": "catalogo/a_excel.py, que lo genera desde catalogo/",
+      "comprobacion": "Antes de escribirlo comparamos el Excel con la fuente (API CKAN): las licencias del Excel no estaban copiadas tal como aparecen, y las fichas del repositorio sí",
+      "resultado": "correcto",
+      "fuentes": [
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F05"
+      ],
+      "aprendizaje": "El Excel se genera, no se edita a mano",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "Respuestas escritas para P1–P4 calculadas desde el lago, y la lista de pendientes",
+      "respuesta": "vistaRespuestas() en web/app.js",
+      "comprobacion": "Leyendo el texto en pantalla vimos que dejó al 08 sin su * en la lista de distritos que pierden población",
+      "resultado": "parcial",
+      "fuentes": [
+        "F01"
+      ],
+      "aprendizaje": "Una cifra derivada tiene que ir marcada en todos los lugares donde aparece, también en el texto",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "Los mismos datos en Streamlit",
+      "respuesta": "explorar/vistas_streamlit.py",
+      "comprobacion": "Al correrlo: usó st.link_button(key=…), un argumento que Streamlit 1.50 no tiene, y no previó que st.bar_chart reordena las barras",
+      "resultado": "parcial",
+      "fuentes": [
+        "F01",
+        "F02",
+        "F03"
+      ],
+      "aprendizaje": "Una herramienta más corta de escribir puede cambiar lo que se lee (el ranking)",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "Probar que el control nuevo de citas falla cuando debe",
+      "respuesta": "Una prueba que restauraba el archivo con git checkout",
+      "comprobacion": "Ese comando habría borrado los cambios sin guardar de web/app.js; lo frenó el control de permisos de Claude Code y se rehizo cambiando una cita y revirtiendo el cambio",
+      "resultado": "incorrecto",
+      "fuentes": [],
+      "aprendizaje": "Antes de correr un comando que sobrescribe, se mira qué hay sin guardar",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "Revisar secretos en el historial de Git",
+      "respuesta": "61 coincidencias del grep de la lámina",
+      "comprobacion": "Revisamos a mano las 61, una por una: todas eran falsos positivos",
+      "resultado": "correcto",
+      "fuentes": [],
+      "aprendizaje": "Un grep encuentra candidatos; decidir si son secretos lo hace una persona",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "La etiqueta con el código de cada distrito en el mapa",
+      "respuesta": "Una capa de texto sobre los polígonos",
+      "comprobacion": "La encontró el grupo, no la IA: el 18 y el 19 salían dos veces porque cada uno trae un pedazo mínimo además del principal. Ahora se calcula un punto por distrito, sin tocar la geometría oficial",
+      "resultado": "incorrecto",
+      "fuentes": [
+        "F03"
+      ],
+      "aprendizaje": "Los distritos con varios pedazos rompen lo que supone un polígono por distrito",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "Actualizar el lago (2026-11-03) y volver a probar las 11 fichas",
+      "respuesta": "Octubre de 2026 del DWD y las fichas al día",
+      "comprobacion": "Su script de reprueba volvió a escribir en F11 la causa del 12 de octubre (el certificado) cuando el error de ese día era tiempo agotado; se corrigió a mano",
+      "resultado": "parcial",
+      "fuentes": [
+        "F04",
+        "F11"
+      ],
+      "aprendizaje": "Un script que copia la causa anterior esconde que el fallo cambió",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "Probar dlt sobre la misma fuente que el script base",
+      "respuesta": "explorar/ingesta_dlt.py",
+      "comprobacion": "Las cifras coincidieron con el script base; la telemetría activada por defecto se comprobó en la configuración instalada de dlt, no en su documentación",
+      "resultado": "correcto",
+      "fuentes": [
+        "F05"
+      ],
+      "aprendizaje": "Una herramienta de ingesta también decide qué datos salen de nuestra máquina (telemetría)",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "Probar DuckLake con las tres descargas del clima",
+      "respuesta": "explorar/lago_ducklake.py",
+      "comprobacion": "Falló al leer la fecha de las instantáneas (faltaba pytz) y presentó el registro de cambios como si aislara las correcciones del DWD: con una recarga completa marca todas las filas como nuevas",
+      "resultado": "parcial",
+      "fuentes": [
+        "F04"
+      ],
+      "aprendizaje": "Un historial de versiones solo sirve si la carga es incremental",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "Comparar Frictionless con verificar.py",
+      "respuesta": "explorar/verificar_frictionless.py",
+      "comprobacion": "La primera comparación era injusta: con una sola copia rota, verificar.py paraba en la estructura y no llegaba a los otros errores. Se separó en dos copias; también falló al leer la salida en Windows por la codificación",
+      "resultado": "parcial",
+      "fuentes": [
+        "F01",
+        "F02",
+        "F04",
+        "F05"
+      ],
+      "aprendizaje": "Frictionless revisa tipos y vacíos, pero no que la densidad sea población ÷ superficie",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "Correr el verificador en cada push y pull request",
+      "respuesta": ".github/workflows/verificar.yml, con Python 3.9 y 3.13 y las acciones fijadas por commit",
+      "comprobacion": "Pasó en las dos versiones. Había escrito que Vercel publica sin esperar a esta comprobación; al mirar el sitio se vio lo contrario: el despliegue no se actualiza solo (incidencia I1)",
+      "resultado": "parcial",
+      "fuentes": [],
+      "aprendizaje": "Lo que se dice del despliegue se comprueba en el sitio publicado",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "Mejorar el mapa con una vista 3D",
+      "respuesta": "Botón «Vista 3D»: prismas por distrito y edificios de OpenStreetMap al acercarse",
+      "comprobacion": "Las capturas salían en negro con el panel oculto; se verificó consultando el propio mapa: 231 edificios cerca de Marienplatz, el más alto de 99 m, como las torres de la Frauenkirche",
+      "resultado": "correcto",
+      "fuentes": [
+        "F03"
+      ],
+      "aprendizaje": "Si la captura no sirve, se comprueba con un dato conocido del mundo real",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "Revisar el proyecto entero contra el DMBOK",
+      "respuesta": "Ética, glosario, inventario de terceros, registro de decisiones e incidencias, madurez y tres controles nuevos",
+      "comprobacion": "Encontró que el verificador decía controlar la actualidad y solo comprobaba que probado no fuera futura: un lago de seis meses habría pasado. Ahora el máximo es de 60 días",
+      "resultado": "correcto",
+      "fuentes": [],
+      "aprendizaje": "Un control que se llama «actualidad» tiene que poder fallar por viejo",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "Segundo rastreo por familias",
+      "respuesta": "31 fichas nuevas (F12–F42) tras barrer los 337 conjuntos del portal y seis fuentes de fuera",
+      "comprobacion": "Al ver el 403 de Baviera intentó repetir la petición haciéndose pasar por un navegador; el control de permisos lo bloqueó y se anotó el 403 tal cual. También supuso que los nombres de recién nacidos (F23) podían señalar a un bebé, y la fuente ya los suprime («5 oder weniger» en 3 707 de 4 175 filas)",
+      "resultado": "parcial",
+      "fuentes": [
+        "F23",
+        "F29",
+        "F41"
+      ],
+      "aprendizaje": "Un bloqueo del publicador se respeta; y antes de excluir por privacidad, se mira qué protege ya la fuente",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "Integrar el GTFS de la red MVV para responder P5",
+      "respuesta": "ingesta/pull_transporte.py y lago/transporte_paradas.json: 1 118 paradas",
+      "comprobacion": "Buscó la S-Bahn como tren (route_type 2) y el conteo dio cero: la fuente la marca como tranvía (route_type 0). Se clasifica por el nombre de la línea y verificar.py vigila que no vuelva a desaparecer. Rehicimos la ingesta desde el ZIP y salió idéntica",
+      "resultado": "parcial",
+      "fuentes": [
+        "F26"
+      ],
+      "aprendizaje": "Un conteo en cero es una alarma, no un resultado",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "Que el Excel admita más de 40 fuentes y campos",
+      "respuesta": "catalogo/a_excel.py alarga las filas, las listas desplegables y las fórmulas del Resumen",
+      "comprobacion": "Al abrirlo en Excel, el Resumen decía 42 campos en vez de 51: en la segunda pasada los rangos ya no terminaban en la fila 44. Ahora cada rango se ajusta a su hoja y correrlo dos veces da lo mismo",
+      "resultado": "parcial",
+      "fuentes": [],
+      "aprendizaje": "Un generador tiene que dar lo mismo si se corre dos veces",
+      "entrega": 2
+    },
+    {
+      "herramienta": "Claude (Claude Code)",
+      "encargo": "Llenar la hoja «3. Bitácora IA» del Excel (incidencia I6)",
+      "respuesta": "catalogo/bitacora_ia.json con los encargos a la IA y la hoja generada por a_excel.py",
+      "comprobacion": "La bitácora del README no tiene la columna «Resultado»: cada clasificación se decidió releyendo qué hubo que corregir. Abrimos el Excel para comprobar el Resumen y verificar.py falla si el JSON y el README no tienen las mismas filas",
+      "resultado": "correcto",
+      "fuentes": [],
+      "aprendizaje": "Lo que se copia a mano se atrasa: la hoja ahora se genera y el verificador vigila que no se separe del README",
+      "entrega": 2
+    }
+  ]
+}

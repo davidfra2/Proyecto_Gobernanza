@@ -62,6 +62,7 @@ cumple, quién responde y qué control la vigila**. Si un área no tiene control
 | 2026-11-03 | Integrar el GTFS de toda la red MVV (F26) y responder P5 | Trae la S-Bahn que le falta a F07; el lago guarda cada parada y las vistas cuentan por distrito | `ingesta/pull_transporte.py`, `glosario.json` |
 | 2026-11-03 | Excluir los datos de adelantamiento a bicicletas (F29) | Traen `user_id` con GPS y hora exacta: datos personales seudonimizados, aunque la licencia lo permita | `catalogo/F29_adelantamientos_bici.json` |
 | 2026-11-03 | No saltarse el bloqueo de la estadística de Baviera (F41) | Respondió 403 a nuestro script; hacerse pasar por un navegador sería burlar una decisión del publicador | `catalogo/F41_estadistica_baviera.json` |
+| 2026-11-03 | La hoja «3. Bitácora IA» del Excel se genera desde `catalogo/bitacora_ia.json` (cierra la incidencia I6) | Tenía solo los 12 encargos de la primera entrega; copiarla a mano se habría vuelto a atrasar. `verificar.py` exige una fila por cada fila de la bitácora del README | `catalogo/bitacora_ia.json`, `a_excel.py` |
 | 2026-11-03 | Un lago con más de 60 días sin probar no se publica | Las fuentes cambian: el DWD corrigió tres meses en tres semanas | `verificar.py` |
 
 ## Incidencias abiertas
@@ -73,7 +74,6 @@ cumple, quién responde y qué control la vigila**. Si un área no tiene control
 | I3 | 2026-10-12 | F11 (Destatis) falla desde Python: certificado el 2026-10-12, tiempo agotado el 2026-11-01 y el 2026-11-03; con curl responde | Resolver la conexión sin desactivar la verificación del certificado antes de integrarla | Curaduría |
 | I4 | 2026-10-06 | F09 (calidad del aire) sin licencia leída en el sitio del UBA | Encontrar sus condiciones de uso y copiarlas en la ficha | Curaduría |
 | I5 | 2026-10-12 | F01 marca con «X» la población del 08 aunque se deduce y F06 la publica | Preguntar al Statistisches Amt por qué | Curaduría |
-| I6 | 2026-11-02 | La hoja «3. Bitácora IA» del Excel tiene solo los 12 encargos de la primera entrega; `a_excel.py` no la toca | Copiar la bitácora de IA del README al Excel antes de entregarlo | Curaduría |
 | I7 | 2026-11-02 | Faltan la auditoría de tres cifras y el ataque autorizado de otro grupo | Se hacen en clase sobre el enlace publicado | Todo el grupo |
 | I8 | 2026-11-03 | El GTFS de MVV (F26) marca la S-Bahn (S1–S8, S20) con `route_type 0`, que en GTFS es tranvía | El script la reconoce por el nombre y `verificar.py` vigila que no desaparezca; avisar a MVV del error | Datos |
 | I9 | 2026-11-03 | Sentinel-2 (F37) enlaza unas condiciones de uso de la ESA cuyo dominio no resuelve | Encontrar las condiciones de Copernicus en una página que funcione | Curaduría |
@@ -87,7 +87,7 @@ con la evidencia de este repositorio.
 
 | Área | Nivel | Por qué no es más |
 |---|---|---|
-| Metadatos | 4 | Catálogo, diccionario y glosario verificados en cada push. No 5: el Excel todavía se exporta a mano (I6) |
+| Metadatos | 4 | Catálogo, diccionario y glosario verificados en cada push. No 5: el Excel se genera entero desde el repositorio, pero hay que correr `a_excel.py` a mano antes de cada entrega |
 | Calidad de datos | 4 | Reglas por dimensión, en cada push, que bloquean la publicación. No 5: no se mide la calidad a lo largo del tiempo |
 | Datos de referencia | 4 | Un vocabulario único verificado. No 5: los cambios a las listas no tienen un proceso propio |
 | Ética | 3 | Decisiones escritas y con control automático. No 4: no hay revisión externa todavía (I7) |
