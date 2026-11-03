@@ -10,7 +10,7 @@ cumple, quién responde y qué control la vigila**. Si un área no tiene control
 | **Gobierno de datos** (cap. 3) | Papeles, flujo de cambios y revisión: [CONTRIBUTING.md](CONTRIBUTING.md); decisiones e incidencias: más abajo en este archivo | Todo el grupo | Nadie aprueba lo suyo; si la verificación falla, no se publica |
 | **Arquitectura** (cap. 4) | Bronce `lago/raw/` (crudo, solo local) → plata `lago/` y `territorio/` (limpio, con fuente y fecha) → oro `web/` (vistas) | Datos | `.gitignore` impide subir el bronce y `.vercelignore` publicarlo; `verificar.py` lo comprueba |
 | **Modelado y diseño** (cap. 5) | Envoltura común `{fuente, vigencia, probado, registros}`; llave territorial `sb_codigo` (00 = ciudad, 01–25 = distritos) | Datos | `verificar.py`: estructura contra el diccionario, antes que los valores |
-| **Almacenamiento y operaciones** (cap. 6) | JSON en UTF-8 con saltos `\n`; el lago se reconstruye con los cinco `ingesta/pull_*.py`. Retención: los crudos no se guardan (se vuelven a bajar de la fuente); el historial del lago queda en Git para siempre, y no tiene datos de personas | Datos | Reconstruir y comparar: el lago sale idéntico salvo `probado`. Falta que el despliegue se actualice solo (incidencia I1) |
+| **Almacenamiento y operaciones** (cap. 6) | JSON en UTF-8 con saltos `\n`; el lago se reconstruye con los seis `ingesta/pull_*.py` (pull_territorio antes que pull_transporte, que usa los límites). Retención: los crudos no se guardan (se vuelven a bajar de la fuente); el historial del lago queda en Git para siempre, y no tiene datos de personas | Datos | Reconstruir y comparar: el lago sale idéntico salvo `probado`. Falta que el despliegue se actualice solo (incidencia I1) |
 | **Seguridad** (cap. 7) | Clasificación de cada campo en el diccionario; nivel «abierto, solo agregados»; CSP, huella SRI y cabeceras en [vercel.json](vercel.json); inventario de terceros en [catalogo/dependencias.json](catalogo/dependencias.json) | Seguridad (sin asignar, incidencia I2) | `verificar.py`: todo origen que la CSP deja cargar está en el inventario, con licencia; los crudos no viajan al despliegue. Falta el ataque autorizado de otro grupo |
 | **Integración e interoperabilidad** (cap. 8) | Scripts de ingesta; URL resueltas en el catálogo CKAN; cruce entre fuentes solo por código oficial | Datos | `verificar.py`: cuadres F01 ↔ F02 ↔ F03 |
 | **Gestión documental** (cap. 9) | No aplica: el sistema no guarda documentos ni contenido no estructurado | — | — |
@@ -58,6 +58,10 @@ cumple, quién responde y qué control la vigila**. Si un área no tiene control
 | 2026-11-02 | Vistas con código propio; Streamlit descartada por poco | Control de lo que viaja al despliegue y un solo paquete ajeno en el navegador | README, «Herramienta elegida» |
 | 2026-11-03 | dlt, DuckLake y Frictionless probadas y no adoptadas | Repiten lo que ya hacemos con más dependencias, o no ven los cuadres entre fuentes | README, bitácora de exploración |
 | 2026-11-03 | Vista 3D como escala visual; los edificios de OpenStreetMap, solo como contexto | La altura repite el valor del color; los edificios no son cifras del sistema | `glosario.json` (`altura_3d`), `dependencias.json` |
+| 2026-11-03 | Segundo rastreo por familias: 31 fichas nuevas (F12–F42) del portal de la ciudad y de fuera de él | El primero solo buscó lo que respondía las cuatro preguntas: 11 fuentes de 337 conjuntos del portal | `catalogo/`, README |
+| 2026-11-03 | Integrar el GTFS de toda la red MVV (F26) y responder P5 | Trae la S-Bahn que le falta a F07; el lago guarda cada parada y las vistas cuentan por distrito | `ingesta/pull_transporte.py`, `glosario.json` |
+| 2026-11-03 | Excluir los datos de adelantamiento a bicicletas (F29) | Traen `user_id` con GPS y hora exacta: datos personales seudonimizados, aunque la licencia lo permita | `catalogo/F29_adelantamientos_bici.json` |
+| 2026-11-03 | No saltarse el bloqueo de la estadística de Baviera (F41) | Respondió 403 a nuestro script; hacerse pasar por un navegador sería burlar una decisión del publicador | `catalogo/F41_estadistica_baviera.json` |
 | 2026-11-03 | Un lago con más de 60 días sin probar no se publica | Las fuentes cambian: el DWD corrigió tres meses en tres semanas | `verificar.py` |
 
 ## Incidencias abiertas
@@ -71,6 +75,9 @@ cumple, quién responde y qué control la vigila**. Si un área no tiene control
 | I5 | 2026-10-12 | F01 marca con «X» la población del 08 aunque se deduce y F06 la publica | Preguntar al Statistisches Amt por qué | Curaduría |
 | I6 | 2026-11-02 | La hoja «3. Bitácora IA» del Excel tiene solo los 12 encargos de la primera entrega; `a_excel.py` no la toca | Copiar la bitácora de IA del README al Excel antes de entregarlo | Curaduría |
 | I7 | 2026-11-02 | Faltan la auditoría de tres cifras y el ataque autorizado de otro grupo | Se hacen en clase sobre el enlace publicado | Todo el grupo |
+| I8 | 2026-11-03 | El GTFS de MVV (F26) marca la S-Bahn (S1–S8, S20) con `route_type 0`, que en GTFS es tranvía | El script la reconoce por el nombre y `verificar.py` vigila que no desaparezca; avisar a MVV del error | Datos |
+| I9 | 2026-11-03 | Sentinel-2 (F37) enlaza unas condiciones de uso de la ESA cuyo dominio no resuelve | Encontrar las condiciones de Copernicus en una página que funcione | Curaduría |
+| I10 | 2026-11-03 | La API Overpass de OpenStreetMap (F38) no respondió dos veces | Volver a probar, o usar Overture (F39) para los mismos datos | Curaduría |
 
 ## Autoevaluación de madurez (cap. 15)
 

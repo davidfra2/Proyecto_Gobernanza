@@ -1,0 +1,27 @@
+{
+ "id": "F26",
+ "nombre": "Soll-Fahrplandaten MVV-Gesamtnetz (GTFS) (horarios GTFS de toda la red MVV)",
+ "entidad": "mvv",
+ "url": "https://www.mvv-muenchen.de/fileadmin/mediapool/developer/opendata/gesamt_gtfs.zip",
+ "pagina": "https://opendata.muenchen.de/dataset/soll-fahrplandaten-mvv-gesamtnetz-gtfs",
+ "formato": "otro",
+ "formato_detalle": "ZIP con GTFS (stops.txt, routes.txt, trips.txt, stop_times.txt…)",
+ "acceso": "descarga_directa",
+ "licencia": "cc-by-4.0",
+ "licencia_texto": "Attribution 4.0 International (CC BY 4.0)",
+ "licencia_donde": "Metadatos del conjunto en el catálogo CKAN de opendata.muenchen.de (license_id «CC-BY-4.0»)",
+ "personas": "no",
+ "cobertura": "Red completa del MVV: S-Bahn, U-Bahn, tranvía, autobús y trenes regionales",
+ "periodo": "Horario del 2026-11-01 al 2027-01-31 (feed_info.txt)",
+ "frecuencia": "no_se_sabe",
+ "frecuencia_detalle": "El GTFS trae su propio calendario (versión 20261102); se publica una versión nueva por periodo de horarios",
+ "estado": "integrado",
+ "probado": "2026-11-03",
+ "respuesta": "HTTP 200 · application/zip · 18 882 161 bytes en 392 s (unos 48 KB/s) · 883 rutas, 28 084 paradas y andenes",
+ "script": "ingesta/pull_transporte.py",
+ "salida": [
+  "lago/transporte_paradas.json"
+ ],
+ "como_se_encontro": "Segundo rastreo por familias (2026-11-03): barrido de los 337 conjuntos del catálogo CKAN de opendata.muenchen.de, agrupados por organización.",
+ "nota": "Red completa del MVV, también la S-Bahn que le falta a F07 (MVG). El lago guarda las 1 118 paradas físicas que caen dentro de los 25 distritos (los andenes se agrupan en su estación) y qué medios las sirven: 43 con S-Bahn, 93 con U-Bahn, 170 con tranvía, 1 034 con autobús y 11 con tren regional. Los conteos por distrito se calculan en las vistas. Error en la fuente: las líneas S1–S8 y S20 vienen con route_type 0, que en GTFS es tranvía; el script las reconoce por el nombre de la línea, y verificar.py comprueba que sigan saliendo como S-Bahn. «SEV S5/S6/S8» son autobuses que sustituyen a la S-Bahn durante obras y cuentan como autobús. El servidor de MVV es lento: la ingesta tarda unos 7 minutos."
+}

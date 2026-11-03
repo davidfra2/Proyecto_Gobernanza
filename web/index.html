@@ -38,6 +38,7 @@
     <a href="#desempleo">P2 Desempleo</a>
     <a href="#clima">P3 Clima</a>
     <a href="#interes">P4 Interés</a>
+    <a href="#transporte">P5 Transporte</a>
     <a href="#fuentes">Fuentes y método</a>
   </nav>
 
@@ -51,13 +52,12 @@
 
     <section id="preguntas" aria-labelledby="t-preguntas">
       <h2 id="t-preguntas">Qué responde este sistema, y qué no</h2>
-      <p class="nota">Las cuatro preguntas que nos hicimos en la primera entrega, cada una con lo que alcanza a responder, y las que quedan pendientes porque no existe una fuente abierta que las responda o porque todavía no la integramos.</p>
+      <p class="nota">Las preguntas del sistema (cuatro de la primera entrega y una que se respondió en el segundo rastreo), cada una con lo que alcanza a responder, y las que quedan pendientes porque no existe una fuente abierta que las responda o porque todavía no la integramos.</p>
       <div id="lista-preguntas" class="preguntas"></div>
       <h3>Pendientes</h3>
       <ul class="pendientes">
         <li><strong>¿Qué distritos sufren más el calor?</strong> El DWD tiene una sola estación activa dentro de la ciudad (03379, en Neuhausen-Nymphenburg): no hay clima por distrito.</li>
         <li><strong>¿Dónde se respira peor?</strong> La API del Umweltbundesamt (F09) responde con cinco estaciones, pero no encontramos su licencia en la propia fuente: no entra hasta leerla.</li>
-        <li><strong>¿Qué distritos están peor conectados al transporte?</strong> Los horarios GTFS de MVG (F07) son abiertos, pero no traen la S-Bahn y no los hemos integrado.</li>
         <li><strong>¿Cómo se compara München con otras ciudades alemanas?</strong> GENESIS-Online (F11) es libre, pero su API sigue sin probar con un script.</li>
       </ul>
       <div class="aviso" id="aviso-datos">
@@ -147,6 +147,24 @@
         <div id="fuente-vistas" class="fuentes-linea"></div>
       </div>
       <details><summary>Ver tabla</summary><div id="tabla-vistas" class="tabla-envoltura"></div></details>
+    </section>
+
+    <section id="transporte" aria-labelledby="t-transporte">
+      <h2 id="t-transporte">P5 · ¿Qué distritos están peor conectados al transporte público?</h2>
+      <div id="r-p5" class="respuesta" aria-live="polite"></div>
+      <div class="tarjeta">
+        <h3>Paradas de transporte público por km²</h3>
+        <p class="nota">Paradas físicas de S-Bahn, U-Bahn, tranvía, autobús y tren regional, de los horarios de toda la red MVV. Los andenes de una misma estación cuentan una vez.</p>
+        <div id="g-transporte" class="grafico"></div>
+        <div id="fuente-transporte" class="fuentes-linea"></div>
+      </div>
+      <div class="tarjeta">
+        <h3>Estaciones de S-Bahn o U-Bahn</h3>
+        <p class="nota">La red rápida: paradas donde para al menos una línea de S-Bahn o de U-Bahn.</p>
+        <div id="g-estaciones" class="grafico"></div>
+        <div id="fuente-estaciones" class="fuentes-linea"></div>
+      </div>
+      <details><summary>Ver tabla</summary><div id="tabla-transporte" class="tabla-envoltura"></div></details>
     </section>
 
     <section id="fuentes" aria-labelledby="t-fuentes">

@@ -2,23 +2,418 @@
  "_que_es": "Glosario de negocio (DMBOK, cap. 12): cada término y cada cifra que ven las vistas, con su definición, cómo se obtiene y de qué campos del lago sale. Completa el diccionario (que describe los campos del lago) con lo que se calcula en la pantalla. verificar.py comprueba que cada campo citado exista en el diccionario y que cada fuente esté integrada.",
  "revisado": "2026-11-03",
  "terminos": [
-  {"id": "stadtbezirk", "termino": "Distrito (Stadtbezirk)", "tipo": "concepto", "definicion": "Cada una de las 25 divisiones administrativas de München, con código oficial de 01 a 25. El código 00 es la ciudad entera. Se cruza siempre por código, porque los nombres no coinciden entre fuentes.", "formula": null, "campos": ["territorio/stadtbezirke.geojson:sb_codigo", "territorio/stadtbezirke.geojson:sb_nombre"], "fuentes": ["F03"], "unidad": null, "donde": ["mapa", "panel del distrito", "selector"]},
-  {"id": "habitantes", "termino": "Habitantes", "tipo": "observada", "definicion": "Personas con residencia principal en el distrito al 31 de diciembre del año.", "formula": null, "campos": ["lago/poblacion_stadtbezirke.json:poblacion"], "fuentes": ["F01"], "unidad": "personas", "donde": ["panorama", "mapa", "panel del distrito", "P1"]},
-  {"id": "superficie", "termino": "Superficie", "tipo": "observada", "definicion": "Área del distrito. La de la ciudad sale de la estadística (F01); la de cada distrito, de la cartografía oficial (F03), porque F01 reserva la del 08.", "formula": null, "campos": ["lago/poblacion_stadtbezirke.json:area_km2", "territorio/stadtbezirke.geojson:area_km2"], "fuentes": ["F01", "F03"], "unidad": "km²", "donde": ["panel del distrito"]},
-  {"id": "densidad", "termino": "Densidad", "tipo": "observada", "definicion": "Habitantes por kilómetro cuadrado, tal como la publica la fuente (no la calculamos). verificar.py comprueba que cuadre con habitantes ÷ superficie.", "formula": null, "campos": ["lago/poblacion_stadtbezirke.json:densidad_hab_km2"], "fuentes": ["F01"], "unidad": "hab/km²", "donde": ["mapa", "panel del distrito"]},
-  {"id": "crecimiento", "termino": "Crecimiento de la población", "tipo": "calculada", "definicion": "Cambio porcentual de los habitantes entre el primer y el último año del lago.", "formula": "(habitantes del último año ÷ habitantes de 2015 − 1) × 100", "campos": ["lago/poblacion_stadtbezirke.json:poblacion", "lago/poblacion_stadtbezirke.json:anio"], "fuentes": ["F01"], "unidad": "%", "donde": ["panorama", "panel del distrito", "P1"]},
-  {"id": "indice_poblacion", "termino": "Índice de población (2015 = 100)", "tipo": "calculada", "definicion": "Habitantes de cada año como proporción de los de 2015, para comparar en un solo eje un distrito (20 000 a 120 000 habitantes) con la ciudad (1,6 millones).", "formula": "habitantes del año ÷ habitantes de 2015 × 100", "campos": ["lago/poblacion_stadtbezirke.json:poblacion", "lago/poblacion_stadtbezirke.json:anio"], "fuentes": ["F01"], "unidad": "índice", "donde": ["P1"]},
-  {"id": "poblacion_08", "termino": "Población deducida de 08 Schwanthalerhöhe", "tipo": "derivada", "definicion": "F01 marca con «X» la población del 08. Se deduce restando del total de la ciudad los otros 24 distritos; cuadra con su densidad publicada y con su superficie oficial (F03) en todos los años, y en 2024 con la cifra que publica F06. No se guarda en el lago: se calcula en la pantalla y se marca siempre con * y la etiqueta «derivada».", "formula": "habitantes de 00 − suma de habitantes de los otros 24 distritos", "campos": ["lago/poblacion_stadtbezirke.json:poblacion", "lago/poblacion_stadtbezirke.json:sb_codigo"], "fuentes": ["F01"], "unidad": "personas", "donde": ["panel del distrito", "P1"]},
-  {"id": "desempleo", "termino": "Desempleo", "tipo": "observada", "definicion": "Desempleados registrados como porcentaje de la población de 15 a 64 años, en promedio anual. Solo el total: el sistema no muestra los cortes por sexo ni por nacionalidad.", "formula": null, "campos": ["lago/desempleo_stadtbezirke.json:desempleo_pct"], "fuentes": ["F02"], "unidad": "%", "donde": ["panorama", "mapa", "panel del distrito", "P2"]},
-  {"id": "cambio_desempleo", "termino": "Cambio del desempleo", "tipo": "calculada", "definicion": "Diferencia entre el desempleo del último año y el de 2015. Se expresa en puntos porcentuales, no en porcentaje del porcentaje.", "formula": "desempleo del último año − desempleo de 2015", "campos": ["lago/desempleo_stadtbezirke.json:desempleo_pct", "lago/desempleo_stadtbezirke.json:anio"], "fuentes": ["F02"], "unidad": "puntos porcentuales", "donde": ["panel del distrito", "P2"]},
-  {"id": "temperatura", "termino": "Temperatura mensual (media, máxima media y mínima media)", "tipo": "observada", "definicion": "Medias mensuales de la estación 03379 München-Stadt del DWD. Es un solo punto para toda la ciudad: no hay clima por distrito.", "formula": null, "campos": ["lago/clima_muenchen_stadt.json:temp_media_c", "lago/clima_muenchen_stadt.json:temp_max_media_c", "lago/clima_muenchen_stadt.json:temp_min_media_c"], "fuentes": ["F04"], "unidad": "°C", "donde": ["panorama", "P3"]},
-  {"id": "lluvia", "termino": "Lluvia mensual", "tipo": "observada", "definicion": "Precipitación total del mes en la estación 03379.", "formula": null, "campos": ["lago/clima_muenchen_stadt.json:precipitacion_mm"], "fuentes": ["F04"], "unidad": "mm", "donde": ["P3"]},
-  {"id": "sol", "termino": "Horas de sol", "tipo": "observada", "definicion": "Horas de sol del mes en la estación 03379.", "formula": null, "campos": ["lago/clima_muenchen_stadt.json:sol_horas"], "fuentes": ["F04"], "unidad": "horas", "donde": ["P3 (tabla)"]},
-  {"id": "provisional", "termino": "Dato provisional", "tipo": "observada", "definicion": "Mes con nivel de calidad 1 (solo control formal) o 3 (control automático) del DWD: todavía puede corregirse. Entre el 2026-10-12 y el 2026-11-01 el DWD corrigió así marzo, abril y julio de 2026.", "formula": "nivel de calidad = 1 o 3", "campos": ["lago/clima_muenchen_stadt.json:nivel_calidad"], "fuentes": ["F04"], "unidad": null, "donde": ["panorama", "P3"]},
-  {"id": "vistas", "termino": "Vistas en Wikipedia", "tipo": "observada", "definicion": "Lecturas mensuales del artículo «München» en de.wikipedia hechas por personas, sin bots. Mide interés, no un dato del territorio.", "formula": null, "campos": ["lago/escucha.json:vistas"], "fuentes": ["F05"], "unidad": "vistas", "donde": ["panorama", "P4"]},
-  {"id": "grupos_mapa", "termino": "Grupos del mapa (quintiles)", "tipo": "calculada", "definicion": "Los 25 distritos ordenados por el indicador y repartidos en cinco grupos de cinco; cada grupo, un tono. El 08 sin dato publicado va en gris.", "formula": "cortes en las posiciones 5, 10, 15 y 20 del orden", "campos": ["lago/poblacion_stadtbezirke.json:densidad_hab_km2", "lago/poblacion_stadtbezirke.json:poblacion", "lago/desempleo_stadtbezirke.json:desempleo_pct"], "fuentes": ["F01", "F02"], "unidad": null, "donde": ["mapa"]},
-  {"id": "altura_3d", "termino": "Altura en la vista 3D", "tipo": "escala_visual", "definicion": "En la vista 3D, cada distrito se eleva en proporción al indicador del mapa: repite el valor que ya dice el color. No es una cifra nueva y la perspectiva la deforma; para comparar, se usan las barras o la tabla. Los edificios que aparecen al acercarse vienen del mapa base (ver catalogo/dependencias.json), no del lago.", "formula": "valor del distrito ÷ valor máximo × 2 500 m", "campos": ["lago/poblacion_stadtbezirke.json:densidad_hab_km2", "lago/poblacion_stadtbezirke.json:poblacion", "lago/desempleo_stadtbezirke.json:desempleo_pct"], "fuentes": ["F01", "F02"], "unidad": "metros de escala visual", "donde": ["mapa (vista 3D)"]},
-  {"id": "vigencia", "termino": "Vigencia", "tipo": "concepto", "definicion": "Hasta qué fecha cubren los datos de un archivo del lago: fin de año, fin de mes o el día de la descarga.", "formula": null, "campos": ["lago/poblacion_stadtbezirke.json:vigencia", "lago/desempleo_stadtbezirke.json:vigencia", "territorio/stadtbezirke.geojson:vigencia", "lago/clima_muenchen_stadt.json:vigencia", "lago/escucha.json:vigencia"], "fuentes": ["F01", "F02", "F03", "F04", "F05"], "unidad": null, "donde": ["etiqueta de fuente"]},
-  {"id": "probado", "termino": "Probado", "tipo": "concepto", "definicion": "Día en que el script descargó la fuente y respondió de verdad. verificar.py rechaza un lago con más de 60 días sin probar.", "formula": null, "campos": ["lago/poblacion_stadtbezirke.json:probado", "lago/desempleo_stadtbezirke.json:probado", "territorio/stadtbezirke.geojson:probado", "lago/clima_muenchen_stadt.json:probado", "lago/escucha.json:probado"], "fuentes": ["F01", "F02", "F03", "F04", "F05"], "unidad": null, "donde": ["etiqueta de fuente"]}
+  {
+   "id": "stadtbezirk",
+   "termino": "Distrito (Stadtbezirk)",
+   "tipo": "concepto",
+   "definicion": "Cada una de las 25 divisiones administrativas de München, con código oficial de 01 a 25. El código 00 es la ciudad entera. Se cruza siempre por código, porque los nombres no coinciden entre fuentes.",
+   "formula": null,
+   "campos": [
+    "territorio/stadtbezirke.geojson:sb_codigo",
+    "territorio/stadtbezirke.geojson:sb_nombre"
+   ],
+   "fuentes": [
+    "F03"
+   ],
+   "unidad": null,
+   "donde": [
+    "mapa",
+    "panel del distrito",
+    "selector"
+   ]
+  },
+  {
+   "id": "habitantes",
+   "termino": "Habitantes",
+   "tipo": "observada",
+   "definicion": "Personas con residencia principal en el distrito al 31 de diciembre del año.",
+   "formula": null,
+   "campos": [
+    "lago/poblacion_stadtbezirke.json:poblacion"
+   ],
+   "fuentes": [
+    "F01"
+   ],
+   "unidad": "personas",
+   "donde": [
+    "panorama",
+    "mapa",
+    "panel del distrito",
+    "P1"
+   ]
+  },
+  {
+   "id": "superficie",
+   "termino": "Superficie",
+   "tipo": "observada",
+   "definicion": "Área del distrito. La de la ciudad sale de la estadística (F01); la de cada distrito, de la cartografía oficial (F03), porque F01 reserva la del 08.",
+   "formula": null,
+   "campos": [
+    "lago/poblacion_stadtbezirke.json:area_km2",
+    "territorio/stadtbezirke.geojson:area_km2"
+   ],
+   "fuentes": [
+    "F01",
+    "F03"
+   ],
+   "unidad": "km²",
+   "donde": [
+    "panel del distrito"
+   ]
+  },
+  {
+   "id": "densidad",
+   "termino": "Densidad",
+   "tipo": "observada",
+   "definicion": "Habitantes por kilómetro cuadrado, tal como la publica la fuente (no la calculamos). verificar.py comprueba que cuadre con habitantes ÷ superficie.",
+   "formula": null,
+   "campos": [
+    "lago/poblacion_stadtbezirke.json:densidad_hab_km2"
+   ],
+   "fuentes": [
+    "F01"
+   ],
+   "unidad": "hab/km²",
+   "donde": [
+    "mapa",
+    "panel del distrito"
+   ]
+  },
+  {
+   "id": "crecimiento",
+   "termino": "Crecimiento de la población",
+   "tipo": "calculada",
+   "definicion": "Cambio porcentual de los habitantes entre el primer y el último año del lago.",
+   "formula": "(habitantes del último año ÷ habitantes de 2015 − 1) × 100",
+   "campos": [
+    "lago/poblacion_stadtbezirke.json:poblacion",
+    "lago/poblacion_stadtbezirke.json:anio"
+   ],
+   "fuentes": [
+    "F01"
+   ],
+   "unidad": "%",
+   "donde": [
+    "panorama",
+    "panel del distrito",
+    "P1"
+   ]
+  },
+  {
+   "id": "indice_poblacion",
+   "termino": "Índice de población (2015 = 100)",
+   "tipo": "calculada",
+   "definicion": "Habitantes de cada año como proporción de los de 2015, para comparar en un solo eje un distrito (20 000 a 120 000 habitantes) con la ciudad (1,6 millones).",
+   "formula": "habitantes del año ÷ habitantes de 2015 × 100",
+   "campos": [
+    "lago/poblacion_stadtbezirke.json:poblacion",
+    "lago/poblacion_stadtbezirke.json:anio"
+   ],
+   "fuentes": [
+    "F01"
+   ],
+   "unidad": "índice",
+   "donde": [
+    "P1"
+   ]
+  },
+  {
+   "id": "poblacion_08",
+   "termino": "Población deducida de 08 Schwanthalerhöhe",
+   "tipo": "derivada",
+   "definicion": "F01 marca con «X» la población del 08. Se deduce restando del total de la ciudad los otros 24 distritos; cuadra con su densidad publicada y con su superficie oficial (F03) en todos los años, y en 2024 con la cifra que publica F06. No se guarda en el lago: se calcula en la pantalla y se marca siempre con * y la etiqueta «derivada».",
+   "formula": "habitantes de 00 − suma de habitantes de los otros 24 distritos",
+   "campos": [
+    "lago/poblacion_stadtbezirke.json:poblacion",
+    "lago/poblacion_stadtbezirke.json:sb_codigo"
+   ],
+   "fuentes": [
+    "F01"
+   ],
+   "unidad": "personas",
+   "donde": [
+    "panel del distrito",
+    "P1"
+   ]
+  },
+  {
+   "id": "desempleo",
+   "termino": "Desempleo",
+   "tipo": "observada",
+   "definicion": "Desempleados registrados como porcentaje de la población de 15 a 64 años, en promedio anual. Solo el total: el sistema no muestra los cortes por sexo ni por nacionalidad.",
+   "formula": null,
+   "campos": [
+    "lago/desempleo_stadtbezirke.json:desempleo_pct"
+   ],
+   "fuentes": [
+    "F02"
+   ],
+   "unidad": "%",
+   "donde": [
+    "panorama",
+    "mapa",
+    "panel del distrito",
+    "P2"
+   ]
+  },
+  {
+   "id": "cambio_desempleo",
+   "termino": "Cambio del desempleo",
+   "tipo": "calculada",
+   "definicion": "Diferencia entre el desempleo del último año y el de 2015. Se expresa en puntos porcentuales, no en porcentaje del porcentaje.",
+   "formula": "desempleo del último año − desempleo de 2015",
+   "campos": [
+    "lago/desempleo_stadtbezirke.json:desempleo_pct",
+    "lago/desempleo_stadtbezirke.json:anio"
+   ],
+   "fuentes": [
+    "F02"
+   ],
+   "unidad": "puntos porcentuales",
+   "donde": [
+    "panel del distrito",
+    "P2"
+   ]
+  },
+  {
+   "id": "temperatura",
+   "termino": "Temperatura mensual (media, máxima media y mínima media)",
+   "tipo": "observada",
+   "definicion": "Medias mensuales de la estación 03379 München-Stadt del DWD. Es un solo punto para toda la ciudad: no hay clima por distrito.",
+   "formula": null,
+   "campos": [
+    "lago/clima_muenchen_stadt.json:temp_media_c",
+    "lago/clima_muenchen_stadt.json:temp_max_media_c",
+    "lago/clima_muenchen_stadt.json:temp_min_media_c"
+   ],
+   "fuentes": [
+    "F04"
+   ],
+   "unidad": "°C",
+   "donde": [
+    "panorama",
+    "P3"
+   ]
+  },
+  {
+   "id": "lluvia",
+   "termino": "Lluvia mensual",
+   "tipo": "observada",
+   "definicion": "Precipitación total del mes en la estación 03379.",
+   "formula": null,
+   "campos": [
+    "lago/clima_muenchen_stadt.json:precipitacion_mm"
+   ],
+   "fuentes": [
+    "F04"
+   ],
+   "unidad": "mm",
+   "donde": [
+    "P3"
+   ]
+  },
+  {
+   "id": "sol",
+   "termino": "Horas de sol",
+   "tipo": "observada",
+   "definicion": "Horas de sol del mes en la estación 03379.",
+   "formula": null,
+   "campos": [
+    "lago/clima_muenchen_stadt.json:sol_horas"
+   ],
+   "fuentes": [
+    "F04"
+   ],
+   "unidad": "horas",
+   "donde": [
+    "P3 (tabla)"
+   ]
+  },
+  {
+   "id": "provisional",
+   "termino": "Dato provisional",
+   "tipo": "observada",
+   "definicion": "Mes con nivel de calidad 1 (solo control formal) o 3 (control automático) del DWD: todavía puede corregirse. Entre el 2026-10-12 y el 2026-11-01 el DWD corrigió así marzo, abril y julio de 2026.",
+   "formula": "nivel de calidad = 1 o 3",
+   "campos": [
+    "lago/clima_muenchen_stadt.json:nivel_calidad"
+   ],
+   "fuentes": [
+    "F04"
+   ],
+   "unidad": null,
+   "donde": [
+    "panorama",
+    "P3"
+   ]
+  },
+  {
+   "id": "vistas",
+   "termino": "Vistas en Wikipedia",
+   "tipo": "observada",
+   "definicion": "Lecturas mensuales del artículo «München» en de.wikipedia hechas por personas, sin bots. Mide interés, no un dato del territorio.",
+   "formula": null,
+   "campos": [
+    "lago/escucha.json:vistas"
+   ],
+   "fuentes": [
+    "F05"
+   ],
+   "unidad": "vistas",
+   "donde": [
+    "panorama",
+    "P4"
+   ]
+  },
+  {
+   "id": "grupos_mapa",
+   "termino": "Grupos del mapa (quintiles)",
+   "tipo": "calculada",
+   "definicion": "Los 25 distritos ordenados por el indicador y repartidos en cinco grupos de cinco; cada grupo, un tono. El 08 sin dato publicado va en gris.",
+   "formula": "cortes en las posiciones 5, 10, 15 y 20 del orden",
+   "campos": [
+    "lago/poblacion_stadtbezirke.json:densidad_hab_km2",
+    "lago/poblacion_stadtbezirke.json:poblacion",
+    "lago/desempleo_stadtbezirke.json:desempleo_pct"
+   ],
+   "fuentes": [
+    "F01",
+    "F02"
+   ],
+   "unidad": null,
+   "donde": [
+    "mapa"
+   ]
+  },
+  {
+   "id": "altura_3d",
+   "termino": "Altura en la vista 3D",
+   "tipo": "escala_visual",
+   "definicion": "En la vista 3D, cada distrito se eleva en proporción al indicador del mapa: repite el valor que ya dice el color. No es una cifra nueva y la perspectiva la deforma; para comparar, se usan las barras o la tabla. Los edificios que aparecen al acercarse vienen del mapa base (ver catalogo/dependencias.json), no del lago.",
+   "formula": "valor del distrito ÷ valor máximo × 2 500 m",
+   "campos": [
+    "lago/poblacion_stadtbezirke.json:densidad_hab_km2",
+    "lago/poblacion_stadtbezirke.json:poblacion",
+    "lago/desempleo_stadtbezirke.json:desempleo_pct"
+   ],
+   "fuentes": [
+    "F01",
+    "F02"
+   ],
+   "unidad": "metros de escala visual",
+   "donde": [
+    "mapa (vista 3D)"
+   ]
+  },
+  {
+   "id": "vigencia",
+   "termino": "Vigencia",
+   "tipo": "concepto",
+   "definicion": "Hasta qué fecha cubren los datos de un archivo del lago: fin de año, fin de mes o el día de la descarga.",
+   "formula": null,
+   "campos": [
+    "lago/poblacion_stadtbezirke.json:vigencia",
+    "lago/desempleo_stadtbezirke.json:vigencia",
+    "territorio/stadtbezirke.geojson:vigencia",
+    "lago/clima_muenchen_stadt.json:vigencia",
+    "lago/escucha.json:vigencia"
+   ],
+   "fuentes": [
+    "F01",
+    "F02",
+    "F03",
+    "F04",
+    "F05"
+   ],
+   "unidad": null,
+   "donde": [
+    "etiqueta de fuente"
+   ]
+  },
+  {
+   "id": "probado",
+   "termino": "Probado",
+   "tipo": "concepto",
+   "definicion": "Día en que el script descargó la fuente y respondió de verdad. verificar.py rechaza un lago con más de 60 días sin probar.",
+   "formula": null,
+   "campos": [
+    "lago/poblacion_stadtbezirke.json:probado",
+    "lago/desempleo_stadtbezirke.json:probado",
+    "territorio/stadtbezirke.geojson:probado",
+    "lago/clima_muenchen_stadt.json:probado",
+    "lago/escucha.json:probado"
+   ],
+   "fuentes": [
+    "F01",
+    "F02",
+    "F03",
+    "F04",
+    "F05"
+   ],
+   "unidad": null,
+   "donde": [
+    "etiqueta de fuente"
+   ]
+  },
+  {
+   "id": "paradas_tp",
+   "termino": "Paradas de transporte público",
+   "tipo": "calculada",
+   "definicion": "Paradas físicas de la red MVV dentro del distrito (los andenes de una estación cuentan una vez), servidas por cualquier medio.",
+   "formula": "número de paradas con sb_codigo = distrito",
+   "campos": [
+    "lago/transporte_paradas.json:parada_id",
+    "lago/transporte_paradas.json:sb_codigo"
+   ],
+   "fuentes": [
+    "F26"
+   ],
+   "unidad": "paradas",
+   "donde": [
+    "mapa",
+    "P5"
+   ]
+  },
+  {
+   "id": "paradas_km2",
+   "termino": "Paradas por km²",
+   "tipo": "calculada",
+   "definicion": "Paradas de transporte público por kilómetro cuadrado del distrito: cuánta red tiene cerca un vecino, sin decir con qué frecuencia pasa.",
+   "formula": "paradas del distrito ÷ superficie del distrito (F03)",
+   "campos": [
+    "lago/transporte_paradas.json:parada_id",
+    "lago/transporte_paradas.json:sb_codigo",
+    "territorio/stadtbezirke.geojson:area_km2"
+   ],
+   "fuentes": [
+    "F26",
+    "F03"
+   ],
+   "unidad": "paradas/km²",
+   "donde": [
+    "mapa",
+    "P5"
+   ]
+  },
+  {
+   "id": "estaciones_tren",
+   "termino": "Estaciones de S-Bahn o U-Bahn",
+   "tipo": "calculada",
+   "definicion": "Paradas del distrito donde para al menos una línea de S-Bahn o de U-Bahn: la red rápida.",
+   "formula": "número de paradas del distrito con s_bahn o u_bahn",
+   "campos": [
+    "lago/transporte_paradas.json:s_bahn",
+    "lago/transporte_paradas.json:u_bahn",
+    "lago/transporte_paradas.json:sb_codigo"
+   ],
+   "fuentes": [
+    "F26"
+   ],
+   "unidad": "estaciones",
+   "donde": [
+    "panel del distrito",
+    "P5"
+   ]
+  }
  ]
 }

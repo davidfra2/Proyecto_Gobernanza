@@ -34,8 +34,8 @@ def fin_de_mes(mes: str) -> str:
     return f"{mes}-{calendar.monthrange(anio, numero_mes)[1]:02d}"
 
 
-def recurso_csv(dataset: str) -> str:
-    """URL vigente del CSV de un conjunto de opendata.muenchen.de.
+def recurso(dataset: str, formato: str = "CSV") -> str:
+    """URL vigente del recurso de un formato (CSV, ZIP…) de un conjunto de opendata.muenchen.de.
 
     La ciudad renombra el archivo en cada actualización (…_18_05_26.csv): fijar la URL deja
     al script bajando una versión vieja o un 404. Se pregunta al catálogo CKAN cada vez.
@@ -43,10 +43,14 @@ def recurso_csv(dataset: str) -> str:
     pedido = urllib.request.Request(CKAN + dataset, headers=UA)
     with urllib.request.urlopen(pedido, timeout=60) as respuesta:
         recursos = json.loads(respuesta.read())["result"]["resources"]
-    csvs = [r for r in recursos if r.get("format", "").upper() == "CSV"]
-    if not csvs:
-        raise RuntimeError(f"El conjunto {dataset} no tiene ningún recurso CSV")
-    return max(csvs, key=lambda r: r.get("last_modified") or r.get("created") or "")["url"]
+    candidatos = [r for r in recursos if r.get("format", "").upper() == formato.upper()]
+    if not candidatos:
+        raise RuntimeError(f"El conjunto {dataset} no tiene ningún recurso {formato}")
+    return max(candidatos, key=lambda r: r.get("last_modified") or r.get("created") or "")["url"]
+
+
+def recurso_csv(dataset: str) -> str:
+    return recurso(dataset, "CSV")
 
 
 def descargar(url: str, nombre_crudo: str) -> bytes:

@@ -103,7 +103,7 @@ function abrirFicha(id) {
 }
 
 // ------------------------------------------------------------------------------------- modelo
-const LAGO = () => ({ pob: D.pob, des: D.des, geo: D.geo, cli: D.cli, esc: D.esc });
+const LAGO = () => ({ pob: D.pob, des: D.des, geo: D.geo, cli: D.cli, esc: D.esc, tra: D.tra });
 const estado = { distrito: null, indicador: "densidad", tresD: false };
 
 function prepararModelo() {
@@ -122,7 +122,17 @@ function prepararModelo() {
   };
   const poblacion = (c, anio) => pob[c][anio].poblacion ?? (c === "08" ? deducida(anio) : null);
   const esDerivada = (c, anio) => pob[c][anio].poblacion === null && c === "08";
-  return { nombres, codigos, pob, des, aniosPob, aniosDes, poblacion, esDerivada };
+  // Transporte (F26): el lago trae cada parada con su distrito; aquí se cuentan (cifras calculadas, ver glosario)
+  const area = Object.fromEntries(D.geo.features.map((f) => [f.properties.sb_codigo, f.properties.area_km2]));
+  const tp = Object.fromEntries(codigos.map((c) => [c, { paradas: 0, estaciones: 0 }]));
+  for (const p of D.tra.registros) {
+    tp[p.sb_codigo].paradas += 1;
+    if (p.s_bahn || p.u_bahn) tp[p.sb_codigo].estaciones += 1;
+  }
+  for (const c of codigos) tp[c].por_km2 = tp[c].paradas / area[c];
+  tp["00"] = { paradas: D.tra.registros.length, estaciones: D.tra.registros.filter((p) => p.s_bahn || p.u_bahn).length };
+  tp["00"].por_km2 = tp["00"].paradas / Object.values(area).reduce((a, b) => a + b, 0);
+  return { nombres, codigos, pob, des, aniosPob, aniosDes, poblacion, esDerivada, tp, area };
 }
 
 // -------------------------------------------------------------------------------------- vistas
@@ -154,6 +164,7 @@ function vistaSelector(M) {
 const INDICADORES = {
   densidad: { nombre: "Densidad", fuente: "F01", valor: (M, c) => M.pob[c][M.aniosPob.at(-1)].densidad_hab_km2, formato: (v) => `${fNum(v)} hab/km²`, corto: fNum, titulo: (M) => `Habitantes por km², ${M.aniosPob.at(-1)}` },
   poblacion: { nombre: "Habitantes", fuente: "F01", valor: (M, c) => M.pob[c][M.aniosPob.at(-1)].poblacion, formato: fNum, corto: fCompacto, titulo: (M) => `Habitantes, ${M.aniosPob.at(-1)}` },
+  transporte: { nombre: "Transporte", fuente: "F26", tipo: "calculada", valor: (M, c) => M.tp[c].por_km2, formato: (v) => `${decimal1.format(v)} paradas/km²`, corto: (v) => decimal1.format(v), titulo: () => "Paradas de transporte público por km²" },
   desempleo: { nombre: "Desempleo", fuente: "F02", valor: (M, c) => M.des[c][M.aniosDes.at(-1)].desempleo_pct, formato: fPct, corto: fPct, titulo: (M) => `Desempleo, ${M.aniosDes.at(-1)}` },
 };
 
@@ -213,7 +224,7 @@ function vistaMapa(M) {
         "La perspectiva deforma las alturas: para comparar distritos, usa las barras o «Ver tabla». " +
         "Al acercarte aparecen los edificios en 3D, con datos de © OpenStreetMap (ODbL) vía OpenFreeMap: son contexto visual y alturas aproximadas, no cifras de este sistema." }));
     }
-    lineaFuentes("fuente-mapa", chip(ind.fuente), chip("F03"));
+    lineaFuentes("fuente-mapa", chip(ind.fuente, ind.tipo ?? "observada"), chip("F03"));
     document.getElementById("tabla-mapa").replaceChildren(tabla([["Código"], ["Distrito"], [ind.titulo(M), true]],
       M.codigos.map((c) => [c, M.nombres[c], valores[c] === null ? "sin dato publicado" : ind.formato(valores[c])])));
     return geo;
@@ -358,11 +369,13 @@ function vistaPanel(M) {
     filas.push([`Desempleo ${aD}`, fPct(M.des[c][aD].desempleo_pct)]);
     const cambio = M.des[c][aD].desempleo_pct - M.des[c][aD0].desempleo_pct;
     filas.push([`Cambio desde ${aD0}`, `${cambio > 0 ? "+" : cambio < 0 ? "−" : ""}${decimal1.format(Math.abs(cambio))} puntos`]);
+    filas.push(["Paradas de transporte", `${fNum(M.tp[c].paradas)} (${decimal1.format(M.tp[c].por_km2)} por km²)`]);
+    filas.push(["Estaciones de S-Bahn o U-Bahn", fNum(M.tp[c].estaciones)]);
     const lista = el("dl", {}, ...filas.flatMap(([t, v]) => [el("dt", { texto: t }), el("dd", { texto: v })]));
     if (derivada) {
       lista.append(el("p", { class: "derivado", texto: `* Derivado. La fuente reserva la población de este distrito («X»). Se calcula como el total de la ciudad menos los otros 24 distritos; cuadra con su densidad publicada y con su superficie oficial en todos los años. La superficie sale del mapa oficial (F03).` }));
     }
-    const chips = [chip("F01", derivada ? "derivada" : "observada"), chip("F02"), ...(c === "00" ? [] : [chip("F03")])];
+    const chips = [chip("F01", derivada ? "derivada" : "observada"), chip("F02"), chip("F26", "calculada"), ...(c === "00" ? [] : [chip("F03")])];
     panel.replaceChildren(el("h3", { texto: titulo }), lista, el("div", { class: "fuentes-linea" }, ...chips));
   });
 }
@@ -448,6 +461,21 @@ function vistaInteres() {
   document.getElementById("tabla-vistas").replaceChildren(tabla([["Mes"], ["Vistas", true]], r.map((m) => [fFecha(m.mes), fNum(m.vistas)])));
 }
 
+function vistaTransporte(M) {
+  registrar(() => {
+    const filas = M.codigos.map((c) => ({ clave: c, etiqueta: `${c} ${M.nombres[c]}`, valor: M.tp[c].por_km2 })).sort((a, b) => b.valor - a.valor);
+    barrasH(document.getElementById("g-transporte"), { filas, formato: (v) => decimal1.format(v), resaltado: estado.distrito, alSeleccionar: elegir,
+      descripcion: "Paradas de transporte público por km² en cada distrito" });
+    const est = M.codigos.map((c) => ({ clave: c, etiqueta: `${c} ${M.nombres[c]}`, valor: M.tp[c].estaciones })).sort((a, b) => b.valor - a.valor);
+    barrasH(document.getElementById("g-estaciones"), { filas: est, formato: fNum, resaltado: estado.distrito, alSeleccionar: elegir,
+      descripcion: "Estaciones de S-Bahn o U-Bahn en cada distrito" });
+  });
+  lineaFuentes("fuente-transporte", chip("F26", "calculada"), chip("F03"));
+  lineaFuentes("fuente-estaciones", chip("F26", "calculada"));
+  document.getElementById("tabla-transporte").replaceChildren(tabla([["Código"], ["Distrito"], ["Paradas", true], ["Por km²", true], ["Estaciones S-Bahn o U-Bahn", true]],
+    ["00", ...M.codigos].map((c) => [c, c === "00" ? "Toda la ciudad" : M.nombres[c], fNum(M.tp[c].paradas), decimal1.format(M.tp[c].por_km2), fNum(M.tp[c].estaciones)])));
+}
+
 function vistaFuentes() {
   const fichas = Object.values(D.fichas).sort((a, b) => a.id.localeCompare(b.id));
   document.getElementById("n-fuentes").textContent = fichas.length;
@@ -521,18 +549,27 @@ function vistaRespuestas(M) {
     "Respuesta parcial: las vistas no dicen desde dónde se lee, así que no separan el interés de fuera del de quienes viven en la ciudad, y solo se integró la edición en alemán.",
     chip("F05"));
 
+  const tp = M.codigos.map((c) => ({ c, v: M.tp[c].por_km2, e: M.tp[c].estaciones })).sort((a, b) => a.v - b.v);
+  const sinTren = tp.filter((x) => x.e === 0);
+  respuesta("r-p5",
+    `München tiene ${fNum(M.tp["00"].paradas)} paradas de transporte público, ${decimal1.format(M.tp["00"].por_km2)} por km², y ${fNum(M.tp["00"].estaciones)} de ellas con S-Bahn o U-Bahn. Las menos densas en paradas son ${nombre(tp[0].c)} (${decimal1.format(tp[0].v)} por km²) y ${nombre(tp[1].c)} (${decimal1.format(tp[1].v)}); la más densa, ${nombre(tp.at(-1).c)} (${decimal1.format(tp.at(-1).v)}).`,
+    sinTren.length ? `${sinTren.length === 1 ? "Un distrito no tiene" : `${sinTren.length} distritos no tienen`} ninguna estación de S-Bahn ni de U-Bahn: ${sinTren.map((x) => nombre(x.c)).join(", ")}.` : "Todos los distritos tienen al menos una estación de S-Bahn o U-Bahn.",
+    "Respuesta parcial: cuenta paradas, no cuántas veces pasa el transporte ni a cuánta gente le queda a pie; y una parada justo al otro lado del límite también sirve al distrito vecino.",
+    chip("F26", "calculada"), chip("F03"));
+
   const estados = [
     ["P1", "Respondida", "poblacion", ["F01", "F03"], "Población, densidad y crecimiento de los 25 distritos, 2015–2025. El 08 lleva su población derivada, marcada."],
     ["P2", "Respondida", "desempleo", ["F02", "F03"], "Desempleo de los 25 distritos, 2015–2024. Solo el total: sin cortes por sexo ni nacionalidad."],
     ["P3", "Parcial", "clima", ["F04"], "Mes a mes para la ciudad entera. No hay clima por distrito, y la carpeta reciente del DWD cubre unos 18 meses."],
     ["P4", "Parcial", "interes", ["F05"], "Vistas mensuales en de.wikipedia. No distingue de dónde viene quien lee."],
+    ["P5", "Parcial", "transporte", ["F26", "F03"], "Paradas de S-Bahn, U-Bahn, tranvía y autobús de los 25 distritos, con los horarios de toda la red MVV. Cuenta paradas, no frecuencias."],
   ];
   document.getElementById("lista-preguntas").replaceChildren(...estados.map(([id, est, ancla, fuentes, texto]) =>
     el("article", { class: "pregunta" },
       el("span", { class: `estado${est === "Parcial" ? " parcial" : ""}`, texto: est }),
       el("h3", {}, el("a", { href: `#${ancla}`, texto: `${id} · ${D.listas.preguntas[id]}` })),
       el("p", { texto }),
-      el("div", { class: "fuentes-linea" }, ...fuentes.map((f) => chip(f))))));
+      el("div", { class: "fuentes-linea" }, ...fuentes.map((f) => chip(f, f === "F26" ? "calculada" : "observada"))))));
 }
 
 // ---------------------------------------------------------------------------------- arranque
@@ -562,6 +599,7 @@ async function iniciar() {
   vistaDesempleo(M);
   vistaClima();
   vistaInteres();
+  vistaTransporte(M);
   vistaFuentes();
 }
 

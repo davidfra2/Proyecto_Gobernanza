@@ -72,8 +72,9 @@ LAGO = {ruta: cargar(ruta) for ruta in (
     "territorio/stadtbezirke.geojson",
     "lago/clima_muenchen_stadt.json",
     "lago/escucha.json",
+    "lago/transporte_paradas.json",
 )}
-pob, des, geo, cli, esc = LAGO.values()
+pob, des, geo, cli, esc, tra = LAGO.values()
 huerfanos = {
     str(p.relative_to(RAIZ)).replace("\\", "/")
     for p in [*(RAIZ / "lago").glob("*.json"), *(RAIZ / "territorio").glob("*.geojson")]
@@ -229,6 +230,21 @@ meses = [r["mes"] for r in esc["registros"]]
 revisar(meses == sorted(set(meses)), "F05: meses repetidos o desordenados")
 revisar(all(r["vistas"] >= 0 for r in esc["registros"]), "F05: vistas negativas")
 revisar(esc["vigencia"][:7] == meses[-1], "F05: la vigencia no es el último mes")
+
+# F26 · transporte: una fila por parada física dentro de la ciudad, con los medios que la sirven
+MEDIOS = ("s_bahn", "u_bahn", "tranvia", "bus", "tren_regional")
+sin_repetidos(tra["registros"], ("parada_id",), "F26")
+for r in tra["registros"]:
+    clave = f"F26 {r['parada_id']}"
+    revisar(r["sb_codigo"] in CODIGOS - {"00"}, f"{clave}: distrito «{r['sb_codigo']}» desconocido")
+    revisar(11.3 < r["lon"] < 11.8 and 48.0 < r["lat"] < 48.3, f"{clave}: coordenadas fuera de München")
+    revisar(any(r[m] for m in MEDIOS), f"{clave}: ningún medio para en ella")
+revisar({r["sb_codigo"] for r in tra["registros"]} == CODIGOS - {"00"}, "F26: hay distritos sin ninguna parada")
+# La fuente marca la S-Bahn con route_type 0 (tranvía en GTFS); el script la reconoce por el nombre de la línea.
+# Si eso dejara de funcionar, la S-Bahn desaparecería en silencio: München tiene más de 30 estaciones de cada red rápida.
+for medio, minimo in (("s_bahn", 30), ("u_bahn", 80)):
+    n = sum(r[medio] for r in tra["registros"])
+    revisar(n >= minimo, f"F26: solo {n} paradas con {medio} (se esperan al menos {minimo}); revisen la clasificación de rutas")
 
 # Catálogo · cada ficha bien formada, con valores de las listas cerradas, y unida al lago
 CAMPOS_FICHA = (

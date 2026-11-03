@@ -70,6 +70,66 @@
   "destatis": {
    "nombre": "Statistisches Bundesamt (Destatis)",
    "tipo": "entidad_publica"
+  },
+  "mobilitaetsreferat": {
+   "nombre": "Mobilitätsreferat der Landeshauptstadt München",
+   "tipo": "entidad_publica"
+  },
+  "mvv": {
+   "nombre": "Münchner Verkehrs- und Tarifverbund GmbH (MVV)",
+   "tipo": "entidad_publica"
+  },
+  "kreisverwaltungsreferat": {
+   "nombre": "Kreisverwaltungsreferat der Landeshauptstadt München",
+   "tipo": "entidad_publica"
+  },
+  "stadtkaemmerei": {
+   "nombre": "Stadtkämmerei der Landeshauptstadt München",
+   "tipo": "entidad_publica"
+  },
+  "referat_bildung_sport": {
+   "nombre": "Referat für Bildung und Sport der Landeshauptstadt München",
+   "tipo": "entidad_publica"
+  },
+  "baureferat": {
+   "nombre": "Baureferat der Landeshauptstadt München",
+   "tipo": "entidad_publica"
+  },
+  "referat_stadtplanung": {
+   "nombre": "Referat für Stadtplanung und Bauordnung der Landeshauptstadt München",
+   "tipo": "entidad_publica"
+  },
+  "it_referat": {
+   "nombre": "IT-Referat der Landeshauptstadt München",
+   "tipo": "entidad_publica"
+  },
+  "community_daten": {
+   "nombre": "Community-Daten München (datos aportados por ciudadanos)",
+   "tipo": "no_se_sabe"
+  },
+  "copernicus_esa": {
+   "nombre": "Programa Copernicus (ESA), servido por Earth Search de Element 84",
+   "tipo": "entidad_publica"
+  },
+  "openstreetmap": {
+   "nombre": "Colaboradores de OpenStreetMap (OpenStreetMap Foundation)",
+   "tipo": "plataforma_colaborativa"
+  },
+  "overture": {
+   "nombre": "Overture Maps Foundation",
+   "tipo": "academia_ong"
+  },
+  "gdelt": {
+   "nombre": "The GDELT Project",
+   "tipo": "academia_ong"
+  },
+  "lfstat_bayern": {
+   "nombre": "Bayerisches Landesamt für Statistik",
+   "tipo": "entidad_publica"
+  },
+  "lfu_bayern": {
+   "nombre": "Bayerisches Landesamt für Umwelt (LfU)",
+   "tipo": "entidad_publica"
   }
  },
  "licencias": {
@@ -96,6 +156,12 @@
    "url": null,
    "uso": "No se integra hasta confirmar la licencia en la fuente",
    "permite_integrar": false
+  },
+  "odbl-1.0": {
+   "nombre": "Open Data Commons Open Database License (ODbL) 1.0",
+   "url": "https://opendatacommons.org/licenses/odbl/1-0/",
+   "uso": "Libre citando la fuente; lo derivado se comparte con la misma licencia",
+   "permite_integrar": true
   }
  },
  "personas": {
@@ -260,6 +326,7 @@
   "P2": "¿En qué distritos pesa más el desempleo y cómo cambió desde 2015?",
   "P3": "¿Cómo cambian el calor y la lluvia de la ciudad mes a mes?",
   "P4": "¿Cuánto interés despierta München fuera de la ciudad y en qué meses sube?",
+  "P5": "¿Qué distritos están peor conectados al transporte público?",
   "TODAS": "¿De dónde sale esta cifra y de cuándo es? (trazabilidad de cualquier cifra)"
  },
  "tipos_cifra": {

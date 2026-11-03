@@ -72,3 +72,4 @@ el Excel y la documentación. Nivel de protección: abierto, solo agregados (REA
 - [ ] Revisión cruzada: tres cifras auditadas y el ataque de otro grupo.
 - [x] Modo oscuro del mapa base (estilo `dark` de OpenFreeMap).
 - [x] Vista 3D del mapa (2026-11-03).
+- [x] P5 · transporte: indicador «Transporte» en el mapa, paradas y estaciones en el panel, y su sección (2026-11-03).

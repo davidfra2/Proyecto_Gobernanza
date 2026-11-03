@@ -7,7 +7,7 @@ Réplica del Cerebro Lima para Múnich. Cómo trabajamos: [CONTRIBUTING.md](CONT
 Reconstruir y comprobar el lago (Python 3.9 o superior, sin instalar nada):
 
 ```bash
-cd ingesta && for s in pull_poblacion pull_desempleo pull_territorio pull_clima pull_escucha; do python3 $s.py; done; cd ..
+cd ingesta && for s in pull_poblacion pull_desempleo pull_territorio pull_clima pull_escucha pull_transporte; do python3 $s.py; done; cd ..   # pull_transporte tarda unos 7 minutos: el servidor de MVV es lento
 python3 verificacion/verificar.py
 ```
 
@@ -27,32 +27,68 @@ Regenerar el Excel del diccionario desde `catalogo/` (es el único paso que inst
   - **P2** · ¿En qué distritos pesa más el desempleo y cómo cambió desde 2015? (F02, F03)
   - **P3** · ¿Cómo cambian el calor y la lluvia de la ciudad mes a mes? (F04)
   - **P4** · ¿Cuánto interés despierta München fuera de la ciudad y en qué meses sube? (F05)
-- Escala y comparación: los 25 Stadtbezirke y la ciudad (código 00), de 2015 al último año publicado (2025 en población, 2024 en desempleo); el clima y el interés en Wikipedia, por mes y para la ciudad entera.
+  - **P5** · ¿Qué distritos están peor conectados al transporte público? (F26, F03; añadida en el segundo rastreo)
+- Escala y comparación: los 25 Stadtbezirke y la ciudad (código 00), de 2015 al último año publicado (2025 en población, 2024 en desempleo); el clima y el interés en Wikipedia, por mes y para la ciudad entera; el transporte, por parada, con el horario vigente de la red MVV.
 - Lo que decidimos no mostrar, y por qué: los cortes de desempleo por sexo y nacionalidad (F02), para no facilitar el señalamiento de barrios por nacionalidad; la religión por distrito (F10), que no responde ninguna pregunta; y los crudos de `lago/raw/`, que traen esos cortes.
 
 ## La réplica
 - Qué replicamos tal cual del ejemplo y qué tuvimos que cambiar para nuestra ciudad: replicamos la anatomía de carpetas del Cerebro Lima (`ingesta/`, `catalogo/`, `lago/` con `raw/` fuera del repositorio, `territorio/`, `verificacion/`, `api/`, `web/`), la ingesta con Python y solo la biblioteca estándar, el lago en JSON y un verificador propio que bloquea la publicación. Cambiamos: las URL de München se piden al catálogo CKAN porque la ciudad renombra los archivos; el cruce territorial va por código de Stadtbezirk porque los nombres no coinciden entre fuentes; las licencias son alemanas (Datenlizenz Deutschland) y el marco de datos personales es el RGPD; y sumamos al catálogo listas cerradas y un diccionario que el verificador contrasta con el lago.
-- Fuentes catalogadas · integradas · caídas · descartadas: **11 catalogadas · 5 integradas · 3 candidatas · 0 caídas · 1 inexistente (inventada por la IA) · 2 excluidas**, de cinco familias: estadística (F01, F02, F06, F10, F11), territorio (F03), ambiente (F04, F09), movilidad (F07, F08) y lo que se dice (F05). Una ficha por fuente en [catalogo/](catalogo/), todas probadas de nuevo el 2026-11-01, y un diccionario con los 38 campos del lago en [catalogo/diccionario.json](catalogo/diccionario.json); `verificacion/verificar.py` comprueba que catálogo, diccionario y lago digan lo mismo.
+- Fuentes catalogadas · integradas · caídas · descartadas: **42 catalogadas · 6 integradas · 24 candidatas · 3 caídas · 1 inexistente (inventada por la IA) · 8 excluidas**, de once familias: estadística y sociedad, economía y plata pública, territorio, ambiente, movilidad, seguridad, salud, educación, servicios, política y lo que se dice. El primer rastreo (F01–F11) buscó solo lo que respondía las cuatro preguntas; el segundo (F12–F42, 2026-11-03) barrió por familias los 337 conjuntos del portal de la ciudad y fuentes de fuera (satélite, OpenStreetMap, Overture, noticias, Baviera). Una ficha por fuente en [catalogo/](catalogo/), todas probadas el 2026-11-03, y un diccionario con los 51 campos del lago en [catalogo/diccionario.json](catalogo/diccionario.json); `verificacion/verificar.py` comprueba que catálogo, diccionario y lago digan lo mismo.
 - Huecos: lo que buscamos y no existe abierto para esta ciudad:
   - **Clima por distrito.** En la lista de estaciones del DWD, la 03379 München-Stadt (en Neuhausen-Nymphenburg) es la única activa dentro de la ciudad: el clima se responde para la ciudad entera (F04).
   - **Población y superficie de 08 Schwanthalerhöhe.** F01 las marca con «X» en los 24 años, pero no están ocultas: el total de la ciudad menos los otros 24 distritos da su población (28 684 en 2024, la misma cifra que publica F06), y esa cifra dividida por la densidad publicada da 2,07 km² todos los años, la superficie de 08 en F03. El lago la deja en null porque sería un dato derivado; `verificar.py` comprueba que las tres cifras cuadren, y una vista que la muestre tiene que marcarla como derivada. No sabemos por qué F01 la marca.
   - **Calidad del aire con licencia confirmada.** La API del UBA responde con cinco estaciones en München (F09), pero no encontramos su licencia en el sitio del UBA.
+  - **Calor y verde por distrito desde el satélite.** Sentinel-2 responde sin llave (F37), pero su catálogo declara la licencia «proprietary» y el enlace a las condiciones de la ESA no resuelve: no entra hasta leerlas.
+  - **Estadística de Baviera.** Su base de datos rechaza a los scripts (403, F41). No intentamos saltarnos el bloqueo.
   - **Comparación con otras ciudades alemanas.** GENESIS-Online (F11) es libre y sin registro, pero su API no está probada y Python rechaza su certificado.
 
 ## ¿Se puede usar?
+Generada desde las fichas de [catalogo/](catalogo/): la condición es la primera frase de la nota de cada ficha.
+
 | Fuente | Licencia | Personas | Estado | Condición |
 |---|---|---|---|---|
-| F01 · Población y densidad por distrito (Statistisches Amt München) | dl-de/by-2-0 | Solo conteos por zona | Integrada | Citar «Landeshauptstadt München, Statistisches Amt · dl-de/by-2-0» con enlace al conjunto |
-| F02 · Desempleo por distrito (Statistisches Amt München) | dl-de/by-2-0 | Solo conteos por zona | Integrada | Citar como F01. Solo el total «insgesamt»: sin cortes por sexo ni nacionalidad |
-| F03 · Límites de los 25 distritos (GeodatenService München) | dl-de/by-2-0 | No | Integrada | Citar «Landeshauptstadt München, GeodatenService · dl-de/by-2-0» |
-| F04 · Clima mensual, estación 03379 (DWD) | CC BY 4.0 | No | Integrada | Citar «Deutscher Wetterdienst · CC BY 4.0». Avisar que los meses recientes pueden corregirse |
-| F05 · Vistas de «München» en de.wikipedia (Wikimedia) | CC0 | No | Integrada | Sin condiciones; la citamos igual |
-| F06 · Población por distrito al 31-12-2024 (Statistisches Amt München) | dl-de/by-2-0 | Solo conteos por zona | Excluida | Duplica F01 con un solo año y formato irregular |
-| F07 · Horarios GTFS de MVG | CC BY 4.0 | No | Candidata | Usable citando a MVG; falta decidir qué pregunta responde |
-| F08 · Página de horarios de MVG (URL de la IA) | — | No | No existe | Respondió 404: la URL la inventó la IA |
-| F09 · NO₂ por estación (Umweltbundesamt) | No declara | No | Candidata | No se usa hasta leer la licencia en el sitio del UBA |
-| F10 · Religión por distrito (Statistisches Amt München) | dl-de/by-2-0 | Solo conteos por zona | Excluida | No responde ninguna pregunta; categoría especial del RGPD (art. 9) |
-| F11 · GENESIS-Online (Destatis) | dl-de/by-2-0 | Solo conteos por zona | Candidata | Usable citando a Destatis; falta probar la API con un script |
+| F01 · Indikatorenatlas: Bevölkerung – Bevölkerungsdichte | dl-de/by-2-0 | Solo conteos por zona | Integrada al lago | La ciudad renombra el archivo en cada actualización, así que el script pide la URL vigente al catálogo CKAN. |
+| F02 · Indikatorenatlas: Arbeitsmarkt – Arbeitslose – Anteil | dl-de/by-2-0 | Solo conteos por zona | Integrada al lago | La fuente separa también por sexo (männlich, weiblich) y nacionalidad (deutsch, nichtdeutsch); el lago solo guarda «insgesamt» para no facilitar el cruce de desempleo con nacionalidad por barrio. |
+| F03 · Stadtbezirke | dl-de/by-2-0 | No | Integrada al lago | Devuelve 27 polígonos para 25 distritos (18 y 19 tienen pedazos sueltos): se unen en un MultiPolygon por distrito. |
+| F04 · Clima mensual de la estación 03379 München-Stadt | CC BY 4.0 | No | Integrada al lago | Los faltantes vienen como -999 y se guardan como null. |
+| F05 · Vistas mensuales del artículo «München» en la Wikipedia en alemán | CC0 | No | Integrada al lago | agent=user: cuenta personas, no bots. |
+| F06 · Bevölkerung in den Stadtbezirken am 31.12.2024 | dl-de/by-2-0 | Solo conteos por zona | Descartada | Duplica F01 con un solo año y tiene problemas de formato: «101 901» con espacio en Neuhausen, el total como un distrito «26 insgesamt» y la densidad en hab/ha. |
+| F07 · MVG-Fahrplandaten | CC BY 4.0 | No | Candidata | Su tamaño cambia entre descargas: 29 804 502 bytes el 2026-10-06, 27 087 056 el 2026-10-12 y 29 879 033 el 2026-11-01. |
+| F08 · Página de horarios de MVG | No declara | No | No existe (la inventó la IA) | La URL tiene una forma razonable pero nunca existió: también dio 404 el 2026-10-06. |
+| F09 · Calidad del aire: balances anuales de NO₂ por estación | No declara | No | Candidata | La URL que dio la IA (www.umweltbundesamt.de/api/air_data/v3) redirige (302) a este dominio. |
+| F10 · Indikatorenatlas: Bevölkerung – Religionszugehörigkeit | dl-de/by-2-0 | Solo conteos por zona | Descartada | No responde ninguna de nuestras preguntas. |
+| F11 · GENESIS-Online | dl-de/by-2-0 | Solo conteos por zona | Candidata | Solo probamos que la base de datos web responde; la API todavía no la hemos llamado, así que «acceso» queda como página web. |
+| F12 · Indikatorenatlas: Bevölkerung - Altersgruppen | dl-de/by-2-0 | Solo conteos por zona | Candidata | Mismo formato que F01. |
+| F13 · Indikatorenatlas: Bevölkerung - Migrationshintergrund | dl-de/by-2-0 | Solo conteos por zona | Descartada | Agregada por distrito, pero es el mismo cruce que decidimos no facilitar en F02 (desempleo por nacionalidad): señalaría barrios por el origen de sus vecinos. |
+| F14 · Indikatorenatlas: Bevölkerung - Nichtdeutsche | dl-de/by-2-0 | Solo conteos por zona | Descartada | Misma razón que F13: la nacionalidad por distrito no responde ninguna pregunta del sistema y facilitaría señalar barrios. |
+| F15 · Indikatorenatlas: Arbeitsmarkt - | dl-de/by-2-0 | Solo conteos por zona | Candidata | Indicador de pobreza por distrito, útil para un concejal. |
+| F16 · Indikatorenatlas: Flächen - Flächennutzung | dl-de/by-2-0 | Solo conteos por zona | Candidata | Reparto del suelo (vivienda, verde, tráfico…) por distrito: daría contexto a la densidad de P1. |
+| F17 · Indikatorenatlas: Baufertigstellungen | dl-de/by-2-0 | Solo conteos por zona | Candidata | Explicaría parte del crecimiento de P1 (por ejemplo, el de 22 Aubing con el barrio nuevo de Freiham). |
+| F18 · Indikatorenatlas: Gesundheit - Arzt*Ärztin-Dichte | dl-de/by-2-0 | Solo conteos por zona | Candidata | Primera fuente de la familia salud con detalle por distrito; el portal solo tiene 2 conjuntos de salud. |
+| F19 · Indikatorenatlas: Verkehr - Motorisierungsgrad Personenkraftwagen | dl-de/by-2-0 | Solo conteos por zona | Candidata | Movilidad por distrito; combinada con el transporte público (F26) diría dónde se depende más del coche. |
+| F20 · Monatszahlen Verkehrsunfälle | dl-de/by-2-0 | Solo conteos por zona | Candidata | Seguridad vial para la ciudad entera (no por distrito). |
+| F21 · Monatszahlen Tourismus | dl-de/by-2-0 | Solo conteos por zona | Candidata | Complementaría P4: el interés en Wikipedia frente a las visitas reales a la ciudad, mes a mes. |
+| F22 · Monatszahlen Witterung | dl-de/by-2-0 | Solo conteos por zona | Candidata | Publicada por el Statistisches Amt, no por el DWD. |
+| F23 · Vornamen von Nulljährigen München | dl-de/by-2-0 | Solo conteos por zona | Descartada | No responde ninguna pregunta. |
+| F24 · Pro-Kopf-Verschuldung LHM, Hoheitshaushalt | dl-de/by-2-0 | Solo conteos por zona | Candidata | Primera fuente de la familia «plata pública». |
+| F25 · Ordentliche Erträge und Aufwendungen der Produkte der LHM | dl-de/by-2-0 | Solo conteos por zona | Candidata | Presupuesto ejecutado por producto y por Referat. |
+| F26 · Soll-Fahrplandaten MVV-Gesamtnetz | CC BY 4.0 | No | Integrada al lago | Red completa del MVV, también la S-Bahn que le falta a F07 (MVG). |
+| F27 · Daten der Raddauerzählstellen München - Jahreszahlen | dl-de/by-2-0 | No | Candidata | Conteos de bicicletas por punto y día: miden uso real de la bici, no personas. |
+| F28 · Fahrten mit dem MVG-Rad | dl-de/by-2-0 | No | Descartada | El servicio cerró el 30-09-2025. |
+| F29 · Überhol- und Seitenabstandsdaten zwischen Fahrrädern und Kraftfahrzeug | dl-de/by-2-0 | Personas identificables | Descartada | Trae «user_id» y «measurement_id» junto con coordenadas GPS y la hora exacta de cada medición: son datos personales seudonimizados de los ciclistas que midieron (con hora y lugar se puede reconstruir un recorrido). |
+| F30 · Kleiner Waffenschein | dl-de/by-2-0 | Solo conteos por zona | Candidata | Un número por año para toda la ciudad (familia seguridad). |
+| F31 · Meldungen der Plattform machmuenchenbesser.de | CC0 | Texto libre sin revisar | No responde | La URL que publica el portal (API GeoReport v2) respondió 404 el 2026-11-03. |
+| F32 · Schulen und Schüler*innenzahlen in München | dl-de/by-2-0 | Solo conteos por zona | Candidata | Primera fuente de la familia educación. |
+| F33 · Kindertagesbetreuungseinrichtungen in München | dl-de/by-2-0 | No | Candidata | Trae la columna del distrito: permitiría contar centros por distrito y cruzarlos con la población infantil (F12). |
+| F34 · Solarpotenzialanalyse 2018 der Landeshauptstadt München | dl-de/by-2-0 | No | Descartada | Formato imposible para el lago: solo se puede ver como imagen en un mapa, no descargar las cifras. |
+| F35 · Stadtratswahl 2026 - Ergebnisse München | dl-de/by-2-0 | Solo conteos por zona | Candidata | Resultados oficiales y agregados. |
+| F36 · Öffentliche Spielplätze München | dl-de/by-2-0 | No | Candidata | Con las coordenadas y F03 se contarían por distrito: servicios para familias. |
+| F37 · Sentinel-2 nivel 2A | No declara | No | Candidata | Serviría para el verde o el calor por distrito (pendiente «¿qué distritos sufren más el calor?»). |
+| F38 · OpenStreetMap vía la API Overpass | ODbL | No | No responde | Los datos de OpenStreetMap ya llegan a la página como mapa base (ver catalogo/dependencias.json); lo que no respondió fue la API para consultarlos. |
+| F39 · Overture Maps | ODbL | No | Candidata | Leerla exige DuckDB con extensiones espaciales (ver la exploración del rastreo). |
+| F40 · GDELT DOC 2.0: volumen de noticias en alemán sobre München | No declara | No | Candidata | Ampliaría P4 con noticias además de Wikipedia. |
+| F41 · GENESIS-Online del Bayerisches Landesamt für Statistik | No declara | Solo conteos por zona | No responde | Rechaza peticiones automáticas. |
+| F42 · LÜB: valores actuales de las estaciones de calidad del aire de Baviera | No declara | No | Candidata | Mismo problema que F09: sin licencia leída no entra. |
 
 ## Bitácora de exploración
 | Tramo | Herramienta | Qué pidió para empezar | Licencia | Dónde quedan los datos | ¿Se rehace con un comando? | Estado del proyecto | Qué resolvió | Qué no pudo | ¿Quedó? ¿Por qué? |
@@ -123,6 +159,9 @@ Regenerar el Excel del diccionario desde `catalogo/` (es el único paso que inst
 | Verificación | Claude (Claude Code) | Correr el verificador en cada push y pull request | `.github/workflows/verificar.yml`, con Python 3.9 y 3.13 y las acciones fijadas por commit | Pasó en Python 3.9 y 3.13. Había escrito que Vercel publica sin esperar a esta comprobación; al mirar el sitio se vio lo contrario: el despliegue no se actualiza solo con cada push (queda en «Lo que todavía falta» de GOBIERNO.md) |
 | Vistas | Claude (Claude Code) | Mejorar el mapa con una vista 3D | Botón «Vista 3D»: prismas por distrito a escala de ciudad y edificios de OpenStreetMap al acercarse | Las capturas del navegador salían en negro porque el panel estaba oculto; se verificó consultando el propio mapa (231 edificios cerca de Marienplatz, el más alto de 99 m, como las torres de la Frauenkirche) con un enganche temporal que se quitó antes de subir |
 | Gobierno | Claude (Claude Code) | Revisar el proyecto entero contra el DMBOK | Ética (cap. 2), glosario de negocio, inventario de terceros, registro de decisiones e incidencias, autoevaluación de madurez y tres controles nuevos en `verificar.py` | Encontró que el verificador decía controlar la «actualidad» y solo comprobaba que `probado` no fuera futura: un lago de seis meses habría pasado. Ahora el máximo es de 60 días |
+| Rastreo y catálogo | Claude (Claude Code) | Segundo rastreo por familias | 31 fichas nuevas (F12–F42) tras barrer los 337 conjuntos del portal y seis fuentes de fuera | Al ver el 403 de la estadística de Baviera intentó repetir la petición haciéndose pasar por un navegador; el control de permisos de Claude Code la bloqueó y se anotó el 403 tal cual. También supuso que los nombres de recién nacidos (F23) podían señalar a un bebé, y la fuente ya los suprime («5 oder weniger» en 3 707 de 4 175 filas) |
+| Ingesta | Claude (Claude Code) | Integrar el GTFS de la red MVV para responder P5 | `ingesta/pull_transporte.py` y `lago/transporte_paradas.json`: 1 118 paradas | Buscó la S-Bahn como tren (`route_type 2`) y no la encontró: la fuente la marca como tranvía (`route_type 0`). Se clasifica por el nombre de la línea y el verificador vigila que no vuelva a desaparecer. La descarga con Python iba tan lenta que se probó primero con curl (unos 48 KB/s) |
+| Catálogo | Claude (Claude Code) | Que el Excel admita más de 40 fuentes y campos | `catalogo/a_excel.py` alarga las filas, las listas desplegables y las fórmulas del Resumen | Al abrirlo en Excel, el Resumen decía 42 campos en vez de 51: el script lee el Excel que generó antes, y en la segunda pasada sus rangos ya no terminaban en la fila 44. Ahora cada rango se ajusta a su hoja desde cualquier última fila, y correrlo dos veces da lo mismo |
 
 ## Revisión cruzada
 - Tres cifras auditadas por el grupo <X>: resultado y correcciones. *Pendiente: se hace en clase sobre el enlace publicado.*

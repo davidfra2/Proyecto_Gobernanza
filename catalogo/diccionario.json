@@ -651,6 +651,227 @@
    "preguntas": [
     "P4"
    ]
+  },
+  {
+   "archivo": "lago/transporte_paradas.json",
+   "campo": "fuente",
+   "fuente": "F26",
+   "nombre_original": "(no existe en la fuente: lo agrega el script)",
+   "significado": "ID de la fuente en el catálogo; une el lago con la hoja «1. Fuentes»",
+   "tipo": "codigo",
+   "unidad": null,
+   "ejemplo": "F26",
+   "puede_vacio": false,
+   "valores_permitidos": "F01–F42",
+   "clasificacion": "publica",
+   "transformacion": "Se escribe fijo en cada script de ingesta",
+   "preguntas": [
+    "TODAS"
+   ]
+  },
+  {
+   "archivo": "lago/transporte_paradas.json",
+   "campo": "vigencia",
+   "fuente": "F26",
+   "nombre_original": "feed_end_date (feed_info.txt) o end_date (calendar.txt)",
+   "significado": "Último día del calendario de servicio que trae el GTFS",
+   "tipo": "fecha",
+   "unidad": null,
+   "ejemplo": "2027-01-31",
+   "puede_vacio": false,
+   "valores_permitidos": "AAAA-MM-DD",
+   "clasificacion": "publica",
+   "transformacion": "AAAAMMDD → AAAA-MM-DD; si el GTFS no lo trae, el día de la descarga",
+   "preguntas": [
+    "TODAS"
+   ]
+  },
+  {
+   "archivo": "lago/transporte_paradas.json",
+   "campo": "probado",
+   "fuente": "F26",
+   "nombre_original": "(no existe en la fuente: lo agrega el script)",
+   "significado": "Día en que el script descargó la fuente de verdad",
+   "tipo": "fecha",
+   "unidad": null,
+   "ejemplo": "2026-11-03",
+   "puede_vacio": false,
+   "valores_permitidos": "AAAA-MM-DD, no posterior a hoy",
+   "clasificacion": "publica",
+   "transformacion": "Fecha del día en que corre el script (el día de la descarga)",
+   "preguntas": [
+    "TODAS"
+   ]
+  },
+  {
+   "archivo": "lago/transporte_paradas.json",
+   "campo": "parada_id",
+   "fuente": "F26",
+   "nombre_original": "stop_id (o su parent_station)",
+   "significado": "Identificador de la parada física en el GTFS; los andenes de una estación se agrupan en ella",
+   "tipo": "codigo",
+   "unidad": null,
+   "ejemplo": "de:09162:2",
+   "puede_vacio": false,
+   "valores_permitidos": "Único en el archivo",
+   "clasificacion": "publica",
+   "transformacion": "Andén → estación madre (parent_station)",
+   "preguntas": [
+    "P5"
+   ]
+  },
+  {
+   "archivo": "lago/transporte_paradas.json",
+   "campo": "nombre",
+   "fuente": "F26",
+   "nombre_original": "stop_name",
+   "significado": "Nombre de la parada tal como lo publica MVV",
+   "tipo": "texto",
+   "unidad": null,
+   "ejemplo": "Marienplatz",
+   "puede_vacio": false,
+   "valores_permitidos": "Texto",
+   "clasificacion": "publica",
+   "transformacion": "Ninguna (se quitan espacios en los extremos)",
+   "preguntas": [
+    "P5"
+   ]
+  },
+  {
+   "archivo": "lago/transporte_paradas.json",
+   "campo": "lon",
+   "fuente": "F26",
+   "nombre_original": "stop_lon",
+   "significado": "Longitud de la parada",
+   "tipo": "decimal",
+   "unidad": "grados (EPSG:4326)",
+   "ejemplo": "11.57766",
+   "puede_vacio": false,
+   "valores_permitidos": "11.3 a 11.8",
+   "clasificacion": "publica",
+   "transformacion": "Redondeo a 5 decimales (~1 m)",
+   "preguntas": [
+    "P5"
+   ]
+  },
+  {
+   "archivo": "lago/transporte_paradas.json",
+   "campo": "lat",
+   "fuente": "F26",
+   "nombre_original": "stop_lat",
+   "significado": "Latitud de la parada",
+   "tipo": "decimal",
+   "unidad": "grados (EPSG:4326)",
+   "ejemplo": "48.13644",
+   "puede_vacio": false,
+   "valores_permitidos": "48.0 a 48.3",
+   "clasificacion": "publica",
+   "transformacion": "Redondeo a 5 decimales (~1 m)",
+   "preguntas": [
+    "P5"
+   ]
+  },
+  {
+   "archivo": "lago/transporte_paradas.json",
+   "campo": "sb_codigo",
+   "fuente": "F26",
+   "nombre_original": "(no existe en la fuente: punto en polígono contra F03)",
+   "significado": "Distrito donde cae la parada; las de fuera de la ciudad no entran",
+   "tipo": "codigo",
+   "unidad": null,
+   "ejemplo": "01",
+   "puede_vacio": false,
+   "valores_permitidos": "01 a 25",
+   "clasificacion": "publica",
+   "transformacion": "Punto en polígono con los límites de territorio/stadtbezirke.geojson (F03)",
+   "preguntas": [
+    "P5"
+   ]
+  },
+  {
+   "archivo": "lago/transporte_paradas.json",
+   "campo": "s_bahn",
+   "fuente": "F26",
+   "nombre_original": "route_short_name S1…S8 de las rutas que paran (stop_times + trips + routes)",
+   "significado": "Si alguna línea de S-Bahn para en ella",
+   "tipo": "booleano",
+   "unidad": null,
+   "ejemplo": "true",
+   "puede_vacio": false,
+   "valores_permitidos": "true / false",
+   "clasificacion": "publica",
+   "transformacion": "Unión de stop_times, trips y routes",
+   "preguntas": [
+    "P5"
+   ]
+  },
+  {
+   "archivo": "lago/transporte_paradas.json",
+   "campo": "u_bahn",
+   "fuente": "F26",
+   "nombre_original": "route_type de metro o route_short_name U1…U8",
+   "significado": "Si alguna línea de U-Bahn para en ella",
+   "tipo": "booleano",
+   "unidad": null,
+   "ejemplo": "true",
+   "puede_vacio": false,
+   "valores_permitidos": "true / false",
+   "clasificacion": "publica",
+   "transformacion": "Unión de stop_times, trips y routes",
+   "preguntas": [
+    "P5"
+   ]
+  },
+  {
+   "archivo": "lago/transporte_paradas.json",
+   "campo": "tranvia",
+   "fuente": "F26",
+   "nombre_original": "route_type de tranvía",
+   "significado": "Si alguna línea de tranvía para en ella",
+   "tipo": "booleano",
+   "unidad": null,
+   "ejemplo": "false",
+   "puede_vacio": false,
+   "valores_permitidos": "true / false",
+   "clasificacion": "publica",
+   "transformacion": "Unión de stop_times, trips y routes",
+   "preguntas": [
+    "P5"
+   ]
+  },
+  {
+   "archivo": "lago/transporte_paradas.json",
+   "campo": "bus",
+   "fuente": "F26",
+   "nombre_original": "route_type de autobús",
+   "significado": "Si alguna línea de autobús para en ella",
+   "tipo": "booleano",
+   "unidad": null,
+   "ejemplo": "true",
+   "puede_vacio": false,
+   "valores_permitidos": "true / false",
+   "clasificacion": "publica",
+   "transformacion": "Unión de stop_times, trips y routes",
+   "preguntas": [
+    "P5"
+   ]
+  },
+  {
+   "archivo": "lago/transporte_paradas.json",
+   "campo": "tren_regional",
+   "fuente": "F26",
+   "nombre_original": "route_type de tren que no es S-Bahn",
+   "significado": "Si algún tren regional para en ella",
+   "tipo": "booleano",
+   "unidad": null,
+   "ejemplo": "false",
+   "puede_vacio": false,
+   "valores_permitidos": "true / false",
+   "clasificacion": "publica",
+   "transformacion": "Unión de stop_times, trips y routes",
+   "preguntas": [
+    "P5"
+   ]
   }
  ]
 }
