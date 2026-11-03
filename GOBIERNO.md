@@ -14,7 +14,7 @@ responde y qué control automático la vigila**. Si un área no tiene control, e
 | **Integración e interoperabilidad** (cap. 8) | Scripts de ingesta; URL resueltas en el catálogo CKAN; cruce entre fuentes solo por código oficial | Datos | `verificar.py`: cuadres F01 ↔ F02 ↔ F03 |
 | **Datos de referencia y maestros** (cap. 10) | [catalogo/listas.json](catalogo/listas.json): único vocabulario, enlazado a las listas del Excel. F03 es el maestro de los 25 distritos | Curaduría | `verificar.py`: todo valor del catálogo y del diccionario sale de las listas |
 | **Metadatos** (cap. 12) | Catálogo de fuentes [catalogo/F*.json](catalogo/) y diccionario de campos [catalogo/diccionario.json](catalogo/diccionario.json). Linaje: fuente → `script` → `salida` | Curaduría | `verificar.py`: catálogo ↔ lago ↔ diccionario |
-| **Calidad de datos** (cap. 13) | [verificacion/verificar.py](verificacion/verificar.py), por dimensiones: completitud, validez, consistencia, unicidad y actualidad | Datos | Se corre antes de cada publicación |
+| **Calidad de datos** (cap. 13) | [verificacion/verificar.py](verificacion/verificar.py), por dimensiones: completitud, validez, consistencia, unicidad y actualidad | Datos | Se corre antes de cada publicación, y en cada push y pull request con GitHub Actions ([verificar.yml](.github/workflows/verificar.yml)), en Python 3.9 y 3.13 |
 | **Inteligencia de negocio** (cap. 11) | [web/](web/): vistas que responden P1–P4 y dicen qué queda pendiente; cada cifra con su etiqueta de fuente (vigencia, fecha de prueba, observada, calculada o derivada) que abre la ficha | Interfaz | `verificar.py`: toda fuente citada en `web/` es una ficha integrada |
 
 Gestión documental (cap. 9) no aplica: el sistema no guarda documentos ni contenido no estructurado.
@@ -48,6 +48,7 @@ En el vocabulario del DMBOK:
 
 - **Seguridad no tiene responsable.** Somos tres y nadie asumió el papel; tiene que ser alguien que
   no construya la compuerta.
-- **Falta el enlace público en Vercel**, y sobre él la auditoría de tres cifras y el ataque de otro grupo.
+- **Sobre el enlace publicado faltan** la auditoría de tres cifras y el ataque autorizado de otro grupo.
+- **Vercel publica sin esperar al verificador.** GitHub Actions marca en rojo un push que falla, pero el despliegue ya salió. Para cerrarlo habría que hacer que Vercel solo despliegue cuando la comprobación pasa (por ejemplo, con un «Ignored Build Step» que consulte el resultado), y eso se configura en el proyecto de Vercel.
 - **El Excel ya no se mantiene a mano.** La fuente de verdad es el repositorio (`catalogo/` y
   `catalogo/diccionario.json`); `catalogo/a_excel.py` genera el Excel desde ahí antes de cada entrega.

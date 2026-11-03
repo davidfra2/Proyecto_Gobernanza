@@ -1,0 +1,29 @@
+# «Si falla, no se publica», también en GitHub: cada push y cada pull request corren verificar.py.
+# Con Python 3.9 (el del Mac del grupo, el mínimo que soporta el código) y con el más reciente.
+# Las acciones van fijadas por commit, no por etiqueta, para que nadie pueda cambiarlas debajo nuestro
+# (lo mismo que la huella SRI de MapLibre en web/).
+name: verificar
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.9", "3.13"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Todos los scripts compilan en esta versión de Python
+        run: python -m py_compile ingesta/*.py verificacion/*.py catalogo/*.py explorar/*.py
+      - name: Verificar lago, catálogo, diccionario y vistas
+        run: python verificacion/verificar.py
