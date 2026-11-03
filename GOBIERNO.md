@@ -49,6 +49,6 @@ En el vocabulario del DMBOK:
 - **Seguridad no tiene responsable.** Somos tres y nadie asumió el papel; tiene que ser alguien que
   no construya la compuerta.
 - **Sobre el enlace publicado faltan** la auditoría de tres cifras y el ataque autorizado de otro grupo.
-- **Vercel publica sin esperar al verificador.** GitHub Actions marca en rojo un push que falla, pero el despliegue ya salió. Para cerrarlo habría que hacer que Vercel solo despliegue cuando la comprobación pasa (por ejemplo, con un «Ignored Build Step» que consulte el resultado), y eso se configura en el proyecto de Vercel.
+- **El sitio publicado no se actualiza solo.** El 2026-11-03, dos pushes a `main` (el clima de octubre y las exploraciones) pasaron `verificar.py` en GitHub Actions, pero el sitio siguió mostrando el lago del 2026-11-01: el despliegue en Vercel se hace aparte, desde la cuenta del proyecto. Antes de cada entrega hay que volver a desplegar y comprobar en el sitio la fecha `probado` de un archivo del lago. Conectar Vercel al repositorio para que despliegue `main` cuando la comprobación pase cerraría este hueco.
 - **El Excel ya no se mantiene a mano.** La fuente de verdad es el repositorio (`catalogo/` y
   `catalogo/diccionario.json`); `catalogo/a_excel.py` genera el Excel desde ahí antes de cada entrega.
