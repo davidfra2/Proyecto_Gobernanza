@@ -104,7 +104,7 @@ function abrirFicha(id) {
 
 // ------------------------------------------------------------------------------------- modelo
 const LAGO = () => ({ pob: D.pob, des: D.des, geo: D.geo, cli: D.cli, esc: D.esc });
-const estado = { distrito: null, indicador: "densidad" };
+const estado = { distrito: null, indicador: "densidad", tresD: false };
 
 function prepararModelo() {
   const nombres = Object.fromEntries(D.geo.features.map((f) => [f.properties.sb_codigo, f.properties.sb_nombre]));
@@ -165,22 +165,32 @@ function clases(valores) {
 const claseDe = (v, cortes) => (v === null ? null : cortes.filter((c) => v > c).length);
 
 let mapa = null;
+const ALTURA_MAXIMA = 2500; // metros del prisma más alto en la vista 3D (solo escala visual)
 function vistaMapa(M) {
   const opciones = document.getElementById("selector-indicador");
   opciones.replaceChildren(...Object.entries(INDICADORES).map(([k, ind]) =>
     el("button", { type: "button", class: "opcion", role: "radio", "aria-checked": String(k === estado.indicador), texto: ind.nombre,
       onclick: () => { estado.indicador = k; redibujar(); } })));
+  // Vista 3D: botón aparte del indicador (no es otra cifra, es otra forma de mirar la misma)
+  const boton3D = el("button", { type: "button", class: "opcion opcion-3d", "aria-pressed": "false", texto: "Vista 3D",
+    onclick: () => { estado.tresD = !estado.tresD; aplicar3D(true); redibujar(); } });
+  opciones.after(boton3D);
 
   const pintar = () => {
     const ind = INDICADORES[estado.indicador];
     for (const b of opciones.children) b.setAttribute("aria-checked", String(b.textContent === ind.nombre));
+    boton3D.setAttribute("aria-pressed", String(estado.tresD));
     const valores = Object.fromEntries(M.codigos.map((c) => [c, ind.valor(M, c)]));
     const cortes = clases(Object.values(valores));
     const rampa = [1, 2, 3, 4, 5].map((i) => color(`mapa-${i}`));
+    const maximo = Math.max(...Object.values(valores).filter((v) => v !== null));
     const geo = structuredClone(D.geo);
     for (const f of geo.features) {
-      const k = claseDe(valores[f.properties.sb_codigo], cortes);
+      const v = valores[f.properties.sb_codigo];
+      const k = claseDe(v, cortes);
       f.properties.relleno = k === null ? color("sin-dato") : rampa[k];
+      // En 3D la altura repite el mismo valor que el color, en proporción al máximo (sin dato: a ras de suelo)
+      f.properties.altura = v === null ? 0 : (v / maximo) * ALTURA_MAXIMA;
     }
     if (mapa?.getSource("distritos")) {
       mapa.getSource("distritos").setData(geo);
@@ -196,6 +206,12 @@ function vistaMapa(M) {
       el("div", { class: "leyenda-cortes", "aria-hidden": "true" }, ...limites.map((v) => el("span", { texto: ind.corto(v) }))));
     if (Object.values(valores).includes(null)) {
       leyenda.append(el("span", { class: "leyenda-item" }, el("span", { class: "leyenda-muestra", style: `background:${color("sin-dato")}` }), "Sin dato publicado"));
+    }
+    if (estado.tresD) {
+      leyenda.append(el("p", { class: "leyenda-nota", texto:
+        `Vista 3D: la altura de cada distrito repite su valor (el más alto, ${ind.corto(maximo)}, mide lo mismo en todos los indicadores). ` +
+        "La perspectiva deforma las alturas: para comparar distritos, usa las barras o «Ver tabla». " +
+        "Al acercarte aparecen los edificios en 3D, con datos de © OpenStreetMap (ODbL) vía OpenFreeMap: son contexto visual y alturas aproximadas, no cifras de este sistema." }));
     }
     lineaFuentes("fuente-mapa", chip(ind.fuente), chip("F03"));
     document.getElementById("tabla-mapa").replaceChildren(tabla([["Código"], ["Distrito"], [ind.titulo(M), true]],
@@ -226,26 +242,55 @@ function vistaMapa(M) {
     // 2 px del color de la superficie entre distritos vecinos: separa sin dibujar una línea más
     mapa.addLayer({ id: "distritos-borde", type: "line", source: "distritos", paint: { "line-color": color("superficie"), "line-width": 1.5 } });
     mapa.addLayer({ id: "distritos-elegido", type: "line", source: "distritos", filter: ["==", ["get", "sb_codigo"], estado.distrito ?? ""], paint: { "line-color": color("texto"), "line-width": 3 } });
+    // 3D a escala de ciudad: un prisma por distrito, del mismo color, que se desvanece al acercarse
+    mapa.addLayer({ id: "distritos-3d", type: "fill-extrusion", source: "distritos", layout: { visibility: "none" },
+      paint: { "fill-extrusion-color": ["get", "relleno"], "fill-extrusion-height": ["get", "altura"], "fill-extrusion-base": 0,
+        "fill-extrusion-opacity": ["interpolate", ["linear"], ["zoom"], 11.5, 0.88, 13, 0] } });
+    // 3D de cerca: los edificios del mapa base (OpenStreetMap vía OpenFreeMap), con su altura aproximada
+    if (estilo.sources?.openmaptiles) {
+      mapa.addLayer({ id: "edificios-3d", type: "fill-extrusion", source: "openmaptiles", "source-layer": "building", minzoom: 12.5,
+        filter: ["!=", ["get", "hide_3d"], true], layout: { visibility: "none" },
+        paint: { "fill-extrusion-color": color("eje"), "fill-extrusion-height": ["coalesce", ["get", "render_height"], 0],
+          "fill-extrusion-base": ["coalesce", ["get", "render_min_height"], 0],
+          "fill-extrusion-opacity": ["interpolate", ["linear"], ["zoom"], 12.5, 0, 13.5, 0.9] } });
+    }
     if (estilo.glyphs) {
       mapa.addLayer({ id: "distritos-codigo", type: "symbol", source: "etiquetas",
         layout: { "text-field": ["get", "sb_codigo"], "text-size": ["interpolate", ["linear"], ["zoom"], 9, 9, 10.5, 11, 12, 13], "text-font": ["Noto Sans Bold"], "text-allow-overlap": true },
         paint: { "text-color": color("texto"), "text-halo-color": color("superficie"), "text-halo-width": 1.6 } });
     }
     pintar();
+    aplicar3D(false);
+  };
+
+  // Enciende o apaga la vista 3D: cambia qué capas se ven y la inclinación de la cámara
+  const aplicar3D = (animar) => {
+    if (!mapa?.getLayer("distritos-3d")) return;
+    const ver = (capa, visible) => mapa.getLayer(capa) && mapa.setLayoutProperty(capa, "visibility", visible ? "visible" : "none");
+    ver("distritos-3d", estado.tresD);
+    ver("edificios-3d", estado.tresD);
+    ver("distritos-relleno", !estado.tresD);
+    ver("building", !estado.tresD); // los edificios planos del mapa base, que en 3D quedarían debajo
+    const quieto = !animar || matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const camara = estado.tresD ? { pitch: 58, bearing: -18 } : { pitch: 0, bearing: 0 };
+    if (mapa.getPitch() !== camara.pitch) quieto ? mapa.jumpTo(camara) : mapa.easeTo({ ...camara, duration: 900 });
   };
 
   let oscuro = temaOscuro();
   estiloPara(oscuro).then((estilo) => {
     mapa = new maplibregl.Map({ container: "mapa", style: estilo, center: [11.55, 48.14], zoom: 10, attributionControl: { compact: true }, cooperativeGestures: true });
-    mapa.addControl(new maplibregl.NavigationControl({ showCompass: false }));
+    // Brújula con inclinación: en 3D sirve para ver hacia dónde mira la cámara y volver al norte
+    mapa.addControl(new maplibregl.NavigationControl({ showCompass: true, visualizePitch: true }));
     mapa.on("style.load", () => estiloPara(oscuro).then(agregarCapas));
     mapa.once("load", () => {
       const caja = D.geo.features.flatMap((f) => f.geometry.coordinates.flat(2));
       mapa.fitBounds([[Math.min(...caja.map((q) => q[0])), Math.min(...caja.map((q) => q[1]))], [Math.max(...caja.map((q) => q[0])), Math.max(...caja.map((q) => q[1]))]], { padding: 16, duration: 0 });
     });
-    mapa.on("click", "distritos-relleno", (e) => elegir(e.features[0].properties.sb_codigo));
-    mapa.on("mouseenter", "distritos-relleno", () => { mapa.getCanvas().style.cursor = "pointer"; });
-    mapa.on("mouseleave", "distritos-relleno", () => { mapa.getCanvas().style.cursor = ""; });
+    for (const capa of ["distritos-relleno", "distritos-3d"]) {
+      mapa.on("click", capa, (e) => elegir(e.features[0].properties.sb_codigo));
+      mapa.on("mouseenter", capa, () => { mapa.getCanvas().style.cursor = "pointer"; });
+      mapa.on("mouseleave", capa, () => { mapa.getCanvas().style.cursor = ""; });
+    }
     registrar(() => {
       if (temaOscuro() === oscuro) return;
       oscuro = temaOscuro();
@@ -417,6 +462,11 @@ function vistaFuentes() {
     el("p", { texto: `Licencia: ${D.listas.licencias[f.licencia].nombre}` }),
     el("p", { texto: `Probado: ${fFecha(f.probado)} · ${f.respuesta}` }),
     el("button", { class: "chip", type: "button", onclick: () => abrirFicha(f.id), texto: "Ver la ficha completa" }))));
+  document.getElementById("glosario").replaceChildren(tabla([["Término"], ["Tipo"], ["Qué es"], ["Cómo se obtiene"], ["Campos del lago"], ["Fuentes"]],
+    D.glosario.map((t) => [t.termino, t.tipo.replace("_", " "), t.definicion, t.formula ?? "La publica la fuente",
+      t.campos.map((c) => c.split(":")[1]).filter((c, i, a) => a.indexOf(c) === i).join(", "), t.fuentes.join(", ")])));
+  document.getElementById("dependencias").replaceChildren(tabla([["Servicio"], ["Para qué"], ["Licencia"], ["Qué recibe de quien visita"], ["Si falla"]],
+    D.dependencias.map((d) => [`${d.nombre}${d.version ? ` (${d.version})` : ""}`, d.uso, d.licencia, d.recibe, d.si_falla])));
 }
 
 // ------------------------------------------------------------------- respuestas escritas

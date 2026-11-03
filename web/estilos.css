@@ -217,3 +217,13 @@ dialog dd { margin: 0; overflow-wrap: anywhere; }
 .respuesta p { margin: 0 0 6px; max-width: 75ch; }
 .respuesta .fuentes-linea { margin-top: 6px; }
 #preguntas > h3 { margin-top: 20px; }
+
+/* Vista 3D del mapa */
+.opcion-3d { margin: 0 0 10px; }
+.opcion-3d[aria-pressed="true"] { background: var(--texto); color: var(--superficie); border-color: var(--texto); }
+.leyenda-nota { flex-basis: 100%; margin: 6px 0 0; font-size: 0.82rem; color: var(--texto-2); max-width: 80ch; }
+
+/* Glosario y terceros en «Fuentes y método»: textos largos, así que las celdas sí se parten */
+.subtitulo-metodo { margin-top: 28px; }
+#glosario td, #dependencias td { white-space: normal; vertical-align: top; min-width: 120px; }
+#glosario td:nth-child(3), #dependencias td:nth-child(2) { min-width: 260px; }
