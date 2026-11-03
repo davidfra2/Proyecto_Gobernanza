@@ -109,6 +109,7 @@ Regenerar el Excel del diccionario desde `catalogo/` (es el único paso que inst
 | Vistas · exploración | Claude (Claude Code) | Los mismos datos en Streamlit | `explorar/vistas_streamlit.py` | Usó `st.link_button(key=…)`, un argumento que Streamlit 1.50 no tiene (error en pantalla), y no previó que `st.bar_chart` reordena las barras |
 | Verificación | Claude (Claude Code) | Probar que el control nuevo de citas falla cuando debe | Una prueba que restauraba el archivo con `git checkout` | Ese comando habría borrado los cambios sin guardar de `web/app.js`. Lo frenó el control de permisos de Claude Code; se rehizo cambiando una cita y revirtiendo el cambio |
 | Protección | Claude (Claude Code) | Revisar secretos en el historial | 61 coincidencias del `grep` de la lámina | Todas falsos positivos; se revisaron a mano una por una |
+| Vistas | Claude (Claude Code) | La etiqueta con el código de cada distrito en el mapa | Una capa de texto sobre los polígonos | **La encontró el grupo, no la IA:** el 18 y el 19 salían dos veces, porque cada uno trae un pedazo mínimo además del principal y MapLibre etiqueta cada pedazo. Ahora se calcula un solo punto por distrito, el más interior de su parte más grande. La geometría oficial no se tocó |
 
 ## Revisión cruzada
 - Tres cifras auditadas por el grupo <X>: resultado y correcciones. *Pendiente: se hace en clase sobre el enlace publicado.*
