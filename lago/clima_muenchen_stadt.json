@@ -1,7 +1,7 @@
 {
  "fuente": "F04",
- "vigencia": "2026-09-30",
- "probado": "2026-11-01",
+ "vigencia": "2026-10-31",
+ "probado": "2026-11-03",
  "registros": [
   {
    "mes": "2025-04",
@@ -163,6 +163,15 @@
    "temp_min_media_c": 11.38,
    "precipitacion_mm": 37.3,
    "sol_horas": 250.08,
+   "nivel_calidad": 1
+  },
+  {
+   "mes": "2026-10",
+   "temp_media_c": 11.45,
+   "temp_max_media_c": 16.26,
+   "temp_min_media_c": 7.27,
+   "precipitacion_mm": 47.8,
+   "sol_horas": 138.45,
    "nivel_calidad": 1
   }
  ]

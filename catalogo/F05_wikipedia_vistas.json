@@ -16,7 +16,7 @@
  "frecuencia": "mensual",
  "frecuencia_detalle": null,
  "estado": "integrado",
- "probado": "2026-11-01",
+ "probado": "2026-11-03",
  "respuesta": "HTTP 200 · application/json · 3 267 bytes · 22 meses",
  "script": "ingesta/pull_escucha.py",
  "salida": [

@@ -16,7 +16,7 @@
  "frecuencia": "no_se_sabe",
  "frecuencia_detalle": "Depende de la tabla",
  "estado": "candidato",
- "probado": "2026-11-01",
+ "probado": "2026-11-03",
  "respuesta": "HTTP 200 con curl · text/html · 2 506 bytes. Desde Python (urllib) no conecta: WinError 10060, tiempo agotado.",
  "script": null,
  "salida": [],
